@@ -20,12 +20,19 @@
 
 / {
     macros {
-        tologin: zed_em_tologin {
+        toscrollright: zed_em_toscrollright {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F4>,<&macro_tap &kp D>,<&macro_release &kp F4>;
+            bindings = <&macro_press &kp F2>,<&macro_tap &kp SPACE>,<&macro_release &kp F2>;
+        };
+        //点击第一栏
+        totapfirst: zed_em_totapfirst {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp F8>,<&macro_tap &kp SPACE>,<&macro_release &kp F8>;
         };
    }；
+
     behaviors {
         td0: tap_dance_0 {
             compatible = "zmk,behavior-tap-dance";
