@@ -23,7 +23,7 @@
         tologin: zed_em_tologin {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap &kp ENTER>;
+            bindings = <&macro_press &kp F4>,<&macro_tap &kp D>,<&macro_release &kp F4>;
         };
    }；
     behaviors {
