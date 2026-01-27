@@ -12,6 +12,7 @@
 #include <dt-bindings/zmk/backlight.h>
 #include <dt-bindings/zmk/ext_power.h>
 #include <dt-bindings/zmk/rgb.h>
+#include <dt-bindings/zmk/pointing.h>
 
 #define FUNC 1
 #define RES 2
@@ -22,7 +23,7 @@
         tologin: zed_em_tologin {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap &kp ENTER &kp SPACE &kp N0 &kp N9 &kp N1 &kp N1 &kp ENTER>;
+            bindings = <&macro_tap &kp ENTER>;
         };
    }；
     behaviors {
