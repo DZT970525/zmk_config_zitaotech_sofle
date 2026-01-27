@@ -19,7 +19,6 @@
 
 / {
     macros {
-        //切换设备1
         tologin: zed_em_tologin {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
