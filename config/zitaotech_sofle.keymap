@@ -127,6 +127,7 @@ sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp LEFT RIGHT>;
 &trans                &trans        &trans         &trans            &trans               &trans               &none         &none        &none         &none        &trans              &trans             &trans           &trans          &trans           &trans
                       &trans        &trans         &trans            &trans               &trans                                                                     &trans              &trans             &trans           &trans          &trans
             >;
+        };
 
 
 
