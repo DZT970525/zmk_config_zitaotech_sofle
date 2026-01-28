@@ -99,19 +99,19 @@ sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp LEFT RIGHT>;
             display-name = "num_syb";
             bindings = <
 &kp GRAVE             &kp EXCL      &kp AT         &kp HASH          &kp DOLLAR           &kp PERCENT          &trans                                   &trans       &kp PLUS            &kp N7             &kp N8           &kp N9          &kp TILDE        &kp CARET 
-&kp CARET             &kp LT        &kp MINUS      &kp EQUAL         &kp GT               &kp DOLLAR                                                                 &kp MINUS           &kp N4             &kp N5           &kp N6          &kp AMPS         &kp PIPE
-&kp TILDE             &kp LBRC      &kp LBKT       &kp RBKT          &kp RBRC             &kp UNDERSCORE       &trans                                   &trans       &kp ASTRK           &kp N1             &kp N2           &kp N3          &kp COLON        &kp SQT
+&kp TILDE             &kp LT        &kp MINUS      &kp EQUAL         &kp GT               &kp UNDERSCORE                                                             &kp MINUS           &kp N4             &kp N5           &kp N6          &kp AMPS         &kp PIPE
+&kp CARET             &kp LBRC      &kp LBKT       &kp RBKT          &kp RBRC             &kp DOLLAR           &trans                                   &trans       &kp ASTRK           &kp N1             &kp N2           &kp N3          &kp COLON        &kp SQT
 &none                 &kp COMMA     &kp LPAR       &kp RPAR          &kp SEMI             &none                &trans       &trans        &trans        &trans       &kp PERCENT         &kp N0             &kp COMMA        &kp DOT         &kp FSLH         &none
                       &trans        &trans         &trans            &trans               &trans                                                                     &trans              &trans             &trans           &trans          &trans
             >;
-            sensor-bindings = <&BLE_encoder &inc_dec_kp UP DOWN>;
+
         };
 
         direction {
             display-name = "direction";
             bindings = <
-&none                 &none         &none          &none             &none                &none                &none                                    &none        &bt BT_SEL 0        &bt BT_SEL 1       &bt BT_SEL 2     &bt BT_SEL 3    &bt BT_SEL 4     &bt BT_CLR            
-&none                 &kp HOME      &kp UP         &kp END           &none                &out OUT_TOG                                                               &out OUT_TOG        &none              &none            &none           &none            &kp C_POWER
+&out OUT_TOG          &none         &none          &none             &none                &none                &none                                    &none        &bt BT_SEL 0        &bt BT_SEL 1       &bt BT_SEL 2     &bt BT_SEL 3    &bt BT_SEL 4     &bt BT_CLR            
+&none                 &kp HOME      &kp UP         &kp END           &none                &none                                                                      &none               &none              &none            &none           &none            &kp C_POWER
 &none                 &kp LEFT      &kp DOWN       &kp RIGHT         &none                &none                &none                                    &none        &mkp LCLK           &mkp RCLK          &none            &none           &none            &kp C_SLEEP
 &trans                &kp PG_UP     &kp INSERT     &kp PG_DN         &none                &none                &none         &none        &none         &none        &none               &none              &none            &none           &none            &none
                       &trans        &trans         &trans            &trans               &trans                                                                     &trans              &trans             &trans           &trans          &trans
@@ -121,11 +121,11 @@ sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp LEFT RIGHT>;
         fn_layer {
             display-name = "fn_layer";
             bindings = <
-&kp F12               &kp F1        &kp F2         &kp F3            &kp F4               &kp F5               &none                                    &none        &kp F6              &kp F7             &kp F8           &kp F9          &kp F10          &kp F11
-&kp F12               &kp F11       &kp F12        &kp F13           &kp F14              &kp F15                                                                    &kp F16             &kp F17            &kp F18          &kp F19         &kp F20          &kp F21
-&kp CAPS              &kp F21       &kp F22        &kp F23           &kp F24              &kp PRINTSCREEN      &none                                    &none        &shift_contrl_alt   &trans             &trans           &trans          &trans           &trans
-&trans                &trans        &trans         &trans            &trans               &trans               &none         &none        &none         &none        &trans              &trans             &trans           &trans          &trans           &trans
-                      &trans        &trans         &trans            &trans               &trans                                                                     &trans              &trans             &trans           &trans          &trans
+&kp F12               &kp F1          &kp F2          &kp F3            &kp F4               &kp F5               &none                                    &none        &kp F6              &kp F7             &kp F8           &kp F9          &kp F10          &kp F11
+&kp F12               &kp F11         &kp F12         &kp F13           &kp F14              &kp F15                                                                    &kp F16             &kp F17            &kp F18          &kp F19         &kp F20          &kp F21
+&kp CAPS              &kp F21         &kp F22         &kp F23           &kp F24              &kp PRINTSCREEN      &none                                    &none        &shift_contrl_alt   &trans             &trans           &trans          &trans           &kp KP_NLCK
+&trans                &kp LS(DELETE)  &kp LC(INSERT)  &kp LS(INSERT)    &trans               &trans               &none         &none        &none         &none        &trans              &trans             &trans           &trans          &trans           &trans
+                      &trans          &trans          &trans            &trans               &trans                                                                     &trans              &trans             &trans           &trans          &trans
             >;
         };
 
@@ -139,7 +139,7 @@ sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp LEFT RIGHT>;
                       &trans        &trans         &trans            &kp BACKSPACE        &trans                                                                    &trans               &kp SPACE          &trans           &trans          &trans            
                       >;
         };
-
+/*
         RES_layer {
             display-name = "RESERVE";
             bindings = <
@@ -150,5 +150,6 @@ sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp LEFT RIGHT>;
                       &none         &none          &none             &none                &none                                                                      &none               &none              &none            &none           &none
             >;
         };
+*/
     };
 };
