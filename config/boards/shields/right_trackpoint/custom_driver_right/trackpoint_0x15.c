@@ -101,28 +101,21 @@ static void trackpoint_poll_work(struct k_work *work) {
         int8_t dx = 0, dy = 0;
         if (trackpoint_read_packet(dev, &dx, &dy) == 0) {
             if (!space_pressed) {
-                /* Space 按住时作为滚轮 */
-                int16_t scroll_x = 0, scroll_y = 0;
+                /* 作为滚轮 */
+                int16_t scroll_y = 0;
                 if (abs(dy) >= 128) {
-                    scroll_x = -dx / 24;
                     scroll_y = -dy / 24;
                 } else if (abs(dy) >= 64) {
-                    scroll_x = -dx / 16;
                     scroll_y = -dy / 16;
                 } else if (abs(dy) >= 32) {
-                    scroll_x = -dx / 12;
                     scroll_y = -dy / 12;
                 } else if (abs(dy) >= 21) {
-                    scroll_x = -dx / 8;
                     scroll_y = -dy / 8;
                 } else if (abs(dy) >= 3) {
-                    scroll_x = (dx > 0) ? -1 : (dx < 0) ? 1 : 0;
                     scroll_y = (dy > 0) ? -1 : (dy < 0) ? 1 : 0;
                 } else {
-                    scroll_x = (dx > 0) ? -1 : (dx < 0) ? 1 : 0;
                     scroll_y = 0;
                 }
-                input_report_rel(dev, INPUT_REL_HWHEEL, scroll_x, false, K_FOREVER);
                 input_report_rel(dev, INPUT_REL_WHEEL, -scroll_y, true, K_FOREVER);
                 k_sleep(K_MSEC(40));
             } else {
