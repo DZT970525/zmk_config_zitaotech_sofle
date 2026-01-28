@@ -100,7 +100,7 @@ static void trackpoint_poll_work(struct k_work *work) {
         /* INTPIN 拉低，读取数据包 */
         int8_t dx = 0, dy = 0;
         if (trackpoint_read_packet(dev, &dx, &dy) == 0) {
-            if (space_pressed) {
+            if (!space_pressed) {
                 /* Space 按住时作为滚轮 */
                 int16_t scroll_x = 0, scroll_y = 0;
                 if (abs(dy) >= 128) {
