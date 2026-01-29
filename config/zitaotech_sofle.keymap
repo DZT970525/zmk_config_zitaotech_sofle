@@ -109,7 +109,9 @@
 &kp LSHFT             &kp Z         &kp X          &kp C             &kp V                &kp B                &mkp LCLK     &mkp RCLK    &bl BL_DEC    &bl BL_INC   &kp N               &kp M              &kp COMMA        &kp DOT         &kp FSLH         &kp RIGHT_SHIFT
                       &kp LEFT_WIN  &kp LALT       &ctrl_dance       &fn_tap 3 BACKSPACE  &fn_tap 4 DEL                                                              &fn_tap 4 ENTER     &fn_tap 1 SPACE    &ctrl_dance      &kp LALT        &kp RIGHT_WIN
            >;
-sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp LEFT RIGHT>;
+            sensor-bindings =
+                <&inc_dec_kp C_VOL_UP C_VOL_DN>,
+                <&inc_dec_kp (LC(TAB)) LS(LC(TAB))>;
         };
 
 
