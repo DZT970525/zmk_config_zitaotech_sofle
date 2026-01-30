@@ -133,7 +133,7 @@ static void arrow_repeat_work_handler(struct k_work *work) {
     int dy = -dy_acc;
 
     /* === Space held → Scroll mode === */
-    if (space_pressed) {
+    if (!space_pressed) {
         int scroll_x = dx;
         int scroll_y = dy;
 
@@ -164,7 +164,7 @@ static void report_work_handler(struct k_work *work) {
         moved = true;
 
         /* Space held → 禁止鼠标移动（只允许 scroll / arrow） */
-        if (!space_pressed) {
+        if (space_pressed) {
             int dx = -dx_acc;
             int dy = -dy_acc;
             input_report_rel(dev, INPUT_REL_X, dx, false, K_FOREVER);
