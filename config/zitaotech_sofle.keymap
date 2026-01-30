@@ -153,7 +153,7 @@
             bindings = <
 &trans  &trans  &trans  &trans         &trans     &trans     &trans     &trans  &trans     &trans     &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans         &trans     &trans     &trans     &trans  &trans     &trans     &trans  &trans
-&trans  &trans  &trans  &trans         &mkp LCLK  &mkp RCLK  &trans     &trans  &mkp LCLK  &mkp RCLK  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans         &mkp RCLK  &mkp LCLK  &trans     &trans  &mkp LCLK  &mkp RCLK  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans         &trans     &trans     &trans     &trans  &trans     &trans     &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &kp BACKSPACE  &trans     &trans     &kp SPACE  &trans  &trans     &trans
             >;
