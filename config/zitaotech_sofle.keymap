@@ -43,6 +43,14 @@
             bindings = <&kp &mkp>;
         };
     };
+    behaviors {
+        moback: moback_mods {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <250>;
+            bindings = <&mo &kp>;
+        };
+    };
 
     behaviors {
          sp_sc: behavior_spacescroll {
@@ -121,7 +129,7 @@
 &kp TAB   &kp Q    &kp W      &kp E    &kp R     &kp T                                                                      &kp Y       &kp U       &kp I     &kp O     &kp P    &kp ENTER
 &kp CAPS  &kp A    &kp S      &kp D    &kp F     &kp G     &mkp LCLK                    &mkp LCLK                           &kp H       &kp J       &kp K     &kp L     &kp SEMI &kp SQT
 &kp LSHFT &kp Z    &kp X      &kp C    &kp V     &kp B     &kp PG_DN  &kp PG_UP         &mkp LCLK   &mkp RCLK               &kp N       &kp M       &kp COMMA &kp DOT   &kp FSLH &kp DEL
-                   &kp LCTRL  &kp LALT &kp LGUI  &kp SPACE &mo 1                                    &mo 1       &kp SPACE   &kp LGUI  &kp RALT  &kp RCTRL
+                   &kp LCTRL  &kp LALT &kp LGUI  &kp SPACE &moback 1 K_BACK                                    &moback 1 K_BACK       &kp SPACE   &kp LGUI  &kp RALT  &kp RCTRL
            >;
            sensor-bindings = <&rotate_leftright &rotate_updown>;
         };
