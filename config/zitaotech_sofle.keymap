@@ -141,7 +141,7 @@
 &kp F12   &kp F1          &kp F2          &kp F3          &kp F4   &kp F5           &none    &none    &kp F6             &kp F7   &kp F8   &kp F9   &kp F10  &kp F11
 &kp F12   &kp F11         &kp F12         &kp F13         &kp F14  &kp F15          &kp F16  &kp F17  &kp F18            &kp F19  &kp F20  &kp F21
 &kp CAPS  &kp F21         &kp F22         &kp F23         &kp F24  &kp PRINTSCREEN  &none    &none    &shift_contrl_alt  &none    &none    &none    &none    &kp KP_NLCK
-&trans    &kp LS(DELETE)  &kp LC(INSERT)  &kp LS(INSERT)  &none    &none            &none    &none    &none              &none    &none    &none    &none    &none        &rgb_ug RGB_TOG  &trans
+&trans    &none     &kp LS(DELETE)  &kp LC(INSERT)  &kp LS(INSERT)  &none            &none    &none    &none              &none    &none    &none    &none    &none        &rgb_ug RGB_TOG  &trans
 &trans    &trans          &trans          &trans          &trans   &trans           &trans   &trans   &trans             &trans
             >;
         };
