@@ -131,7 +131,6 @@
             #binding-cells = <0>;
             bindings = <&macro_press &kp F4>,<&macro_tap &kp S>,<&macro_release &kp F4>;
         }; 
-
         //打开appT
         toopenappT: zed_em_toopenappT {
             compatible = "zmk,behavior-macro";
@@ -268,7 +267,7 @@
         loginpwd: macros_loginpwd {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap &kp ENTER &kp SPACE &kp N0 &kp N9 &kp N1 &kp N1 &kp ENTER>,<&macro_tap &to 2>;
+            bindings = <&macro_tap &kp ENTER &kp SPACE &kp N0 &kp N9 &kp N1 &kp N1 &kp ENTER>,<&macro_tap &to RES>;
         };
         //向上滑动
         toscrollup: zed_em_toscrollup {
@@ -375,7 +374,7 @@
         RES_layer {
             display-name = "RESERVE";
             bindings = <
-&kp ESC     &totapfirst     &totapsecond      &totapthird    &totapforth    &none         &to 0                        &none            &tocloseapp1       &tocloseapp2        &tocloseapp3      &tocloseapp4   &tocloseapp5    &tocloseapp6              
+&kp ESC     &totapfirst     &totapsecond      &totapthird    &totapforth    &none         &to DEFAULT                  &none            &tocloseapp1       &tocloseapp2        &tocloseapp3      &tocloseapp4   &tocloseapp5    &tocloseapp6              
 &none       &none           &toopenappW       &none          &toopenappR    &toopenappT                                                 &toopenappY        &none               &toopenappI       &none          &none           &none
 &none       &none           &none             &none          &none          &none         &mkp RCLK                    &mkp RCLK        &none              &toopenappJ         &none             &none          &none           &none
 &none       &toopenappZ     &toopenappX       &none          &none          &none         &none   &none                &none  &none     &none              &none               &none             &none          &none           &none
