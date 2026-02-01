@@ -324,7 +324,7 @@
             #binding-cells = <0>;
             bindings = <&macro_press &kp F5>,<&macro_tap &kp SPACE>,<&macro_release &kp F5>;
         };
-        //读微信群跟多的信息
+        //读微信群更多的信息
         toreadmorewxmsg: zed_em_toreadmorewxmsg {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -375,11 +375,11 @@
         RES_layer {
             display-name = "RESERVE";
             bindings = <
-&kp ESC     &totapfirst     &totapsecond      &totapthird    &totapforth    &none         &to DEFAULT                  &none            &tocloseapp1       &tocloseapp2        &tocloseapp3      &tocloseapp4   &tocloseapp5    &tocloseapp6              
-&none       &none           &none             &toopenappE          &toopenappR    &toopenappT                                           &toopenappY        &none               &toopenappI       &none          &none           &none
-&none       &none           &none             &none          &none          &none         &mkp RCLK                    &mkp RCLK        &none              &toopenappJ         &none             &none          &none           &none
-&none       &toopenappZ     &toopenappX       &none          &none          &none         &none   &none                &none  &none     &none              &none               &none             &none          &none           &none
-                            &none             &toscrollup          &toscrolldown          &kp K_BACK    &mkp LCLK      &mkp LCLK    &kp K_BACK    &toscrolldown   &toscrollup  &none
+&kp ESC               &totapfirst     &totapsecond      &totapthird    &totapforth           &none         &to DEFAULT                  &none                    &tocloseapp1       &tocloseapp2        &tocloseapp3      &tocloseapp4   &tocloseapp5    &tocloseapp6              
+&torolltoolpanel      &none           &none             &toopenappE    &toopenappR           &toopenappT                                                         &toopenappY        &none               &toopenappI       &none          &none           &none
+&torollmsgpanel       &none           &none             &none          &none                 &none         &mkp RCLK                    &mkp RCLK                &none              &toopenappJ         &none             &none          &none           &none
+&none                 &toopenappZ     &toopenappX       &none          &toreadmorewxmsg      &toreadwxmsg  &none   &none                &none  &none             &toreadwxmsg       &toreadmorewxmsg    &none             &none          &none           &none
+                                                        &none          &toscrollup           &toscrolldown &kp K_BACK    &mkp LCLK      &mkp LCLK  &kp K_BACK    &toscrolldown      &toscrollup  &none
             >;
         };
     };
