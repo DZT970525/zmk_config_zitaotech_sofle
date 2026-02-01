@@ -29,14 +29,6 @@
         };
     };
     behaviors {
-        td1: tap_dance_1 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <400>;
-            bindings = <&to RES>, <&loginpwd>;
-        };
-    };
-    behaviors {
         hm: homerow_mods {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -268,7 +260,7 @@
         loginpwd: macros_loginpwd {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap &kp ENTER &kp SPACE &kp N0 &kp N9 &kp N1 &kp N1 &kp ENTER &to RES>;
+            bindings = <&macro_tap &kp ENTER &kp SPACE &kp N0 &kp N9 &kp N1 &kp N1 &kp ENTER>;
         };
         //向上滑动
         toscrollup: zed_em_toscrollup {
@@ -350,7 +342,7 @@
          default_layer {
             display-name = "QWERTY";
            bindings = <     
-&kp ESC   &kp N1   &kp N2     &kp N3   &kp N4    &kp N5          &td1                         &clickctrl K_BACK LCLK      &kp N6             &kp N7      &kp N8    &kp N9    &kp N0   &kp SQT               
+&kp ESC   &kp N1   &kp N2     &kp N3   &kp N4    &kp N5          &to RES                      &clickctrl K_BACK LCLK      &kp N6             &kp N7      &kp N8    &kp N9    &kp N0   &kp SQT               
 &kp TAB   &kp Q    &kp W      &kp E    &kp R     &kp T                                                                    &kp Y              &kp U       &kp I     &kp O     &kp P    &kp BSPC
 &kp CAPS  &kp A    &kp S      &kp D    &kp F     &kp G           &mkp LCLK                    &mkp LCLK                   &kp H              &kp J       &kp K     &kp L     &kp SEMI &kp ENTER
 &kp LSHFT &kp Z    &kp X      &kp C    &kp V     &kp B           &kp PG_DN  &kp PG_UP         &mkp LCLK   &mkp RCLK       &kp N              &kp M       &kp COMMA &kp DOT   &kp FSLH &kp RSHFT
@@ -375,7 +367,7 @@
         RES_layer {
             display-name = "RESERVE";
             bindings = <
-&kp ESC               &totapfirst     &totapsecond      &totapthird    &totapforth           &none         &to DEFAULT                  &none                    &tocloseapp1       &tocloseapp2        &tocloseapp3      &tocloseapp4   &tocloseapp5    &tocloseapp6              
+&kp ESC               &totapfirst     &totapsecond      &totapthird    &totapforth           &loginpwd     &to DEFAULT                  &none                    &tocloseapp1       &tocloseapp2        &tocloseapp3      &tocloseapp4   &tocloseapp5    &tocloseapp6              
 &torolltoolpanel      &none           &none             &toopenappE    &toopenappR           &toopenappT                                                         &toopenappY        &none               &toopenappI       &none          &none           &none
 &torollmsgpanel       &none           &none             &none          &none                 &none         &mkp RCLK                    &mkp RCLK                &none              &toopenappJ         &none             &none          &none           &none
 &none                 &toopenappZ     &toopenappX       &none          &toreadmorewxmsg      &toreadwxmsg  &none   &none                &none  &none             &toreadwxmsg       &toreadmorewxmsg    &none             &none          &none           &none
