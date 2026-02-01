@@ -376,7 +376,7 @@
             display-name = "RESERVE";
             bindings = <
 &kp ESC     &totapfirst     &totapsecond      &totapthird    &totapforth    &none         &to DEFAULT                  &none            &tocloseapp1       &tocloseapp2        &tocloseapp3      &tocloseapp4   &tocloseapp5    &tocloseapp6              
-&none       &none           &toopenappW       &none          &toopenappR    &toopenappT                                                 &none              &none               &none             &none          &none           &none
+&none       &none           &none             &toopenappE          &toopenappR    &toopenappT                                           &toopenappY        &none               &toopenappI       &none          &none           &none
 &none       &none           &none             &none          &none          &none         &mkp RCLK                    &mkp RCLK        &none              &toopenappJ         &none             &none          &none           &none
 &none       &toopenappZ     &toopenappX       &none          &none          &none         &none   &none                &none  &none     &none              &none               &none             &none          &none           &none
                             &none             &toscrollup          &toscrolldown          &kp K_BACK    &mkp LCLK      &mkp LCLK    &kp K_BACK    &toscrolldown   &toscrollup  &none
