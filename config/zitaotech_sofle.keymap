@@ -334,6 +334,12 @@
             #binding-cells = <0>;
             bindings = <&macro_press &kp F12>,<&macro_tap &kp SPACE>,<&macro_release &kp F12>;
         };
+        //点击微信文字输入框
+        totapwxinputbar: zed_em_totapwxinputbar {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LGUI>,<&macro_tap &kp ENTER &to DEFAULT>,<&macro_release &kp LGUI>;
+        };
     };
 
     keymap {
@@ -342,11 +348,11 @@
          default_layer {
             display-name = "QWERTY";
            bindings = <     
-&kp ESC   &kp N1   &kp N2     &kp N3   &kp N4    &kp N5          &to RES                      &clickctrl K_BACK LCLK      &kp N6             &kp N7      &kp N8    &kp N9    &kp N0   &kp SQT               
-&kp TAB   &kp Q    &kp W      &kp E    &kp R     &kp T                                                                    &kp Y              &kp U       &kp I     &kp O     &kp P    &kp BSPC
-&kp CAPS  &kp A    &kp S      &kp D    &kp F     &kp G           &mkp LCLK                    &mkp LCLK                   &kp H              &kp J       &kp K     &kp L     &kp SEMI &kp ENTER
-&kp LSHFT &kp Z    &kp X      &kp C    &kp V     &kp B           &kp PG_DN  &kp PG_UP         &mkp LCLK   &mkp RCLK       &kp N              &kp M       &kp COMMA &kp DOT   &kp FSLH &kp RSHFT
-                   &kp LCTRL  &kp LALT &kp LGUI  &kp SPACE       &moback 1 LCLK               &moback 1 LCLK  &kp SPACE   &kp LGUI  &kp RALT  &kp RCTRL
+&kp ESC   &kp N1   &kp N2     &kp N3     &kp N4     &kp N5          &to RES                               &clickctrl K_BACK LCLK          &kp N6             &kp N7      &kp N8     &kp N9    &kp N0     &kp SQT               
+&kp TAB   &kp Q    &kp W      &kp E      &kp R      &kp T                                                                                 &kp Y              &kp U       &kp I      &kp O     &kp P      &kp BSPC
+&kp CAPS  &kp A    &kp S      &kp D      &kp F      &kp G           &mkp LCLK                             &mkp LCLK                       &kp H              &kp J       &kp K      &kp L     &kp SEMI   &kp ENTER
+&kp LSHFT &kp Z    &kp X      &kp C      &kp V      &kp B           &kp PG_DN    &kp PG_UP                &mkp LCLK       &mkp RCLK       &kp N              &kp M       &kp COMMA  &kp DOT   &kp FSLH   &kp RSHFT
+                              &kp LCTRL  &kp LALT   &kp LGUI        &kp SPACE    &moback 1 LCLK           &moback 1 LCLK  &kp SPACE       &kp LGUI           &kp RALT    &kp RCTRL
            >;
            sensor-bindings = <&rotate_leftright &rotate_updown>;
         };
@@ -355,11 +361,11 @@
         func_layer {
             display-name = "FUNC";
             bindings = <
-&kp GRAVE &kp F1    &kp F2     &kp F3    &kp F4   &kp F5           &bt BT_NXT                   &bt BT_PRV             &kp F6    &kp F7       &kp F8     &kp F9    &kp F10     &kp PLUS            
-&trans    &trans    &kp UP     &trans    &trans   &trans                                                               &trans    &trans       &trans     &kp UP    &trans      &kp MINUS
-&trans    &kp LEFT  &kp DOWN   &kp RIGHT &trans   &trans           &mkp RCLK                    &mkp RCLK              &trans    &trans       &kp LEFT   &kp DOWN  &kp RIGHT   &kp UNDER
-&trans    &trans    &trans     &trans    &trans   &rgb_ug RGB_TOG  &kp C_VOL_UP &kp C_VOL_DN    &bl BL_DEC  &bl BL_INC &trans    &trans       &trans     &trans    &trans      &kp DEL
-                    &BOT       &trans    &trans   &kp K_BACK       &mo 1                        &mo 1     &kp K_BACK   &trans     &trans    &BOT 
+&kp GRAVE &kp F1    &kp F2     &kp F3    &kp F4   &kp F5           &bt BT_NXT                     &bt BT_PRV               &kp F6    &kp F7       &kp F8     &kp F9    &kp F10     &kp PLUS            
+&trans    &trans    &kp UP     &trans    &trans   &trans                                                                   &trans    &trans       &trans     &kp UP    &trans      &kp MINUS
+&trans    &kp LEFT  &kp DOWN   &kp RIGHT &trans   &trans           &mkp RCLK                      &mkp RCLK                &trans    &trans       &kp LEFT   &kp DOWN  &kp RIGHT   &kp UNDER
+&trans    &trans    &trans     &trans    &trans   &rgb_ug RGB_TOG  &kp C_VOL_UP   &kp C_VOL_DN    &bl BL_DEC  &bl BL_INC   &trans    &trans       &trans     &trans    &trans      &kp DEL
+                               &BOT      &trans   &trans           &kp K_BACK     &mo 1           &mo 1       &kp K_BACK   &trans    &trans       &BOT 
             >;
             sensor-bindings = <&inc_dec_kp UP DOWN &inc_dec_kp LEFT RIGHT>;
         };
@@ -367,11 +373,11 @@
         RES_layer {
             display-name = "RESERVE";
             bindings = <
-&kp ESC               &totapfirst     &totapsecond      &totapthird    &totapforth           &loginpwd     &to DEFAULT                  &none                    &tocloseapp1       &tocloseapp2        &tocloseapp3      &tocloseapp4   &tocloseapp5    &tocloseapp6              
-&torolltoolpanel      &none           &none             &toopenappE    &toopenappR           &toopenappT                                                         &toopenappY        &none               &toopenappI       &none          &none           &none
-&torollmsgpanel       &none           &none             &none          &none                 &none         &mkp RCLK                    &mkp RCLK                &none              &toopenappJ         &none             &none          &none           &none
-&none                 &toopenappZ     &toopenappX       &none          &toreadmorewxmsg      &toreadwxmsg  &none   &none                &none  &none             &toreadwxmsg       &toreadmorewxmsg    &none             &none          &none           &none
-                                                        &none          &toscrollup           &toscrolldown &kp K_BACK    &mkp LCLK      &mkp LCLK  &kp K_BACK    &toscrolldown      &toscrollup  &none
+&kp ESC               &totapfirst     &totapsecond      &totapthird    &totapforth           &loginpwd       &to DEFAULT                  &none                    &tocloseapp1       &tocloseapp2        &tocloseapp3      &tocloseapp4   &tocloseapp5    &tocloseapp6              
+&torolltoolpanel      &none           &none             &toopenappE    &toopenappR           &toopenappT                                                           &toopenappY        &none               &toopenappI       &none          &none           &none
+&torollmsgpanel       &none           &none             &none          &none                 &none           &mkp LCLK                    &mkp LCLK                &none              &toopenappJ         &none             &none          &none           &totapwxinputbar
+&none                 &toopenappZ     &toopenappX       &none          &toreadmorewxmsg      &toreadwxmsg    &none         &none          &none      &none         &toreadwxmsg       &toreadmorewxmsg    &none             &none          &none           &none
+                                                        &none          &toscrollup           &toscrolldown   &kp K_BACK    &mkp LCLK      &mkp LCLK  &kp K_BACK    &toscrolldown      &toscrollup         &none
             >;
         };
     };
