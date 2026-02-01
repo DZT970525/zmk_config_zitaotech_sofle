@@ -33,7 +33,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <400>;
-            bindings = <&to 2>, <&none>;
+            bindings = <&to 2>, <&loginpwd>;
         };
     };
     behaviors {
@@ -268,7 +268,7 @@
         loginpwd: macros_loginpwd {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap &kp ENTER &kp SPACE &kp N0 &kp N9 &kp N1 &kp N1 &kp ENTER>,<&macro_tap &to 2>;
+            bindings = <&macro_tap &kp ENTER &kp SPACE &kp N0 &kp N9 &kp N1 &kp N1 &kp ENTER &to 2>;
         };
         //向上滑动
         toscrollup: zed_em_toscrollup {
