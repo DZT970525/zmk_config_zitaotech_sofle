@@ -16,7 +16,7 @@
 
 #define DEFAULT 0
 #define FUNC 1
-#define RES 2
+#define MOBILE 2
 #define BOT bootloader
 
 / {
@@ -92,169 +92,169 @@
         tocloseapp1: zed_em_closeapp1 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F4>,<&macro_tap &kp E>,<&macro_release &kp F4>;
+            bindings = <&macro_pMOBILEs &kp F4>,<&macro_tap &kp E>,<&macro_release &kp F4>;
         }; 
         //关闭app2
         tocloseapp2: zed_em_closeapp2 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F4>,<&macro_tap &kp R>,<&macro_release &kp F4>;
+            bindings = <&macro_pMOBILEs &kp F4>,<&macro_tap &kp R>,<&macro_release &kp F4>;
         }; 
         //关闭app3
         tocloseapp3: zed_em_closeapp3 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F4>,<&macro_tap &kp D>,<&macro_release &kp F4>;
+            bindings = <&macro_pMOBILEs &kp F4>,<&macro_tap &kp D>,<&macro_release &kp F4>;
         }; 
         //关闭app4
         tocloseapp4: zed_em_closeapp4 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F4>,<&macro_tap &kp F>,<&macro_release &kp F4>;
+            bindings = <&macro_pMOBILEs &kp F4>,<&macro_tap &kp F>,<&macro_release &kp F4>;
         }; 
         //关闭app5
         tocloseapp5: zed_em_closeapp5 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F4>,<&macro_tap &kp W>,<&macro_release &kp F4>;
+            bindings = <&macro_pMOBILEs &kp F4>,<&macro_tap &kp W>,<&macro_release &kp F4>;
         }; 
         //关闭app6
         tocloseapp6: zed_em_closeapp6 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F4>,<&macro_tap &kp S>,<&macro_release &kp F4>;
+            bindings = <&macro_pMOBILEs &kp F4>,<&macro_tap &kp S>,<&macro_release &kp F4>;
         }; 
         //打开appT
         toopenappT: zed_em_toopenappT {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp T>,<&macro_release &kp F3>;
+            bindings = <&macro_pMOBILEs &kp F3>,<&macro_tap &kp T>,<&macro_release &kp F3>;
         }; 
         //打开appY
         toopenappY: zed_em_toopenappY {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp Y>,<&macro_release &kp F3>;
+            bindings = <&macro_pMOBILEs &kp F3>,<&macro_tap &kp Y>,<&macro_release &kp F3>;
         };
         //打开appU
         toopenappU: zed_em_toopenappU {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp U>,<&macro_release &kp F3>;
+            bindings = <&macro_pMOBILEs &kp F3>,<&macro_tap &kp U>,<&macro_release &kp F3>;
         };
         //打开appX
         toopenappX: zed_em_toopenappX {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp X>,<&macro_release &kp F3>;
+            bindings = <&macro_pMOBILEs &kp F3>,<&macro_tap &kp X>,<&macro_release &kp F3>;
         };
         //打开appZ
         toopenappZ: zed_em_toopenappZ {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp Z>,<&macro_release &kp F3>;
+            bindings = <&macro_pMOBILEs &kp F3>,<&macro_tap &kp Z>,<&macro_release &kp F3>;
         };
         //打开appC
         toopenappC: zed_em_toopenappC {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp C>,<&macro_release &kp F3>;
+            bindings = <&macro_pMOBILEs &kp F3>,<&macro_tap &kp C>,<&macro_release &kp F3>;
         };
         //打开appG
         toopenappG: zed_em_toopenappG {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp G>,<&macro_release &kp F3>;
+            bindings = <&macro_pMOBILEs &kp F3>,<&macro_tap &kp G>,<&macro_release &kp F3>;
         };
         //打开appV
         toopenappV: zed_em_toopenappV {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp V>,<&macro_release &kp F3>;
+            bindings = <&macro_pMOBILEs &kp F3>,<&macro_tap &kp V>,<&macro_release &kp F3>;
         };
         //打开appH
         toopenappH: zed_em_toopenappH {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp H>,<&macro_release &kp F3>;
+            bindings = <&macro_pMOBILEs &kp F3>,<&macro_tap &kp H>,<&macro_release &kp F3>;
         };
         //打开appB
         toopenappB: zed_em_toopenappB {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp B>,<&macro_release &kp F3>;
+            bindings = <&macro_pMOBILEs &kp F3>,<&macro_tap &kp B>,<&macro_release &kp F3>;
         };
         //打开appJ
         toopenappJ: zed_em_toopenappJ {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp J>,<&macro_release &kp F3>;
+            bindings = <&macro_pMOBILEs &kp F3>,<&macro_tap &kp J>,<&macro_release &kp F3>;
         };
         //打开appN
         toopenappN: zed_em_toopenappN {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp N>,<&macro_release &kp F3>;
+            bindings = <&macro_pMOBILEs &kp F3>,<&macro_tap &kp N>,<&macro_release &kp F3>;
         };
         //打开appI
         toopenappI: zed_em_toopenappI {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp I>,<&macro_release &kp F3>;
+            bindings = <&macro_pMOBILEs &kp F3>,<&macro_tap &kp I>,<&macro_release &kp F3>;
         };
         //打开appM
         toopenappM: zed_em_toopenappM {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp M>,<&macro_release &kp F3>;
+            bindings = <&macro_pMOBILEs &kp F3>,<&macro_tap &kp M>,<&macro_release &kp F3>;
         };
         //打开appP
         toopenappP: zed_em_toopenappP {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp P>,<&macro_release &kp F3>;
+            bindings = <&macro_pMOBILEs &kp F3>,<&macro_tap &kp P>,<&macro_release &kp F3>;
         };
         //打开appO
         toopenappO: zed_em_toopenappO {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp O>,<&macro_release &kp F3>;
+            bindings = <&macro_pMOBILEs &kp F3>,<&macro_tap &kp O>,<&macro_release &kp F3>;
         };
         //打开appK
         toopenappK: zed_em_toopenappK {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp K>,<&macro_release &kp F3>;
+            bindings = <&macro_pMOBILEs &kp F3>,<&macro_tap &kp K>,<&macro_release &kp F3>;
         };
         //打开appL
         toopenappL: zed_em_toopenappL {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp L>,<&macro_release &kp F3>;
+            bindings = <&macro_pMOBILEs &kp F3>,<&macro_tap &kp L>,<&macro_release &kp F3>;
         };
         //打开appE
         toopenappE: zed_em_toopenappE {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp E>,<&macro_release &kp F3>;
+            bindings = <&macro_pMOBILEs &kp F3>,<&macro_tap &kp E>,<&macro_release &kp F3>;
         };
         //打开appR
         toopenappR: zed_em_toopenappR {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp R>,<&macro_release &kp F3>;
+            bindings = <&macro_pMOBILEs &kp F3>,<&macro_tap &kp R>,<&macro_release &kp F3>;
         };
         //打开appD
         toopenappD: zed_em_toopenappD {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp D>,<&macro_release &kp F3>;
+            bindings = <&macro_pMOBILEs &kp F3>,<&macro_tap &kp D>,<&macro_release &kp F3>;
         };
         //打开appF
         toopenappF: zed_em_toopenappF {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp F>,<&macro_release &kp F3>;
+            bindings = <&macro_pMOBILEs &kp F3>,<&macro_tap &kp F>,<&macro_release &kp F3>;
         };
         //手机解锁
         loginpwd: macros_loginpwd {
@@ -266,79 +266,79 @@
         toscrollup: zed_em_toscrollup {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp SPACE>,<&macro_release &kp F3>;
+            bindings = <&macro_pMOBILEs &kp F3>,<&macro_tap &kp SPACE>,<&macro_release &kp F3>;
         };
         //向下滑动
         toscrolldown: zed_em_toscrolldown {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F4>,<&macro_tap &kp SPACE>,<&macro_release &kp F4>;
+            bindings = <&macro_pMOBILEs &kp F4>,<&macro_tap &kp SPACE>,<&macro_release &kp F4>;
         };
         //向左滑动
         toscrollleft: zed_em_toscrollleft {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F1>,<&macro_tap &kp SPACE>,<&macro_release &kp F1>;
+            bindings = <&macro_pMOBILEs &kp F1>,<&macro_tap &kp SPACE>,<&macro_release &kp F1>;
         };
         //向右滑动
         toscrollright: zed_em_toscrollright {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F2>,<&macro_tap &kp SPACE>,<&macro_release &kp F2>;
+            bindings = <&macro_pMOBILEs &kp F2>,<&macro_tap &kp SPACE>,<&macro_release &kp F2>;
         };
         //点击第一栏
         totapfirst: zed_em_totapfirst {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F8>,<&macro_tap &kp SPACE>,<&macro_release &kp F8>;
+            bindings = <&macro_pMOBILEs &kp F8>,<&macro_tap &kp SPACE>,<&macro_release &kp F8>;
         };
         //点击第二栏
         totapsecond: zed_em_totapsecond {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F10>,<&macro_tap &kp SPACE>,<&macro_release &kp F10>;
+            bindings = <&macro_pMOBILEs &kp F10>,<&macro_tap &kp SPACE>,<&macro_release &kp F10>;
         };
         //点击第三栏
         totapthird: zed_em_totapthird {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F9>,<&macro_tap &kp SPACE>,<&macro_release &kp F9>;
+            bindings = <&macro_pMOBILEs &kp F9>,<&macro_tap &kp SPACE>,<&macro_release &kp F9>;
         };
         //点击第四栏
         totapforth: zed_em_totapforth {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F11>,<&macro_tap &kp SPACE>,<&macro_release &kp F11>;
+            bindings = <&macro_pMOBILEs &kp F11>,<&macro_tap &kp SPACE>,<&macro_release &kp F11>;
         };
         //读微信最新的信息
         toreadwxmsg: zed_em_toreadwxmsg {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F5>,<&macro_tap &kp SPACE>,<&macro_release &kp F5>;
+            bindings = <&macro_pMOBILEs &kp F5>,<&macro_tap &kp SPACE>,<&macro_release &kp F5>;
         };
         //读微信群更多的信息
         toreadmorewxmsg: zed_em_toreadmorewxmsg {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F6>,<&macro_tap &kp SPACE>,<&macro_release &kp F6>;
+            bindings = <&macro_pMOBILEs &kp F6>,<&macro_tap &kp SPACE>,<&macro_release &kp F6>;
         };
         //下拉控制栏
         torolltoolpanel: zed_em_torolltoolpanel {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F7>,<&macro_tap &kp SPACE>,<&macro_release &kp F7>;
+            bindings = <&macro_pMOBILEs &kp F7>,<&macro_tap &kp SPACE>,<&macro_release &kp F7>;
         };
         //下拉通知栏
         torollmsgpanel: zed_em_torollmsgpanel {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F12>,<&macro_tap &kp SPACE>,<&macro_release &kp F12>;
+            bindings = <&macro_pMOBILEs &kp F12>,<&macro_tap &kp SPACE>,<&macro_release &kp F12>;
         };
         //点击微信文字输入框
         totapwxinputbar: zed_em_totapwxinputbar {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp LGUI>,<&macro_tap &kp ENTER &to DEFAULT>,<&macro_release &kp LGUI>;
+            bindings = <&macro_pMOBILEs &kp LGUI>,<&macro_tap &kp ENTER &to DEFAULT>,<&macro_release &kp LGUI>;
         };
     };
 
@@ -348,7 +348,7 @@
          default_layer {
             display-name = "QWERTY";
            bindings = <     
-&kp ESC   &kp N1   &kp N2     &kp N3     &kp N4     &kp N5          &to RES                               &clickctrl K_BACK LCLK          &kp N6             &kp N7      &kp N8     &kp N9    &kp N0     &kp SQT               
+&kp ESC   &kp N1   &kp N2     &kp N3     &kp N4     &kp N5          &to MOBILE                            &clickctrl K_BACK LCLK          &kp N6             &kp N7      &kp N8     &kp N9    &kp N0     &kp SQT               
 &kp TAB   &kp Q    &kp W      &kp E      &kp R      &kp T                                                                                 &kp Y              &kp U       &kp I      &kp O     &kp P      &kp BSPC
 &kp CAPS  &kp A    &kp S      &kp D      &kp F      &kp G           &mkp LCLK                             &mkp LCLK                       &kp H              &kp J       &kp K      &kp L     &kp SEMI   &kp ENTER
 &kp LSHFT &kp Z    &kp X      &kp C      &kp V      &kp B           &kp PG_DN    &kp PG_UP                &mkp LCLK       &mkp RCLK       &kp N              &kp M       &kp COMMA  &kp DOT   &kp FSLH   &kp RSHFT
@@ -370,13 +370,13 @@
             sensor-bindings = <&inc_dec_kp UP DOWN &inc_dec_kp LEFT RIGHT>;
         };
 
-        RES_layer {
-            display-name = "RESERVE";
+        MOBILE_layer {
+            display-name = "MOBILE";
             bindings = <
-&kp ESC               &totapfirst     &totapsecond      &totapthird    &totapforth           &loginpwd       &to DEFAULT                  &none                    &tocloseapp1       &tocloseapp2        &tocloseapp3      &tocloseapp4   &tocloseapp5    &tocloseapp6              
+&kp ESC               &totapfirst     &totapsecond      &totapthird    &totapforth           &loginpwd       &to DEFAULT                  &clickctrl K_BACK LCLK   &tocloseapp1       &tocloseapp2        &tocloseapp3      &tocloseapp4   &tocloseapp5    &tocloseapp6              
 &torolltoolpanel      &none           &none             &toopenappE    &toopenappR           &toopenappT                                                           &toopenappY        &none               &toopenappI       &none          &none           &none
-&torollmsgpanel       &none           &none             &none          &none                 &none           &mkp LCLK                    &mkp LCLK                &none              &toopenappJ         &none             &none          &none           &totapwxinputbar
-&none                 &toopenappZ     &toopenappX       &none          &toreadmorewxmsg      &toreadwxmsg    &none         &none          &none      &none         &toreadwxmsg       &toreadmorewxmsg    &none             &none          &none           &none
+&torollmsgpanel       &none           &none             &none          &none                 &none           &mkp LCLK                    &mkp RCLK                &kp LG(M)          &toopenappJ         &none             &none          &none           &totapwxinputbar
+&none                 &toopenappZ     &toopenappX       &none          &toreadmorewxmsg      &toreadwxmsg    &kp UP        &kp DOWN       &kp LEFT   &kp RIGHT     &toreadwxmsg       &toreadmorewxmsg    &none             &none          &none           &none
                                                         &none          &toscrollup           &toscrolldown   &kp K_BACK    &mkp LCLK      &mkp LCLK  &kp K_BACK    &toscrolldown      &toscrollup         &none
             >;
         };
