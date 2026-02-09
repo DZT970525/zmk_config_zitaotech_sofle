@@ -349,6 +349,19 @@
             #binding-cells = <0>;
             bindings = <&macro_press &kp LGUI>,<&macro_tap &kp ENTER &to DEFAULT>,<&macro_release &kp LGUI>;
         };
+        //切换设备1
+        tobt0: zed_em_tobt0 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &bt BT_SEL 0>,<&macro_tap &kp ENTER &kp SPACE &kp N0 &kp N9 &kp N1 &kp N1 &kp ENTER>,<&macro_tap &to MOBILE>;
+        };
+
+        //切换设备2
+        tobt1: zed_em_tobt1 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &bt BT_SEL 1>,<&macro_tap &to DEFAULT>;
+        }; 
     };
 
     keymap {
@@ -370,11 +383,11 @@
         func_layer {
             display-name = "FUNC";
             bindings = <
-&kp GRAVE &kp F1    &kp F2     &kp F3    &kp F4   &kp F5           &bt BT_SEL 0                   &bt BT_SEL 1             &kp F6    &kp F7       &kp F8     &kp F9    &kp F10     &kp PLUS            
-&trans    &trans    &kp UP     &trans    &trans   &trans                                                                   &trans    &trans       &trans     &kp UP    &trans      &kp MINUS
-&trans    &kp LEFT  &kp DOWN   &kp RIGHT &trans   &trans           &mkp RCLK                      &mkp RCLK                &trans    &trans       &kp LEFT   &kp DOWN  &kp RIGHT   &kp UNDER
-&trans    &trans    &trans     &trans    &trans   &rgb_ug RGB_TOG  &to MOBILE     &to DEFAULT     &kp K_BACK  &kp C_MUTE   &trans    &trans       &trans     &trans    &trans      &kp DEL
-                               &BOT      &trans   &trans           &trans         &mo 1           &mo 1       &trans       &trans    &trans       &BOT 
+&kp GRAVE     &kp F1    &kp F2     &kp F3    &kp F4   &kp F5           &tobt0                         &tobt1                   &kp F6    &kp F7       &kp F8     &kp F9    &kp F10     &kp PLUS            
+&kp TAB       &trans    &kp UP     &trans    &trans   &trans                                                                   &trans    &trans       &trans     &kp UP    &trans      &kp MINUS
+&trans        &kp LEFT  &kp DOWN   &kp RIGHT &trans   &trans           &mkp RCLK                      &mkp RCLK                &trans    &trans       &kp LEFT   &kp DOWN  &kp RIGHT   &kp UNDER
+&kp LSHFT     &trans    &trans     &trans    &trans   &rgb_ug RGB_TOG  &to MOBILE     &to DEFAULT     &kp K_BACK  &kp C_MUTE   &trans    &trans       &trans     &trans    &trans      &kp DEL
+                                   &kp LCTRL &kp LALT &kp LGUI         &BOT           &mo 1           &mo 1       &BOT         &kp LGUI  &kp LALT     &kp LCTRL 
             >;
             sensor-bindings = <&inc_dec_kp UP DOWN &inc_dec_kp LEFT RIGHT>;
         };
@@ -382,11 +395,11 @@
         MOBILE_layer {
             display-name = "MOBILE";
             bindings = <
-&kp ESC               &totapfirst     &totapsecond      &totapmiddle   &totapthird           &totapforth     &clickctrl ROT1 LCLK                  &clickctrl ROT1 LCLK              &tocloseapp1       &tocloseapp2        &tocloseapp3      &tocloseapp4   &tocloseapp5    &tocloseapp6              
-&torolltoolpanel      &none           &none             &toopenappE    &toopenappR           &toopenappT                                                                             &toopenappY        &none               &toopenappI       &none          &none           &none
-&torollmsgpanel       &none           &none             &none          &none                 &none           &mkp LCLK                             &mkp RCLK                         &toopenappM        &toopenappJ         &none             &none          &none           &totapwxinputbar
-&none                 &toopenappZ     &toopenappX       &none          &toreadmorewxmsg      &toreadwxmsg    &to DEFAULT   &to FUNC                &kp K_BACK           &loginpwd    &toreadwxmsg       &toreadmorewxmsg    &none             &none          &none           &none
-                                                        &none          &toscrollup           &toscrolldown   &kp K_BACK    &moback 1 LCLK          &moback 1 LCLK       &kp K_BACK   &toscrolldown      &toscrollup         &none
+&kp ESC               &totapfirst     &totapsecond      &totapmiddle   &totapthird           &totapforth     &clickctrl ROT1 LCLK                  &clickctrl ROT1 LCLK                     &tocloseapp1       &tocloseapp2        &tocloseapp3      &tocloseapp4   &tocloseapp5    &tocloseapp6              
+&torolltoolpanel      &none           &none             &toopenappE    &toopenappR           &toopenappT                                                                                    &toopenappY        &none               &toopenappI       &none          &none           &none
+&torollmsgpanel       &none           &none             &none          &none                 &none           &mkp LCLK                             &mkp RCLK                                &toopenappM        &toopenappJ         &none             &none          &none           &none
+&none                 &toopenappZ     &toopenappX       &none          &toreadmorewxmsg      &toreadwxmsg    &to DEFAULT   &to FUNC                &kp K_BACK           &totapwxinputbar    &toreadwxmsg       &toreadmorewxmsg    &none             &none          &none           &none
+                                                        &none          &toscrollup           &toscrolldown   &kp K_BACK    &moback 1 LCLK          &moback 1 LCLK       &kp K_BACK          &toscrolldown      &toscrollup         &none
             >;
         };
 
