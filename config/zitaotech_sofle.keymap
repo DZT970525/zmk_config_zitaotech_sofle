@@ -86,7 +86,7 @@
         rotate_leftright: rotate_leftright {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
-            bindings = <&toscrollleft>, <&toscrollright>;
+            bindings = <&toscrollright>,<&toscrollleft>;
         };
     };
 
@@ -376,7 +376,7 @@
 &kp LSHFT &kp Z    &kp X      &kp C      &kp V      &kp B           &to MOBILE   &to FUNC                 &kp K_BACK      &mkp RCLK       &kp N              &kp M       &kp COMMA  &kp DOT   &kp FSLH   &kp RSHFT
                               &kp LCTRL  &kp LALT   &kp LGUI        &kp SPACE    &moback 1 LCLK           &moback 1 LCLK  &kp SPACE       &kp LGUI           &kp RALT    &kp RCTRL
            >;
-           sensor-bindings = <&inc_dec_kp LEFT RIGHT &rotate_updown>;
+           sensor-bindings = <&inc_dec_kp RIGHT LEFT &rotate_updown>;
         };
 
 
