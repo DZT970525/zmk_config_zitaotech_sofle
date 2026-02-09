@@ -17,6 +17,7 @@
 #define DEFAULT 0
 #define FUNC 1
 #define MOBILE 2
+#define ROT 3
 #define BOT bootloader
 
 / {
@@ -41,17 +42,10 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             tapping-term-ms = <250>;
-            bindings = <&kp &mkp>;
+            bindings = <&to &mkp>;
         };
     };
-    behaviors {
-        clickctrl2: clickctrl2_mods {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <250>;
-            bindings = <&mo &mkp>;
-        };
-    };
+
     behaviors {
         moback: moback_mods {
             compatible = "zmk,behavior-hold-tap";
@@ -356,7 +350,7 @@
          default_layer {
             display-name = "QWERTY";
            bindings = <     
-&kp ESC   &kp N1   &kp N2     &kp N3     &kp N4     &kp N5          &to MOBILE                            &clickctrl K_BACK LCLK          &kp N6             &kp N7      &kp N8     &kp N9    &kp N0     &kp SQT               
+&kp ESC   &kp N1   &kp N2     &kp N3     &kp N4     &kp N5          &to MOBILE                            &clickctrl ROT LCLK             &kp N6             &kp N7      &kp N8     &kp N9    &kp N0     &kp SQT               
 &kp TAB   &kp Q    &kp W      &kp E      &kp R      &kp T                                                                                 &kp Y              &kp U       &kp I      &kp O     &kp P      &kp BSPC
 &kp CAPS  &kp A    &kp S      &kp D      &kp F      &kp G           &mkp LCLK                             &mkp LCLK                       &kp H              &kp J       &kp K      &kp L     &kp SEMI   &kp ENTER
 &kp LSHFT &kp Z    &kp X      &kp C      &kp V      &kp B           &kp PG_DN    &kp PG_UP                &mkp LCLK       &mkp RCLK       &kp N              &kp M       &kp COMMA  &kp DOT   &kp FSLH   &kp RSHFT
@@ -381,12 +375,24 @@
         MOBILE_layer {
             display-name = "MOBILE";
             bindings = <
-&kp ESC               &totapfirst     &totapsecond      &totapthird    &totapforth           &loginpwd       &to DEFAULT                           &clickctrl K_BACK LCLK            &tocloseapp1       &tocloseapp2        &tocloseapp3      &tocloseapp4   &tocloseapp5    &tocloseapp6              
+&kp ESC               &totapfirst     &totapsecond      &totapthird    &totapforth           &loginpwd       &to DEFAULT                           &clickctrl ROT LCLK               &tocloseapp1       &tocloseapp2        &tocloseapp3      &tocloseapp4   &tocloseapp5    &tocloseapp6              
 &torolltoolpanel      &none           &none             &toopenappE    &toopenappR           &toopenappT                                                                             &toopenappY        &none               &toopenappI       &none          &none           &none
 &torollmsgpanel       &none           &none             &none          &none                 &none           &mkp LCLK                             &mkp RCLK                         &toopenappM        &toopenappJ         &none             &none          &none           &totapwxinputbar
 &none                 &toopenappZ     &toopenappX       &none          &toreadmorewxmsg      &toreadwxmsg    &kp UP        &kp DOWN                &kp LEFT             &kp RIGHT    &toreadwxmsg       &toreadmorewxmsg    &none             &none          &none           &none
-                                                        &none          &toscrollup           &toscrolldown   &kp K_BACK    &clickctrl2 1 LCLK      &clickctrl2 1 LCLK   &kp K_BACK   &toscrolldown      &toscrollup         &none
+                                                        &none          &toscrollup           &toscrolldown   &kp K_BACK    &moback 1 LCLK          &moback 1 LCLK       &kp K_BACK   &toscrolldown      &toscrollup         &none
             >;
+        };
+
+        ROT_layer {
+            display-name = "ROTATE";
+            bindings = <
+&none     &none     &none      &none    &none    &none   &none                        &&clickctrl ROT LCLK            &none   &none  &none   &none  &none  &none            
+&none     &none     &none      &none    &none    &none                                                                &none   &none  &none   &none  &none  &none
+&none     &none     &none      &none    &none    &none   &none                        &none                           &none   &none  &none   &none  &none  &none
+&none     &none     &none      &none    &none    &none   &none   &none                &none  &none                    &none   &none  &none   &none  &none  &none
+                    &none      &none    &none    &none   &none                                                        &none   &none  &none   &none  &none
+            >;
+            sensor-bindings = <&rotate_updown &rotate_leftright>;
         };
     };
 };
