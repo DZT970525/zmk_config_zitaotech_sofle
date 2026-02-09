@@ -386,7 +386,7 @@
         ROT_layer {
             display-name = "ROTATE";
             bindings = <
-&none     &none     &none      &none    &none    &none   &none                        &&clickctrl ROT LCLK            &none   &none  &none   &none  &none  &none            
+&none     &none     &none      &none    &none    &none   &none                        &clickctrl ROT LCLK             &none   &none  &none   &none  &none  &none            
 &none     &none     &none      &none    &none    &none                                                                &none   &none  &none   &none  &none  &none
 &none     &none     &none      &none    &none    &none   &none                        &none                           &none   &none  &none   &none  &none  &none
 &none     &none     &none      &none    &none    &none   &none   &none                &none  &none                    &none   &none  &none   &none  &none  &none
