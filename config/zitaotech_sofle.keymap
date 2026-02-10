@@ -23,22 +23,6 @@
 
 /{
     behaviors {
-        td0: tap_dance_0 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <400>;
-            bindings = <&mkp LCLK>, <&bt BT_CLR>;
-        };
-    };
-    behaviors {
-        hm: homerow_mods {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <500>;
-            bindings = <&kp &kp>;
-        };
-    };
-    behaviors {
         clickctrl: clickctrl_mods {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -63,14 +47,6 @@
            flavor = "tap-preferred";     /* 单击优先 */
            tapping-term-ms = <200>;       /* 长按阈值 */
            bindings = <&none &kp>;        /* hold=none, tap=space */
-        };
-    };
-
-    behaviors {
-        BLE_encoder: BLE_encoder {
-            compatible = "zmk,behavior-sensor-rotate";
-            #sensor-binding-cells = <0>;
-            bindings = <&bt BT_NXT>, <&bt BT_PRV>;
         };
     };
 
