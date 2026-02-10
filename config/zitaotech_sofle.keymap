@@ -21,6 +21,7 @@
 #define ROT2 4
 #define BOT bootloader
 
+/{
     behaviors {
         td0: tap_dance_0 {
             compatible = "zmk,behavior-tap-dance";
