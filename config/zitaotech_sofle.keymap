@@ -21,7 +21,6 @@
 #define ROT2 4
 #define BOT bootloader
 
-/ {
     behaviors {
         td0: tap_dance_0 {
             compatible = "zmk,behavior-tap-dance";
@@ -362,6 +361,20 @@
             #binding-cells = <0>;
             bindings = <&macro_tap &bt BT_SEL 1>,<&macro_tap &to DEFAULT>;
         }; 
+
+        //返回mobile层
+        backtomobile: zed_em_backtomobile {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp K_BACK>,<&macro_tap &to MOBILE>;
+        }; 
+
+        //返回qwerty层
+        backtodefault: zed_em_backtodefault {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp K_BACK>,<&macro_tap &to DEFAULT>;
+        }; 
     };
 
     keymap {
@@ -409,7 +422,7 @@
 &none     &none     &none      &none    &none    &none   &clickctrl MOBILE LCLK       &clickctrl MOBILE LCLK          &none   &none  &none   &none  &none  &none            
 &none     &none     &none      &none    &none    &none                                                                &none   &none  &none   &none  &none  &none
 &none     &none     &none      &none    &none    &none   &none                        &none                           &none   &none  &none   &none  &none  &none
-&none     &none     &none      &none    &none    &none   &none   &none                &kp K_BACK  &none               &none   &none  &none   &none  &none  &none
+&none     &none     &none      &none    &none    &none   &none   &none                &backtomobile  &none            &none   &none  &none   &none  &none  &none
                     &none      &none    &none    &none   &none                                                        &none   &none  &none   &none  &none
             >;
             sensor-bindings = <&inc_dec_kp UP DOWN &rotate_leftright>;
@@ -421,7 +434,7 @@
 &none     &none     &none      &none    &none    &none   &clickctrl DEFAULT LCLK      &clickctrl DEFAULT LCLK         &none   &none  &none   &none  &none  &none            
 &none     &none     &none      &none    &none    &none                                                                &none   &none  &none   &none  &none  &none
 &none     &none     &none      &none    &none    &none   &none                        &none                           &none   &none  &none   &none  &none  &none
-&none     &none     &none      &none    &none    &none   &none   &none                &kp K_BACK  &none               &none   &none  &none   &none  &none  &none
+&none     &none     &none      &none    &none    &none   &none   &none                &backtodefault  &none           &none   &none  &none   &none  &none  &none
                     &none      &none    &none    &none   &none                                                        &none   &none  &none   &none  &none
             >;
             sensor-bindings = <&inc_dec_kp UP DOWN &rotate_leftright>;
