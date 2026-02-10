@@ -404,7 +404,7 @@
         };
 
         ROT1_layer {
-            display-name = "ROTATE";
+            display-name = "VERTICAL";
             bindings = <
 &none     &none     &none      &none    &none    &none   &clickctrl MOBILE LCLK       &clickctrl MOBILE LCLK          &none   &none  &none   &none  &none  &none            
 &none     &none     &none      &none    &none    &none                                                                &none   &none  &none   &none  &none  &none
@@ -416,7 +416,7 @@
         };
 
         ROT2_layer {
-            display-name = "ROTATE";
+            display-name = "VERTICAL";
             bindings = <
 &none     &none     &none      &none    &none    &none   &clickctrl DEFAULT LCLK      &clickctrl DEFAULT LCLK         &none   &none  &none   &none  &none  &none            
 &none     &none     &none      &none    &none    &none                                                                &none   &none  &none   &none  &none  &none
