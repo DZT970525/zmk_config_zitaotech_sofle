@@ -401,7 +401,7 @@
 &none     &none     &none      &none    &none    &none   &clickctrl MOBILE LCLK       &clickctrl MOBILE LCLK          &none   &none  &none   &none  &none  &none            
 &none     &none     &none      &none    &none    &none                                                                &none   &none  &none   &none  &none  &none
 &none     &none     &none      &none    &none    &none   &none                        &none                           &none   &none  &none   &none  &none  &none
-&none     &none     &none      &none    &none    &none   &none   &none                &backtomobile  &none            &none   &none  &none   &none  &none  &none
+&none     &none     &none      &none    &none    &none   &backtomobile  &none         &backtomobile  &none            &none   &none  &none   &none  &none  &none
                     &none      &none    &none    &none   &none                                                        &none   &none  &none   &none  &none
             >;
             sensor-bindings = <&inc_dec_kp UP DOWN &rotate_leftright>;
@@ -412,8 +412,8 @@
             bindings = <
 &none     &none     &none      &none    &none    &none   &clickctrl DEFAULT LCLK      &clickctrl DEFAULT LCLK         &none   &none  &none   &none  &none  &none            
 &none     &none     &none      &none    &none    &none                                                                &none   &none  &none   &none  &none  &none
-&none     &none     &none      &none    &none    &none   &none                        &none                           &none   &none  &none   &none  &none  &none
-&none     &none     &none      &none    &none    &none   &none   &none                &backtodefault  &none           &none   &none  &none   &none  &none  &none
+&none     &none     &none      &none    &none    &none   &mkp LCLK                    &mkp LCLK                       &none   &none  &none   &none  &none  &none
+&none     &none     &none      &none    &none    &none   &backtodefault  &none        &backtodefault  &none           &none   &none  &none   &none  &none  &none
                     &none      &none    &none    &none   &none                                                        &none   &none  &none   &none  &none
             >;
             sensor-bindings = <&inc_dec_kp UP DOWN &rotate_leftright>;
