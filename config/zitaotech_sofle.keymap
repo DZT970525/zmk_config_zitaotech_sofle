@@ -329,6 +329,8 @@
         tobt0: zed_em_tobt0 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <40>;
             bindings = <&macro_tap &bt BT_SEL 0>,<&macro_tap &kp ENTER &kp SPACE &kp N0 &kp N9 &kp N1 &kp N1 &kp ENTER>,<&macro_tap &to MOBILE>;
         };
 
