@@ -423,7 +423,7 @@
         MOBILE_layer {
             display-name = "MOBILE";
             bindings = <
-&kp ESC               &totapfirst     &totapsecond      &totapmiddle   &totapthird      &totapforth        &clickctrl ROT1 LCLK                  &clickctrl ROT1 LCLK                     &tocloseapp6       &tocloseapp1        &tocloseapp2      &tocloseapp5   &tocloseapp3    &tocloseapp4              
+&kp ESC               &totapfirst     &totapsecond      &totapmiddle   &totapthird      &totapforth        &clickctrl ROT1 LCLK                  &clickctrl ROT1 LCLK                     &tocloseapp5       &tocloseapp1        &tocloseapp2      &tocloseapp6   &tocloseapp3    &tocloseapp4              
 &torolltoolpanel      &none           &none             &toopenappE    &toopenappR      &toopenappT                                                                                       &toopenappY        &none               &toopenappI       &none          &none           &none
 &torollmsgpanel       &none           &none             &none          &none            &toreadmorewxmsg   &mkp LCLK                             &mkp RCLK                                &toreadmorewxmsg   &toopenappJ         &none             &none          &none           &none
 &none                 &toopenappZ     &toopenappX       &none          &none            &toreadwxmsg       &to DEFAULT   &to FUNC                &wxorqqtext          &wxorqqsentmsg      &toreadwxmsg       &toopenappM         &none             &none          &none           &none
