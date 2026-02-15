@@ -32,6 +32,15 @@
     };
 
     behaviors {
+        wxorqqtext: tap_dance_wxorqqtext {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <400>;
+            bindings = <&totapwxinputbar>, <&totapqqinputbar>;
+        };
+    };
+
+    behaviors {
         moback: moback_mods {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -325,6 +334,12 @@
             #binding-cells = <0>;
             bindings = <&macro_press &kp LGUI>,<&macro_tap &kp ENTER &to DEFAULT>,<&macro_release &kp LGUI>;
         };
+        //点击QQ文字输入框
+        totapqqinputbar: zed_em_totapqqinputbar {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LGUI>,<&macro_tap &kp BSPC &to DEFAULT>,<&macro_release &kp LGUI>;
+        };
         //切换设备1
         tobt0: zed_em_tobt0 {
             compatible = "zmk,behavior-macro";
@@ -390,7 +405,7 @@
 &kp ESC               &totapfirst     &totapsecond      &totapmiddle   &totapthird      &totapforth        &clickctrl ROT1 LCLK                  &clickctrl ROT1 LCLK                     &tocloseapp1       &tocloseapp2        &tocloseapp3      &tocloseapp4   &tocloseapp5    &tocloseapp6              
 &torolltoolpanel      &none           &none             &toopenappE    &toopenappR      &toopenappT                                                                                       &toopenappY        &none               &toopenappI       &none          &none           &none
 &torollmsgpanel       &none           &none             &none          &none            &toreadmorewxmsg   &mkp LCLK                             &mkp RCLK                                &toreadmorewxmsg   &toopenappJ         &none             &none          &none           &none
-&none                 &toopenappZ     &toopenappX       &none          &none            &toreadwxmsg       &to DEFAULT   &to FUNC                &kp K_BACK           &totapwxinputbar    &toreadwxmsg       &toopenappM         &none             &none          &none           &none
+&none                 &toopenappZ     &toopenappX       &none          &none            &toreadwxmsg       &to DEFAULT   &to FUNC                &kp K_BACK           &wxorqqtext         &toreadwxmsg       &toopenappM         &none             &none          &none           &none
                                                         &none          &toscrollup      &toscrolldown      &kp K_BACK    &moback 1 LCLK          &moback 1 LCLK       &kp K_BACK          &toscrolldown      &toscrollup         &none
             >;
         };
