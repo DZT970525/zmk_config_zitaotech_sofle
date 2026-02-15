@@ -86,11 +86,11 @@
         default_layer {
             display-name = "QWERTY";
             bindings = <
-&kp ESC    &kp N1    &kp N2    &kp N3  &kp N4     &kp N5     &kp C_MUTE  &kp LC(LS(K_PWR))  &kp N6       &kp N7     &kp N8  &kp N9     &kp N0     &kp BSPC
-&lt 1 TAB  &kp Q     &kp W     &kp E   &kp R      &kp T      &kp Y       &kp U              &kp I        &kp O      &kp P   &kp ENTER
-&kp CAPS   &kp A     &kp S     &kp D   &kp F      &kp G      &kp ENTER   &kp F14            &lt MOUSE H  &kp J      &kp K   &kp L      &kp SEMI   &kp SQT
-&kp LSHFT  &kp Z     &kp X     &kp C   &kp V      &kp B      &kp PG_DN   &kp PG_UP          &kp F13      &kp F14    &kp N   &kp M      &kp COMMA  &kp DOT   &kp FSLH  &kp DEL
-&kp LCTRL  &kp LALT  &kp LGUI  &mo 1   &kp SPACE  &kp SPACE  &mo 1       &kp RIGHT_SHIFT    &kp RALT     &kp RCTRL
+&kp ESC    &kp N1    &kp N2    &kp N3  &kp N4     &kp N5     &kp C_MUTE  &kp LC(LS(K_PWR))  &kp N6    &kp N7     &kp N8  &kp N9     &kp N0     &kp BSPC
+&lt 1 TAB  &kp Q     &kp W     &kp E   &kp R      &kp T      &kp Y       &kp U              &kp I     &kp O      &kp P   &kp ENTER
+&kp CAPS   &kp A     &kp S     &kp D   &kp F      &kp G      &kp ENTER   &kp F14            &lt 2 H   &kp J      &kp K   &kp L      &kp SEMI   &kp SQT
+&kp LSHFT  &kp Z     &kp X     &kp C   &kp V      &kp B      &kp PG_DN   &kp PG_UP          &kp F13   &kp F14    &kp N   &kp M      &kp COMMA  &kp DOT   &kp FSLH  &kp DEL
+&kp LCTRL  &kp LALT  &kp LGUI  &mo 2   &kp SPACE  &kp SPACE  &mo 2       &kp RIGHT_SHIFT    &kp RALT  &kp RCTRL
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &msc_encoder>;
@@ -103,7 +103,7 @@
 &trans     &trans  &trans    &kp UP_ARROW  &trans     &out OUT_TOG     &kp F11     &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp PLUS      &kp ENTER
 &trans     &trans  &kp LEFT  &kp DOWN      &kp RIGHT  &trans           &mkp RCLK   &mkp RCLK     &kp F12       &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp BACKSPACE  &kp LEFT_BRACKET
 &trans     &trans  &trans    &trans        &trans     &rgb_ug RGB_TOG  &trans      &trans        &bl BL_DEC    &bl BL_INC    &kp F13       &kp NUMBER_1  &kp NUMBER_2   &kp NUMBER_3      &kp EQUAL  &kp RIGHT_BRACKET
-&BOT       &trans  &trans    &mo 1         &kp ENTER  &kp ENTER        &mo 1       &kp NUMBER_0  &kp DOT       &BOT
+&BOT       &trans  &trans    &mo 2         &kp ENTER  &kp ENTER        &mo 2       &kp NUMBER_0  &kp DOT       &BOT
             >;
 
             sensor-bindings = <&BLE_encoder &inc_dec_kp UP DOWN>;
@@ -112,10 +112,10 @@
         mouse_layer {
             display-name = "MOUSE";
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &trans     &trans     &trans    &trans    &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &kp ENTER  &kp LG(W)  &trans    &trans    &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &mkp LCLK  &mkp LCLK  &mkp MB1  &mkp MB2  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &mkp MCLK  &none      &trans    &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans     &trans     &trans    &trans    &trans   &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &kp ENTER  &kp LG(W)  &trans    &trans    &trans   &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &mkp LCLK  &mkp LCLK  &mkp MB1  &mkp MB2  &trans   &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &mkp MCLK  &none      &trans    &trans    &kp F13  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &mkp MB1  &mkp MB2   &trans     &trans    &trans
             >;
 
