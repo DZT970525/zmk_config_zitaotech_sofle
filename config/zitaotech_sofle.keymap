@@ -50,6 +50,15 @@
     };
 
     behaviors {
+        btmobileornot: tap_dance_btmobileornot {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&backtomobile>, <&kp K_BACK>;
+        };
+    };
+
+    behaviors {
         moback: moback_mods {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -415,7 +424,7 @@
 &kp TAB       &kp LA(F4)    &kp LC(W)  &trans    &kp LC(R)   &kp LC(T)                                                                       &trans    &trans       &trans     &trans    &trans      &kp MINUS
 &trans        &kp LC(A)     &trans     &trans    &trans      &trans           &mkp RCLK                      &mkp RCLK                       &trans    &trans       &trans     &trans    &trans      &kp UNDER
 &kp LSHFT     &kp LC(Z)     &kp LC(X)  &kp LC(C) &kp LC(V)   &rgb_ug RGB_TOG  &to MOBILE     &to DEFAULT     &wxorqqtext     &wxorqqsentmsg  &trans    &kp LC(M)    &trans     &trans    &trans      &kp DEL
-                                       &kp LCTRL &kp LALT    &kp LGUI         &kp K_BACK     &mkp LCLK       &mkp LCLK       &kp K_BACK      &kp LGUI  &kp LALT     &kp LCTRL 
+                                       &kp LCTRL &kp LALT    &kp LGUI         &backtomobile  &mkp LCLK       &mkp LCLK       &btmobileornot  &kp LGUI  &kp LALT     &kp LCTRL 
             >;
             sensor-bindings = <&inc_dec_kp UP DOWN &inc_dec_kp LEFT RIGHT>;
         };
