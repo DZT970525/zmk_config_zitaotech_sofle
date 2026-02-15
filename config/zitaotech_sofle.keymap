@@ -359,7 +359,7 @@
         totapqqsentmsg: zed_em_totapqqsentmsg {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp LGUI>,<&macro_tap &kp ENTER &to LSHFT>,<&macro_release &kp LGUI>;
+            bindings = <&macro_press &kp LGUI>,<&macro_tap &kp LSHFT>,<&macro_release &kp LGUI>;
         };
         //切换设备1
         tobt0: zed_em_tobt0 {
