@@ -5,6 +5,8 @@
 *
 */
 
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+
 / {
     chosen {
         zmk,custom_led = &custom_led;
@@ -28,7 +30,7 @@
 &i2c0 {
     status = "okay";
     compatible = "nordic,nrf-twim";
-    clock-frequency = <I2C_BITRATE_FAST>; 
+    clock-frequency = <I2C_BITRATE_FAST>;
     pinctrl-0 = <&i2c0_default>;
     pinctrl-1 = <&i2c0_sleep>;
     pinctrl-names = "default", "sleep";
@@ -56,7 +58,7 @@
     /* Listeners */
     trackpoint_listener: trackpoint_listener {
         compatible = "zmk,input-listener";
-        status = "disabled";
+        status = "okay";
         device = <&trackpoint_split>;
     };
 
@@ -95,4 +97,3 @@
         };
     };
 };
-
