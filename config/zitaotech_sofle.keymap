@@ -456,10 +456,10 @@
             display-name = "MOUSE";
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans    &trans                &trans                    &trans     &trans     &trans    &trans    &trans   &trans
-&trans  &trans  &trans  &trans  &trans  &trans                                                    &kp K_BACK &trans     &trans    &trans    &trans   &trans
+&trans  &trans  &trans  &trans  &trans  &trans                                                    &kp K_BACK &kp ESC    &trans    &trans    &trans   &trans
 &trans  &trans  &trans  &trans  &trans  &trans    &mkp LCLK             &mkp LCLK                 &mkp LCLK  &mkp RCLK  &trans    &trans    &trans   &trans
 &trans  &trans  &trans  &trans  &trans  &trans    &mkp MCLK  &none      &trans         &trans     &trans     &trans     &trans    &trans    &trans   &trans
-                        &trans  &trans  &trans    &trans     &trans     &mkp LCLK      &kp K_BACK &trans     &trans     &trans
+                        &trans  &trans  &trans    &trans     &trans     &mkp LCLK      &kp K_BACK &trans     &trans     &toopenappM
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PG_DN &msc_encoder>;
