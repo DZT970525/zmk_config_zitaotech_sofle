@@ -6,6 +6,17 @@
 */
 
 #include "zitaotech_sofle.dtsi"
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+
+#define MOUSE_LAYER_ID 2
+
+/* 定义临时层切换 input-processor */
+/ {
+    zip_temp_layer: zip_temp_layer {
+        compatible = "zmk,input-processor-temp-layer";
+        #input-processor-cells = <2>;
+    };
+};
 
 
 / {
@@ -125,8 +136,10 @@
 };*/
 
 
+/* 启用 trackpoint_listener，并绑定临时层切换处理器 */
 &trackpoint_listener {
     status = "okay";
+    input-processors = <&zip_temp_layer MOUSE_LAYER_ID 400>;
 };
 lpm_view_spi: &spi2 {
     compatible = "nordic,nrf-spim";
@@ -224,4 +237,3 @@ lpm_view_spi: &spi2 {
         };
     };
 };
-
