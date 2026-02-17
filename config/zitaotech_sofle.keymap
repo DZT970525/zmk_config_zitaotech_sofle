@@ -15,9 +15,9 @@
 #include <dt-bindings/zmk/pointing.h>
 
 #define DEFAULT 0
-#define FUNC 1
+#define FUNC 4
 #define MOUSE 2
-#define MOBILE 3
+#define MOBILE 1
 #define ROT1 4
 #define ROT2 5
 #define BOT bootloader
