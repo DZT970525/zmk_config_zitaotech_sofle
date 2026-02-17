@@ -16,9 +16,10 @@
 
 #define DEFAULT 0
 #define FUNC 1
-#define MOBILE 2
-#define ROT1 3
-#define ROT2 4
+#define MOUSE 2
+#define MOBILE 3
+#define ROT1 4
+#define ROT2 5
 #define BOT bootloader
 
 /{
@@ -74,6 +75,28 @@
            flavor = "tap-preferred";     /* 单击优先 */
            tapping-term-ms = <200>;       /* 长按阈值 */
            bindings = <&none &kp>;        /* hold=none, tap=space */
+        };
+    };
+
+    /* 鼠标滚轮编码器行为 */
+    behaviors {
+        msc_encoder: msc_encoder {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+            tap-ms = <30>;
+        };
+    };
+
+    /* 长按切换到鼠标层，短按发送按键 */
+    behaviors {
+        lt: layer_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";           /* 平衡模式 */
+            tapping-term-ms = <200>;        /* 200ms阈值 */
+            quick-tap-ms = <100>;           /* 快速双击保护 */
+            bindings = <&mo &kp>;           /* hold=切换层, tap=按键 */
         };
     };
 
@@ -409,7 +432,7 @@
            bindings = <     
 &kp ESC   &kp N1   &kp N2     &kp N3     &kp N4     &kp N5          &clickctrl ROT2 LCLK                  &clickctrl ROT2 LCLK            &kp N6             &kp N7      &kp N8     &kp N9    &kp N0     &kp SQT               
 &kp TAB   &kp Q    &kp W      &kp E      &kp R      &kp T                                                                                 &kp Y              &kp U       &kp I      &kp O     &kp P      &kp BSPC
-&kp CAPS  &kp A    &kp S      &kp D      &kp F      &kp G           &mkp LCLK                             &mkp LCLK                       &kp H              &kp J       &kp K      &kp L     &kp SEMI   &kp ENTER
+&kp CAPS  &kp A    &kp S      &kp D      &kp F      &kp G           &mkp LCLK                             &mkp LCLK                       &lt 2 H            &kp J       &kp K      &kp L     &kp SEMI   &kp ENTER
 &kp LSHFT &kp Z    &kp X      &kp C      &kp V      &kp B           &to MOBILE   &to FUNC                 &wxorqqtext     &wxorqqsentmsg  &kp N              &kp M       &kp COMMA  &kp DOT   &kp FSLH   &kp RSHFT
                               &kp LCTRL  &kp LALT   &kp LGUI        &kp SPACE    &moback 1 LCLK           &moback 1 LCLK  &kp SPACE       &kp LGUI           &kp RALT    &kp RCTRL
            >;
@@ -427,6 +450,19 @@
                                        &kp LCTRL &kp LALT    &kp LGUI         &backtomobile  &mkp LCLK       &mkp LCLK       &btmobileornot  &kp LGUI  &kp LALT     &kp LCTRL 
             >;
             sensor-bindings = <&inc_dec_kp UP DOWN &inc_dec_kp LEFT RIGHT>;
+        };
+
+        mouse_layer {
+            display-name = "MOUSE";
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans    &trans                &trans                    &trans     &trans     &trans    &trans    &trans   &trans
+&trans  &trans  &trans  &trans  &trans  &trans                                                    &kp ENTER  &kp LG(W)  &trans    &trans    &trans   &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &mkp LCLK             &mkp LCLK                 &mkp MB1   &mkp MB2   &trans    &trans    &trans   &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &mkp MCLK  &none      &trans         &trans     &kp F13    &trans     &trans    &trans    &trans   &trans
+                        &trans  &trans  &trans    &trans     &trans     &mkp MB1       &mkp MB2   &trans     &trans     &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp PG_UP PG_DN &msc_encoder>;
         };
 
         MOBILE_layer {
