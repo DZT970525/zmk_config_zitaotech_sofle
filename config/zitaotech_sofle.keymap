@@ -456,8 +456,8 @@
             display-name = "MOUSE";
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans    &trans                &trans                    &trans     &trans     &trans    &trans    &trans   &trans
-&trans  &trans  &trans  &trans  &trans  &trans                                                    &kp ENTER  &trans     &trans    &trans    &trans   &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &mkp LCLK             &mkp LCLK                 &mkp MB1   &mkp MB2   &trans    &trans    &trans   &trans
+&trans  &trans  &trans  &trans  &trans  &trans                                                    &kp K_BACK &trans     &trans    &trans    &trans   &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &mkp LCLK             &mkp LCLK                 &mkp LCLK  &mkp RCLK  &trans    &trans    &trans   &trans
 &trans  &trans  &trans  &trans  &trans  &trans    &mkp MCLK  &none      &trans         &trans     &trans     &trans     &trans    &trans    &trans   &trans
                         &trans  &trans  &trans    &trans     &trans     &mkp MB1       &kp K_BACK &trans     &trans     &trans
             >;
@@ -472,7 +472,7 @@
 &torolltoolpanel      &none           &none             &toopenappE    &toopenappR      &toopenappT                                                                                       &toopenappY        &none               &toopenappI       &none          &none           &none
 &torollmsgpanel       &none           &none             &none          &none            &toreadmorewxmsg   &mkp LCLK                             &mkp RCLK                                &toreadmorewxmsg   &toopenappJ         &none             &none          &none           &none
 &none                 &toopenappZ     &toopenappX       &none          &none            &toreadwxmsg       &to DEFAULT   &to FUNC                &wxorqqtext          &wxorqqsentmsg      &toreadwxmsg       &toopenappM         &none             &none          &none           &none
-                                                        &none          &toscrollup      &toscrolldown      &kp K_BACK    &moback 1 LCLK          &moback 1 LCLK       &kp K_BACK          &toscrolldown      &toscrollup         &none
+                                                        &none          &toscrollup      &toscrolldown      &kp K_BACK    &moback 2 LCLK          &moback 2 LCLK       &kp K_BACK          &toscrolldown      &toscrollup         &none
             >;
         };
 
