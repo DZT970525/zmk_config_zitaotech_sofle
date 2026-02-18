@@ -88,6 +88,15 @@
         };
     };
 
+    behaviors {
+        bl_encoder: bl_encoder {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&bl BL_DEC>, <&bl BL_INC>;
+            tap-ms = <30>;
+        };
+    };
+
     /* 长按切换到鼠标层，短按发送按键 */
     behaviors {
         lt: layer_tap {
@@ -447,7 +456,7 @@
 &kp TAB       &kp LA(F4)    &kp LC(W)  &trans    &kp LC(R)   &kp LC(T)                                                                       &trans    &trans       &trans     &trans    &trans      &kp MINUS
 &trans        &kp LC(A)     &trans     &trans    &trans      &trans           &mkp LCLK                      &mkp LCLK                       &trans    &trans       &trans     &trans    &trans      &kp UNDER
 &kp LSHFT     &kp LC(Z)     &kp LC(X)  &kp LC(C) &kp LC(V)   &rgb_ug RGB_TOG  &to MOBILE     &to DEFAULT     &wxorqqtext     &wxorqqsentmsg  &trans    &kp LC(M)    &trans     &trans    &trans      &kp DEL
-                                       &kp LCTRL &kp LALT    &kp LGUI         &backtomobile  &mo 1           &mo 1           &btmobileornot  &kp LGUI  &kp LALT     &kp LCTRL 
+                                       &kp LCTRL &kp LALT    &kp LGUI         &kp K_BACK     &mo 1           &mo 1           &kp K_BACK      &kp LGUI  &kp LALT     &kp LCTRL 
             >;
             sensor-bindings = <&inc_dec_kp UP DOWN &inc_dec_kp LEFT RIGHT>;
         };
@@ -461,8 +470,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans    &mkp MCLK  &none      &trans         &trans     &trans     &trans     &trans    &trans    &trans   &trans
                         &trans  &trans  &trans    &trans     &trans     &mkp LCLK      &kp K_BACK &trans     &trans     &toopenappM
             >;
-
-            sensor-bindings = <&inc_dec_kp PG_UP PG_DN &msc_encoder>;
+            sensor-bindings = <&bl_encoder &msc_encoder>;
         };
 
         MOBILE_layer {
