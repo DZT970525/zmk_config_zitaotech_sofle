@@ -14,8 +14,6 @@ description: |
 
 compatible: "zitao,behavior-scroll-accelerator"
 
-include: sensor_rotate.yaml
-
 properties:
   tap-ms:
     type: int
