@@ -133,12 +133,12 @@ static void trackpoint_poll_work(struct k_work *work) {
         /* INTPIN 拉低，读取数据包 */
         int8_t dx = 0, dy = 0;
         if (trackpoint_read_packet(dev, &dx, &dy) == 0) {
-            /* 根据 H 键状态选择模式 */
+            /* 根据 H或G键状态选择模式 */
             uint8_t tp_led_brt = custom_led_get_last_valid_brightness();
             float tp_factor = 0.4f + 0.01f * tp_led_brt;
 
-            if (h_key_pressed || g_key_pressed) {
-                /* H或G键按住（在鼠标层）：转换为滚轮事件 */
+            if (h_key_pressed) {
+                /* H键按住（在鼠标层）：转换为滚轮事件 */
                 int16_t scaled_dx = -(int16_t)dx * 3 / 2 * tp_factor;
                 int16_t scaled_dy = -(int16_t)dy * 3 / 2 * tp_factor;
 
@@ -166,7 +166,38 @@ static void trackpoint_poll_work(struct k_work *work) {
                     input_report_rel(dev, INPUT_REL_HWHEEL, -scroll_x, false, K_FOREVER);
                     input_report_rel(dev, INPUT_REL_WHEEL, scroll_y, true, K_FOREVER);
                 }
-            } else {
+            } 
+            if (g_key_pressed) {
+                /* G键按住（在鼠标层）：转换为滚轮事件 */
+                int16_t scaled_dx = -(int16_t)dx * 3 / 2 * tp_factor;
+                int16_t scaled_dy = -(int16_t)dy * 3 / 2 * tp_factor;
+
+                /* 累计滚动值 */
+                scroll_accumulator_x += scaled_dx;
+                scroll_accumulator_y += scaled_dy;
+
+                int8_t scroll_x = 0;
+                int8_t scroll_y = 0;
+
+                /* 水平滚动 */
+                if (abs(scroll_accumulator_x) >= SCROLL_THRESHOLD) {
+                    scroll_x = scroll_accumulator_x / SCROLL_THRESHOLD;
+                    scroll_accumulator_x = scroll_accumulator_x % SCROLL_THRESHOLD;
+                }
+
+                /* 垂直滚动 */
+                if (abs(scroll_accumulator_y) >= SCROLL_THRESHOLD) {
+                    scroll_y = scroll_accumulator_y / SCROLL_THRESHOLD;
+                    scroll_accumulator_y = scroll_accumulator_y % SCROLL_THRESHOLD;
+                }
+
+                /* 发送滚动事件 */
+                if (scroll_x != 0 || scroll_y != 0) {
+                    input_report_rel(dev, INPUT_REL_HWHEEL, -scroll_x, false, K_FOREVER);
+                    input_report_rel(dev, INPUT_REL_WHEEL, scroll_y, true, K_FOREVER);
+                }
+            } 
+            else {
                 /* H或G键未按（默认层）：移动鼠标 */
                 dx = dx * 3 / 2 * tp_factor;
                 dy = dy * 3 / 2 * tp_factor;
