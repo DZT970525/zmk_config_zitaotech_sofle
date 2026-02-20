@@ -39,18 +39,18 @@ static const struct device *motion_gpio_dev;
 
 /* ========= 全局状态 ========= */
 static const struct device *trackpoint_dev_ref = NULL;
-static bool h_key_pressed = false;  // H键被按住时，小红点变为滚动模式
+static bool h_key_pressed = false;  // K键被按住时，小红点变为滚动模式
 uint32_t last_packet_time = 0;
 
 /* ========= 滚动模式状态 ========= */
 static int16_t scroll_accumulator_x = 0;  // 水平滚动累计
 static int16_t scroll_accumulator_y = 0;  // 垂直滚动累计
-#define SCROLL_THRESHOLD 8               // 滚动阈值，累计超过此值才发送滚动事件
+#define SCROLL_THRESHOLD 12               // 滚动阈值，累计超过此值才发送滚动事件
 
-/* ========= H 键监听 =========
- * 检测 H 键(position 34)状态切换小红点模式：
- * - H 未按：鼠标移动模式
- * - H 按住：滚动模式（在鼠标层）
+/* ========= K 键监听 =========
+ * 检测 K 键(position 36)状态切换小红点模式：
+ * - K 未按：鼠标移动模式
+ * - K 按住：滚动模式（在鼠标层）
  */
 static int h_key_listener_cb(const zmk_event_t *eh) {
     const struct zmk_position_state_changed *ev = as_zmk_position_state_changed(eh);
@@ -58,7 +58,7 @@ static int h_key_listener_cb(const zmk_event_t *eh) {
         return 0;
     }
 
-    if (ev->position == 36) { // H key position
+    if (ev->position == 36) { // K key position
         h_key_pressed = ev->state;
         LOG_INF("H key position=36 %s", h_key_pressed ? "PRESSED" : "RELEASED");
     }   
