@@ -15,6 +15,10 @@ description: |
 compatible: "zitao,behavior-scroll-accelerator"
 
 properties:
+  bindings:
+    type: phandle-array
+    required: true
+
   tap-ms:
     type: int
     default: 30
