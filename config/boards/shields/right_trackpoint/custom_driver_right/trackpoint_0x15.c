@@ -40,6 +40,7 @@ static const struct device *motion_gpio_dev;
 /* ========= 全局状态 ========= */
 static const struct device *trackpoint_dev_ref = NULL;
 static bool h_key_pressed = false;  // H键被按住时，小红点变为滚动模式
+static bool g_key_pressed = false;  // G键被按住时，小红点变为滚动模式
 uint32_t last_packet_time = 0;
 
 /* ========= 滚动模式状态 ========= */
@@ -58,7 +59,7 @@ static int h_key_listener_cb(const zmk_event_t *eh) {
         return 0;
     }
 
-    if (ev->position == 34 || ev->position == 31) { // H key position
+    if (ev->position == 34) { // H key position
         h_key_pressed = ev->state;
         LOG_INF("H key position=34 %s", h_key_pressed ? "PRESSED" : "RELEASED");
     }
@@ -66,6 +67,25 @@ static int h_key_listener_cb(const zmk_event_t *eh) {
 }
 ZMK_LISTENER(trackpoint_h_key_listener, h_key_listener_cb);
 ZMK_SUBSCRIPTION(trackpoint_h_key_listener, zmk_position_state_changed);
+/* ========= G 键监听 =========
+ * 检测 G 键(position 31)状态切换小红点模式：
+ * - G 未按：鼠标移动模式
+ * - G 按住：滚动模式（在鼠标层）
+ */
+static int g_key_listener_cb(const zmk_event_t *eh) {
+    const struct zmk_position_state_changed *ev = as_zmk_position_state_changed(eh);
+    if (!ev) {
+        return 0;
+    }
+
+    if (eev->position == 31) { // G key position
+        g_key_pressed = ev->state;
+        LOG_INF("G key position=31 %s", g_key_pressed ? "PRESSED" : "RELEASED");
+    }
+    return 0;
+}
+ZMK_LISTENER(trackpoint_g_key_listener, g_key_listener_cb);
+ZMK_SUBSCRIPTION(trackpoint_g_key_listener, zmk_position_state_changed);
 
 /* ========= TrackPoint 配置结构 ========= */
 struct trackpoint_config {
@@ -116,8 +136,8 @@ static void trackpoint_poll_work(struct k_work *work) {
             uint8_t tp_led_brt = custom_led_get_last_valid_brightness();
             float tp_factor = 0.4f + 0.01f * tp_led_brt;
 
-            if (h_key_pressed) {
-                /* H键按住（在鼠标层）：转换为滚轮事件 */
+            if (h_key_pressed || g_key_pressed) {
+                /* H或G键按住（在鼠标层）：转换为滚轮事件 */
                 int16_t scaled_dx = -(int16_t)dx * 3 / 2 * tp_factor;
                 int16_t scaled_dy = -(int16_t)dy * 3 / 2 * tp_factor;
 
@@ -147,7 +167,7 @@ static void trackpoint_poll_work(struct k_work *work) {
                 }
             } 
             else {
-                /* H键未按（默认层）：移动鼠标 */
+                /* H或G键未按（默认层）：移动鼠标 */
                 dx = dx * 3 / 2 * tp_factor;
                 dy = dy * 3 / 2 * tp_factor;
                 input_report_rel(dev, INPUT_REL_X, -dx, false, K_FOREVER);
