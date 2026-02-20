@@ -39,7 +39,7 @@ static const struct device *motion_gpio_dev;
 
 /* ========= 全局状态 ========= */
 static const struct device *trackpoint_dev_ref = NULL;
-static bool h_key_pressed = false;  // K键被按住时，小红点变为滚动模式
+static bool h_key_pressed = false;  // J键被按住时，小红点变为滚动模式
 uint32_t last_packet_time = 0;
 
 /* ========= 滚动模式状态 ========= */
@@ -47,10 +47,10 @@ static int16_t scroll_accumulator_x = 0;  // 水平滚动累计
 static int16_t scroll_accumulator_y = 0;  // 垂直滚动累计
 #define SCROLL_THRESHOLD 12               // 滚动阈值，累计超过此值才发送滚动事件
 
-/* ========= K 键监听 =========
- * 检测 K 键(position 36)状态切换小红点模式：
- * - K 未按：鼠标移动模式
- * - K 按住：滚动模式（在鼠标层）
+/* ========= J 键监听 =========
+ * 检测 J 键(position 35)状态切换小红点模式：
+ * - J 未按：鼠标移动模式
+ * - J 按住：滚动模式（在鼠标层）
  */
 static int h_key_listener_cb(const zmk_event_t *eh) {
     const struct zmk_position_state_changed *ev = as_zmk_position_state_changed(eh);
@@ -58,9 +58,9 @@ static int h_key_listener_cb(const zmk_event_t *eh) {
         return 0;
     }
 
-    if (ev->position == 36) { // K key position
+    if (ev->position == 35) { // K key position
         h_key_pressed = ev->state;
-        LOG_INF("H key position=36 %s", h_key_pressed ? "PRESSED" : "RELEASED");
+        LOG_INF("H key position=35 %s", h_key_pressed ? "PRESSED" : "RELEASED");
     }   
     return 0;
 }
@@ -112,12 +112,12 @@ static void trackpoint_poll_work(struct k_work *work) {
         /* INTPIN 拉低，读取数据包 */
         int8_t dx = 0, dy = 0;
         if (trackpoint_read_packet(dev, &dx, &dy) == 0) {
-            /* 根据 H或G键状态选择模式 */
+            /* 根据J键状态选择模式 */
             uint8_t tp_led_brt = custom_led_get_last_valid_brightness();
             float tp_factor = 0.4f + 0.01f * tp_led_brt;
 
             if (h_key_pressed ) {
-                /* H或G键按住（在鼠标层）：转换为滚轮事件 */
+                /* J键按住（在鼠标层）：转换为滚轮事件 */
                 int16_t scaled_dx = -(int16_t)dx * 3 / 2 * tp_factor;
                 int16_t scaled_dy = -(int16_t)dy * 3 / 2 * tp_factor;
 
@@ -147,7 +147,7 @@ static void trackpoint_poll_work(struct k_work *work) {
                 }
             } 
             else {
-                /* H或G键未按（默认层）：移动鼠标 */
+                /* J键未按（默认层）：移动鼠标 */
                 dx = dx * 3 / 2 * tp_factor;
                 dy = dy * 3 / 2 * tp_factor;
                 input_report_rel(dev, INPUT_REL_X, -dx, false, K_FOREVER);
