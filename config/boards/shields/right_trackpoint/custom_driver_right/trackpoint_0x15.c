@@ -67,6 +67,7 @@ static int h_key_listener_cb(const zmk_event_t *eh) {
 }
 ZMK_LISTENER(trackpoint_h_key_listener, h_key_listener_cb);
 ZMK_SUBSCRIPTION(trackpoint_h_key_listener, zmk_position_state_changed);
+
 /* ========= G 键监听 =========
  * 检测 G 键(position 31)状态切换小红点模式：
  * - G 未按：鼠标移动模式
@@ -78,7 +79,7 @@ static int g_key_listener_cb(const zmk_event_t *eh) {
         return 0;
     }
 
-    if (eev->position == 31) { // G key position
+    if (ev->position == 31) { // G key position
         g_key_pressed = ev->state;
         LOG_INF("G key position=31 %s", g_key_pressed ? "PRESSED" : "RELEASED");
     }
