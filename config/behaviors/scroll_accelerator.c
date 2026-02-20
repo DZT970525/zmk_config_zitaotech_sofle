@@ -14,9 +14,9 @@
 #include <zephyr/drivers/sensor.h>
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
+#include <drivers/behavior.h>
 
 #include <zmk/behavior.h>
-#include <zmk/behavior_driver.h>
 #include <zmk/behavior_queue.h>
 #include <zmk/keymap.h>
 #include <zmk/sensors.h>
@@ -202,6 +202,7 @@ static int scroll_accelerator_init(const struct device *dev)
 
 // 驱动API
 static const struct behavior_driver_api scroll_accelerator_driver_api = {
+    .locality = BEHAVIOR_LOCALITY_EVENT_SOURCE,
     .sensor_binding_accept_data = scroll_accelerator_sensor_binding_accept_data,
     .sensor_binding_process = scroll_accelerator_sensor_binding_process,
 };
@@ -221,7 +222,7 @@ static const struct behavior_driver_api scroll_accelerator_driver_api = {
             .max_interval_ms = DT_INST_PROP_OR(n, max_interval_ms, 80),      \
     };                                                                       \
                                                                              \
-    DEVICE_DT_INST_DEFINE(n, scroll_accelerator_init, NULL,                  \
+    BEHAVIOR_DT_INST_DEFINE(n, scroll_accelerator_init, NULL,                 \
                           &scroll_accelerator_state_##n,                     \
                           &scroll_accelerator_config_##n,                    \
                           APPLICATION, CONFIG_KERNEL_INIT_PRIORITY_DEFAULT,  \
