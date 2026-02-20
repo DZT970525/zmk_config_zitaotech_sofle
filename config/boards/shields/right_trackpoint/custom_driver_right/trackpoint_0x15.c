@@ -58,9 +58,9 @@ static int h_key_listener_cb(const zmk_event_t *eh) {
         return 0;
     }
 
-    if (ev->position == 31) { // H key position
+    if (ev->position == 36) { // H key position
         h_key_pressed = ev->state;
-        LOG_INF("H key position=31 %s", h_key_pressed ? "PRESSED" : "RELEASED");
+        LOG_INF("H key position=36 %s", h_key_pressed ? "PRESSED" : "RELEASED");
     }   
     return 0;
 }
