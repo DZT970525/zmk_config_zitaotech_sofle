@@ -411,13 +411,6 @@
             bindings = <&macro_tap &bt BT_SEL 0>,<&macro_tap &kp SPACE &kp SPACE &kp N0 &kp N9 &kp N1 &kp N1 &kp ENTER>;
         };
 
-        //切换设备2
-        tobt1: zed_em_tobt1 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap &bt BT_SEL 1>,<&macro_tap &to DEFAULT>;
-        }; 
-
         //返回mobile层
         backtomobile: zed_em_backtomobile {
             compatible = "zmk,behavior-macro";
@@ -452,7 +445,7 @@
         func_layer {
             display-name = "FUNC";
             bindings = <
-&kp GRAVE     &kp F1        &kp F2     &kp F3    &kp F4      &kp F5           &tobt0                         &tobt1                          &kp F6    &kp F7       &kp F8     &kp F9    &kp F10     &kp PLUS            
+&kp GRAVE     &kp F1        &kp F2     &kp F3    &kp F4      &kp F5           &BOT                           &kp C_MUTE                      &kp F6    &kp F7       &kp F8     &kp F9    &kp F10     &kp PLUS            
 &kp TAB       &kp LA(F4)    &kp LC(W)  &trans    &kp LC(R)   &kp LC(T)                                                                       &trans    &trans       &trans     &trans    &trans      &kp MINUS
 &trans        &kp LC(A)     &trans     &trans    &trans      &trans           &mkp LCLK                      &mkp LCLK                       &trans    &trans       &trans     &trans    &trans      &kp UNDER
 &kp LSHFT     &kp LC(Z)     &kp LC(X)  &kp LC(C) &kp LC(V)   &trans           &to MOBILE     &to DEFAULT     &kp C_VOL_UP    &kp C_VOL_DN    &trans    &kp LC(M)    &trans     &trans    &trans      &kp DEL
@@ -464,9 +457,9 @@
         mouse_layer {
             display-name = "MOUSE";
             bindings = <  
-&kp ESC           &totapfirst     &totapsecond      &totapmiddle   &totapthird      &totapforth    &trans                  &trans                            &tocloseapp5       &tocloseapp1        &tocloseapp2      &tocloseapp6   &tocloseapp3    &tocloseapp4
+&kp ESC           &totapfirst     &totapsecond      &totapmiddle   &totapthird      &totapforth    &tobt0                  &bt BT_SEL 1                      &tocloseapp5       &tocloseapp1        &tocloseapp2      &tocloseapp6   &tocloseapp3    &tocloseapp4
 &torolltoolpanel  &trans          &trans            &trans         &trans           &trans                                                                   &kp K_BACK         &kp ESC             &trans            &trans         &trans          &trans
-&torollmsgpanel   &trans          &trans            &trans         &trans           &mkp LCLK      &mkp LCLK               &mkp LCLK                         &trans             &mkp RCLK           &trans            &trans         &trans          &trans
+&torollmsgpanel   &trans          &trans            &trans         &trans           &trans         &mkp LCLK               &mkp LCLK                         &mkp LCLK          &mkp RCLK           &trans            &trans         &trans          &trans
 &trans            &trans          &trans            &trans         &trans           &trans         &trans      &trans      &trans         &trans             &toreadwxmsg       &toreadmorewxmsg    &trans            &trans         &trans          &trans
                                                     &trans         &toscrollup      &toscrolldown  &kp K_BACK  &mkp LCLK   &mkp LCLK      &kp K_BACK         &toscrolldown      &toscrollup         &toopenappM
             >;
