@@ -1,0 +1,45 @@
+# Copyright (c) 2025 ZitaoTech
+# SPDX-License-Identifier: MIT
+
+# ZMK Scroll Accelerator Behavior
+# 自定义滚轮加速器 - 智能响应滚轮转动
+
+description: |
+  Scroll accelerator behavior for encoder sensors. Provides intelligent
+  scroll response with acceleration and deceleration handling.
+
+  - First tick triggers immediately
+  - Continuous rotation outputs based on average speed
+  - Accumulated value resets after idle timeout
+
+compatible: "zitao,behavior-scroll-accelerator"
+
+include: sensor_rotate.yaml
+
+properties:
+  tap-ms:
+    type: int
+    default: 30
+    description: |
+      Duration in milliseconds for the simulated tap event.
+
+  idle-reset-ms:
+    type: int
+    default: 100
+    description: |
+      Time in milliseconds after which the accumulated ticks are reset
+      when no new rotation events are received.
+
+  min-interval-ms:
+    type: int
+    default: 20
+    description: |
+      Minimum interval in milliseconds between scroll outputs.
+      Used when scrolling at high speed.
+
+  max-interval-ms:
+    type: int
+    default: 80
+    description: |
+      Maximum interval in milliseconds between scroll outputs.
+      Used when scrolling at low speed.

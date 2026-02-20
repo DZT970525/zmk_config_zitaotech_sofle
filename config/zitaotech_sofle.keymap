@@ -55,7 +55,7 @@
         };
     };
 
-    /* 鼠标滚轮编码器行为 */
+    /* 鼠标滚轮编码器行为 - 使用自定义加速器 */
 
     behaviors {
         msc_encoder: msc_encoder {
@@ -64,6 +64,21 @@
             bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
 
             tap-ms = <30>;
+        };
+    };
+
+    /* 自定义滚轮加速器 - 智能响应滚轮转动 */
+
+    behaviors {
+        scroll_accel: scroll_accelerator {
+            compatible = "zitao,behavior-scroll-accelerator";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+
+            tap-ms = <30>;           /* 点击持续时间 */
+            idle-reset-ms = <100>;   /* 空闲100ms后重置 */
+            min-interval-ms = <20>;  /* 最快20ms输出一次 */
+            max-interval-ms = <80>;  /* 最慢80ms输出一次 */
         };
     };
 
@@ -93,7 +108,7 @@
 &kp LCTRL  &kp LALT  &kp LGUI  &mo 2   &kp SPACE  &kp SPACE  &mo 2       &kp RIGHT_SHIFT    &kp RALT  &kp RCTRL
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &msc_encoder>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_accel>;
         };
 
         func_layer {
@@ -106,7 +121,7 @@
 &BOT       &trans  &trans    &mo 2         &kp ENTER  &kp ENTER        &mo 2       &kp NUMBER_0  &kp DOT       &BOT
             >;
 
-            sensor-bindings = <&BLE_encoder &inc_dec_kp UP DOWN>;
+            sensor-bindings = <&BLE_encoder &scroll_accel>;
         };
 
         mouse_layer {
@@ -119,7 +134,7 @@
 &trans  &trans  &trans  &trans  &trans  &mkp MB1  &mkp MB2   &trans     &trans    &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp PG_UP PG_DN &msc_encoder>;
+            sensor-bindings = <&inc_dec_kp PG_UP PG_DN &scroll_accel>;
         };
 
         RES_layer {
