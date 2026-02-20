@@ -74,7 +74,7 @@ ZMK_SUBSCRIPTION(trackpoint_h_key_listener, zmk_position_state_changed);
  * - G 按住：滚动模式（在鼠标层）
  */
 static int g_key_listener_cb(const zmk_event_t *eh) {
-    const struct zmk_position_state_changed *ev = as_zmk_position_state_changed(eh);
+    const struct zmk_g_position_state_changed *ev = as_zmk_g_position_state_changed(eh);
     if (!ev) {
         return 0;
     }
@@ -86,7 +86,7 @@ static int g_key_listener_cb(const zmk_event_t *eh) {
     return 0;
 }
 ZMK_LISTENER(trackpoint_g_key_listener, g_key_listener_cb);
-ZMK_SUBSCRIPTION(trackpoint_g_key_listener, zmk_position_state_changed);
+ZMK_SUBSCRIPTION(trackpoint_g_key_listener, zmk_g_position_state_changed);
 
 /* ========= TrackPoint 配置结构 ========= */
 struct trackpoint_config {
