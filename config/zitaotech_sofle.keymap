@@ -67,7 +67,7 @@
         };
     };
 
-    /* 自定义滚轮加速器 - 智能响应滚轮转动 */
+    /* 自定义滚轮匀速输出 - 首次单次响应，持续匀速输出 */
 
     behaviors {
         scroll_accel: scroll_accelerator {
@@ -77,8 +77,7 @@
 
             tap-ms = <30>;           /* 点击持续时间 */
             idle-reset-ms = <100>;   /* 空闲100ms后重置 */
-            min-interval-ms = <20>;  /* 最快20ms输出一次 */
-            max-interval-ms = <80>;  /* 最慢80ms输出一次 */
+            max-interval-ms = <60>;  /* 匀速输出间隔60ms（无加速度） */
         };
     };
 

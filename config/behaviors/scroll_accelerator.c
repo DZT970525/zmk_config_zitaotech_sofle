@@ -3,11 +3,11 @@
  *
  * SPDX-License-Identifier: MIT
  *
- * 自定义滚轮加速器 Behavior
+ * 自定义滚轮匀速输出 Behavior
  * 功能：
- * 1. 首次检测到滚轮转动时立即响应一次
- * 2. 如果持续转动，按平均速度连续响应（避免过快但保持流畅）
- * 3. 停止转动后，累积值清零
+ * 1. 首次检测到滚轮转动时立即响应一次（无论转多快）
+ * 2. 持续转动时按固定间隔匀速输出（无加速度）
+ * 3. 停止转动后重置状态
  */
 
 #include <zephyr/device.h>
@@ -46,24 +46,12 @@ struct scroll_accelerator_config {
     uint32_t max_interval_ms;                  // 最大输出间隔 (默认80ms)
 };
 
-// 计算动态输出间隔 - 基于滚动速度
-static uint32_t calculate_output_interval(const struct scroll_accelerator_config *config,
-                                          int32_t ticks_per_second)
+// 固定输出间隔 - 匀速输出，无加速度
+static uint32_t calculate_output_interval(const struct scroll_accelerator_config *config)
 {
-    // 速度越快，间隔越短 (但不超过最大/最小限制)
-    // 目标：低速时约80ms，高速时约20ms
-    if (ticks_per_second <= 5) {
-        return config->max_interval_ms;
-    }
-    if (ticks_per_second >= 50) {
-        return config->min_interval_ms;
-    }
-
-    // 线性插值
-    uint32_t range = config->max_interval_ms - config->min_interval_ms;
-    uint32_t interval = config->max_interval_ms - (ticks_per_second * range / 50);
-
-    return CLAMP(interval, config->min_interval_ms, config->max_interval_ms);
+    // 使用固定间隔（默认60ms，可通过设备树配置）
+    // 忽略速度变化，匀速输出
+    return config->max_interval_ms;
 }
 
 // 执行滚动输出
@@ -102,9 +90,12 @@ static int scroll_accelerator_sensor_binding_accept_data(struct zmk_behavior_bin
     ticks = (ticks > 0) ? ticks : -ticks;  // 取绝对值
 
     // 检查是否需要重置（方向改变或空闲超时）
+    bool direction_changed = false;
+    bool idle_timeout = false;
+
     if (state->is_active) {
-        bool direction_changed = (current_direction > 0) != (state->direction > 0);
-        bool idle_timeout = (now - state->last_event_time) > config->idle_reset_ms;
+        direction_changed = (current_direction > 0) != (state->direction > 0);
+        idle_timeout = (now - state->last_event_time) > config->idle_reset_ms;
 
         if (direction_changed || idle_timeout) {
             // 重置状态
@@ -121,27 +112,18 @@ static int scroll_accelerator_sensor_binding_accept_data(struct zmk_behavior_bin
     // 累积脉冲
     state->accumulated_ticks += ticks;
 
-    // 检查是否需要立即输出
-    // 首次脉冲或达到输出间隔时输出
+    // 检查是否需要输出
     uint32_t time_since_last = (uint32_t)(now - (int64_t)state->last_output_time);
+    uint32_t output_interval = calculate_output_interval(config);
 
-    if (state->accumulated_ticks == ticks) {
-        // 这是第一个脉冲，立即输出
+    if (!state->is_active || idle_timeout || direction_changed) {
+        // 首次脉冲（重置后）立即输出
         execute_scroll(dev, current_direction);
         state->accumulated_ticks = 0;
-    } else {
-        // 计算基于速度的间隔
-        int32_t time_delta = (int32_t)(now - state->last_event_time);
-        int32_t ticks_per_second = (time_delta > 0) ?
-            (ticks * 1000 / time_delta) : 10;
-
-        uint32_t output_interval = calculate_output_interval(config, ticks_per_second);
-
-        if (time_since_last >= output_interval) {
-            // 输出一次滚动
-            execute_scroll(dev, current_direction);
-            state->accumulated_ticks = 0;
-        }
+    } else if (time_since_last >= output_interval) {
+        // 持续模式下按固定间隔匀速输出
+        execute_scroll(dev, current_direction);
+        state->accumulated_ticks = 0;
     }
 
     return ZMK_BEHAVIOR_OPAQUE;
@@ -169,13 +151,9 @@ static int scroll_accelerator_sensor_binding_process(struct zmk_behavior_binding
         return ZMK_BEHAVIOR_OPAQUE;
     }
 
-    // 检查是否需要输出
+    // 检查是否需要输出 - 使用固定间隔
     uint32_t time_since_last = (uint32_t)(now - (int64_t)state->last_output_time);
-    int32_t time_delta = (int32_t)(now - state->last_event_time);
-    int32_t ticks_per_second = (time_delta > 0) ?
-        (state->accumulated_ticks * 1000 / time_delta) : 10;
-
-    uint32_t output_interval = calculate_output_interval(config, ticks_per_second);
+    uint32_t output_interval = calculate_output_interval(config);
 
     if (time_since_last >= output_interval) {
         int8_t dir = state->direction ? 1 : -1;

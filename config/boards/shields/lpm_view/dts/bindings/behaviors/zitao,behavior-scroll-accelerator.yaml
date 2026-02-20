@@ -1,16 +1,16 @@
 # Copyright (c) 2025 ZitaoTech
 # SPDX-License-Identifier: MIT
 
-# ZMK Scroll Accelerator Behavior
-# 自定义滚轮加速器 - 智能响应滚轮转动
+# ZMK Scroll Uniform Output Behavior
+# 自定义滚轮匀速输出 - 首次单次响应，持续匀速输出
 
 description: |
-  Scroll accelerator behavior for encoder sensors. Provides intelligent
-  scroll response with acceleration and deceleration handling.
+  Scroll uniform output behavior for encoder sensors.
 
-  - First tick triggers immediately
-  - Continuous rotation outputs based on average speed
+  - First tick always triggers exactly one output (no acceleration)
+  - Continuous rotation outputs at fixed interval (uniform speed, no acceleration)
   - Accumulated value resets after idle timeout
+  - No speed-based acceleration - uniform output rate regardless of rotation speed
 
 compatible: "zitao,behavior-scroll-accelerator"
 
@@ -41,7 +41,7 @@ properties:
 
   max-interval-ms:
     type: int
-    default: 80
+    default: 60
     description: |
-      Maximum interval in milliseconds between scroll outputs.
-      Used when scrolling at low speed.
+      Fixed interval in milliseconds between scroll outputs during continuous rotation.
+      This is the uniform output rate - no acceleration based on speed.
