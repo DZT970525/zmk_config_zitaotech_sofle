@@ -71,8 +71,8 @@ static void execute_scroll(const struct device *dev, int8_t direction)
     const struct scroll_accelerator_config *config = dev->config;
     struct scroll_accelerator_state *state = dev->data;
 
-    const struct zmk_behavior_binding *binding =
-        (direction > 0) ? &config->cw_binding : &config->ccw_binding;
+    struct zmk_behavior_binding binding =
+        (direction > 0) ? config->cw_binding : config->ccw_binding;
 
     // 提交行为到队列
     zmk_behavior_queue_add(0, binding, true, config->tap_ms);
