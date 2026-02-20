@@ -61,11 +61,7 @@ static int h_key_listener_cb(const zmk_event_t *eh) {
     if (ev->position == 31) { // H key position
         h_key_pressed = ev->state;
         LOG_INF("H key position=31 %s", h_key_pressed ? "PRESSED" : "RELEASED");
-    }
-    if (ev->position == 34) { // G key position
-        h_key_pressed = ev->state;
-        LOG_INF("H key position=34 %s", h_key_pressed ? "PRESSED" : "RELEASED");
-    }    
+    }   
     return 0;
 }
 ZMK_LISTENER(trackpoint_h_key_listener, h_key_listener_cb);
