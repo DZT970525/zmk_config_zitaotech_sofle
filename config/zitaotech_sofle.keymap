@@ -458,9 +458,9 @@
             display-name = "MOUSE";
             bindings = <  
 &kp ESC           &totapfirst     &totapsecond      &totapmiddle   &totapthird      &totapforth    &tobt0                  &bt BT_SEL 1                      &tocloseapp5       &tocloseapp1        &tocloseapp2      &tocloseapp6   &tocloseapp3    &tocloseapp4
-&torolltoolpanel  &trans          &trans            &trans         &trans           &trans                                                                   &kp K_BACK         &kp ESC             &trans            &trans         &trans          &trans
-&torollmsgpanel   &trans          &trans            &trans         &trans           &trans         &mkp LCLK               &mkp LCLK                         &mkp LCLK          &mkp RCLK           &trans            &trans         &trans          &trans
-&trans            &trans          &trans            &trans         &trans           &trans         &trans      &trans      &trans         &trans             &toreadwxmsg       &toreadmorewxmsg    &trans            &trans         &trans          &trans
+&torolltoolpanel  &kp LA(F4)      &kp LC(W)         &trans         &kp LC(R)        &kp LC(T)                                                                &kp K_BACK         &kp ESC             &trans            &trans         &trans          &trans
+&torollmsgpanel   &kp LC(A)       &trans            &trans         &trans           &trans         &mkp LCLK               &mkp LCLK                         &mkp LCLK          &mkp RCLK           &trans            &trans         &trans          &trans
+&trans            &kp LC(Z)       &kp LC(X)         &kp LC(C)      &kp LC(V)        &trans         &trans      &trans      &trans         &trans             &toreadwxmsg       &toreadmorewxmsg    &trans            &trans         &trans          &trans
                                                     &trans         &toscrollup      &toscrolldown  &kp K_BACK  &mkp LCLK   &mkp LCLK      &kp K_BACK         &toscrolldown      &toscrollup         &toopenappM
             >;
         };  
