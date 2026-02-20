@@ -441,7 +441,7 @@
            bindings = <     
 &kp ESC   &kp N1   &kp N2     &kp N3     &kp N4     &kp N5          &rgb_ug RGB_TOG                       &clickctrl ROT2 LCLK            &kp N6             &kp N7      &kp N8     &kp N9    &kp N0     &kp SQT               
 &kp TAB   &kp Q    &kp W      &kp E      &kp R      &kp T                                                                                 &kp Y              &kp U       &kp I      &kp O     &kp P      &kp BSPC
-&kp CAPS  &kp A    &kp S      &kp D      &kp F      &lt 2 G         &mkp LCLK                             &mkp LCLK                       &lt 2 H            &kp J       &kp K      &kp L     &kp SEMI   &kp ENTER
+&kp CAPS  &kp A    &kp S      &kp D      &kp F      &kp G           &mkp LCLK                             &mkp LCLK                       &kp H              &kp J       &lt 2 K    &kp L     &kp SEMI   &kp ENTER
 &kp LSHFT &kp Z    &kp X      &kp C      &kp V      &kp B           &to MOBILE   &to FUNC                 &wxorqqtext     &wxorqqsentmsg  &kp N              &kp M       &kp COMMA  &kp DOT   &kp FSLH   &kp RSHFT
                               &kp LCTRL  &kp LALT   &kp LGUI        &kp SPACE    &moback 1 LCLK           &moback 1 LCLK  &kp SPACE       &kp LGUI           &kp RALT    &kp RCTRL
            >;
@@ -466,7 +466,7 @@
             bindings = <  
 &kp ESC           &totapfirst     &totapsecond      &totapmiddle   &totapthird      &totapforth    &trans                  &trans                            &tocloseapp5       &tocloseapp1        &tocloseapp2      &tocloseapp6   &tocloseapp3    &tocloseapp4
 &torolltoolpanel  &trans          &trans            &trans         &trans           &trans                                                                   &kp K_BACK         &kp ESC             &trans            &trans         &trans          &trans
-&torollmsgpanel   &trans          &trans            &trans         &trans           &mkp LCLK      &mkp LCLK               &mkp LCLK                         &mkp LCLK          &mkp RCLK           &trans            &trans         &trans          &trans
+&torollmsgpanel   &trans          &trans            &trans         &trans           &mkp LCLK      &mkp LCLK               &mkp LCLK                         &trans             &mkp RCLK           &trans            &trans         &trans          &trans
 &trans            &trans          &trans            &trans         &trans           &trans         &trans      &trans      &trans         &trans             &toreadwxmsg       &toreadmorewxmsg    &trans            &trans         &trans          &trans
                                                     &trans         &toscrollup      &toscrolldown  &kp K_BACK  &mkp LCLK   &mkp LCLK      &kp K_BACK         &toscrolldown      &toscrollup         &toopenappM
             >;
