@@ -1,9 +1,11 @@
 /*
- * bbtrackball_input_handler.c - BB Trackball (动态窗口加速)
+ * bbtrackball_input_handler.c - BB Trackball (节流状态机)
  *
- * 算法：检测最近3个脉冲的间隔密度
- * - 稀疏脉冲(慢速) → 1格
- * - 密集脉冲(快速) → 多格
+ * 算法：节流状态机
+ * - IDLE: 等待首次脉冲
+ * - FIRST_OUTPUT: 输出1格，进入冷却
+ * - COOLDOWN: 200ms冷却期，累计脉冲
+ * - UNIFORM: 60ms固定间隔匀速输出
  * SPDX-License-Identifier: MIT
  */
 
@@ -29,16 +31,19 @@ LOG_MODULE_REGISTER(bbtrackball_input_handler, LOG_LEVEL_INF);
 #define GPIO0_DEV DT_NODELABEL(gpio0)
 #define GPIO1_DEV DT_NODELABEL(gpio1)
 
-/* ==== 动态窗口参数 ==== */
-#define WINDOW_SIZE 3              /* 看最近3个脉冲 */
-#define BASE_INTERVAL_MS 40        /* 基础处理间隔 */
 
-/* 速度档位 (根据平均脉冲间隔划分) */
-#define SPEED_SLOW_MS 180          /* >180ms: 慢速,1格 */
-#define SPEED_MED_MS 120           /* 120-180ms: 中速,2格 */
-#define SPEED_FAST_MS 70           /* 70-120ms: 快速,3格 */
-#define SPEED_VFAST_MS 40          /* 40-70ms: 很快,5格 */
-                                   /* <40ms: 极速,8格 */
+/* ==== 滚轮节流控制参数 ==== */
+#define COOLDOWN_MS 200            /* 首次触发后的冷却期 */
+#define UNIFORM_INTERVAL_MS 60     /* 匀速输出间隔 */
+#define RESET_IDLE_MS 100          /* 停止移动后重置状态的时间 */
+
+/* 节流状态机 */
+enum throttle_state {
+    THROTTLE_IDLE = 0,             /* 空闲状态 */
+    THROTTLE_FIRST_OUTPUT,         /* 首次输出 */
+    THROTTLE_COOLDOWN,             /* 冷却期 */
+    THROTTLE_UNIFORM               /* 匀速输出 */
+};
 
 /* ==== 方向定义 ==== */
 enum {
@@ -58,18 +63,19 @@ typedef struct {
     const struct device *gpio_dev;
     int pin;
     int last_state;
-    uint32_t pulse_times[WINDOW_SIZE];  /* 最近脉冲时间窗口 */
-    uint8_t pulse_idx;                  /* 当前写入位置 */
-    uint8_t pulse_count;                /* 窗口中有效脉冲数 */
     int pending_steps;                  /* 待执行步数 */
+    int accumulated_steps;              /* 冷却期累计的步数 */
+    enum throttle_state throttle;       /* 节流状态机 */
+    uint32_t last_output_time;          /* 上次输出时间 */
+    uint32_t last_pulse_time;           /* 上次脉冲时间 */
 } DirState;
 
 /* 方向修正 */
 static DirState dir_states[DIR_COUNT] = {
-    [DIR_LEFT]  = {DEVICE_DT_GET(GPIO0_DEV), RIGHT_GPIO_PIN, 1, {0}, 0, 0, 0},
-    [DIR_RIGHT] = {DEVICE_DT_GET(GPIO0_DEV), LEFT_GPIO_PIN, 1, {0}, 0, 0, 0},
-    [DIR_UP]    = {DEVICE_DT_GET(GPIO1_DEV), DOWN_GPIO_PIN, 1, {0}, 0, 0, 0},
-    [DIR_DOWN]  = {DEVICE_DT_GET(GPIO0_DEV), UP_GPIO_PIN, 1, {0}, 0, 0, 0},
+    [DIR_LEFT]  = {DEVICE_DT_GET(GPIO0_DEV), RIGHT_GPIO_PIN, 1, 0, 0, THROTTLE_IDLE, 0, 0},
+    [DIR_RIGHT] = {DEVICE_DT_GET(GPIO0_DEV), LEFT_GPIO_PIN, 1, 0, 0, THROTTLE_IDLE, 0, 0},
+    [DIR_UP]    = {DEVICE_DT_GET(GPIO1_DEV), DOWN_GPIO_PIN, 1, 0, 0, THROTTLE_IDLE, 0, 0},
+    [DIR_DOWN]  = {DEVICE_DT_GET(GPIO0_DEV), UP_GPIO_PIN, 1, 0, 0, THROTTLE_IDLE, 0, 0},
 };
 
 static struct gpio_callback gpio_cbs[DIR_COUNT];
@@ -91,14 +97,11 @@ bool trackball_is_moving(void) {
     for (int i = 0; i < DIR_COUNT; i++) {
         DirState *d = &dir_states[i];
         /* 有pending步数或者在最近100ms内有脉冲 */
-        if (d->pending_steps > 0) {
+        if (d->pending_steps > 0 || d->accumulated_steps > 0) {
             return true;
         }
-        if (d->pulse_count > 0) {
-            int newest_idx = (d->pulse_idx - 1 + WINDOW_SIZE) % WINDOW_SIZE;
-            if (now - d->pulse_times[newest_idx] < 100) {
-                return true;
-            }
+        if (now - d->last_pulse_time < 100) {
+            return true;
         }
     }
     return false;
@@ -128,45 +131,6 @@ static void trigger_key_press(uint8_t dir) {
     send_arrow_key(keycode, false);
 }
 
-/* ==== 计算速度档位 ==== */
-static int calc_speed_steps(DirState *d, uint32_t now) {
-    if (d->pulse_count < 2) {
-        /* 脉冲太少，算1格 */
-        return 1;
-    }
-
-    /* 计算窗口内平均间隔 */
-    uint32_t total_interval = 0;
-    uint8_t valid_count = 0;
-
-    for (int i = 1; i < d->pulse_count; i++) {
-        int idx_curr = (d->pulse_idx - i + WINDOW_SIZE) % WINDOW_SIZE;
-        int idx_prev = (d->pulse_idx - i - 1 + WINDOW_SIZE) % WINDOW_SIZE;
-        uint32_t interval = d->pulse_times[idx_curr] - d->pulse_times[idx_prev];
-        if (interval > 0 && interval < 500) {  /* 过滤异常值 */
-            total_interval += interval;
-            valid_count++;
-        }
-    }
-
-    if (valid_count == 0) return 1;
-
-    uint32_t avg_interval = total_interval / valid_count;
-    LOG_DBG("Avg interval: %d ms", avg_interval);
-
-    /* 根据平均间隔返回跳跃数 */
-    if (avg_interval > SPEED_SLOW_MS) {
-        return 1;  /* 慢速: 1格 */
-    } else if (avg_interval > SPEED_MED_MS) {
-        return 2;  /* 中速: 2格 */
-    } else if (avg_interval > SPEED_FAST_MS) {
-        return 3;  /* 快速: 3格 */
-    } else if (avg_interval > SPEED_VFAST_MS) {
-        return 5;  /* 很快: 5格 */
-    } else {
-        return 8;  /* 极速: 8格封顶 */
-    }
-}
 
 /* ==== Space Listener ==== */
 static int space_listener_cb(const zmk_event_t *eh) {
@@ -194,16 +158,35 @@ static void dir_edge_cb(const struct device *dev, struct gpio_callback *cb, uint
             if (val != d->last_state) {
                 d->last_state = val;
                 if (val == 0) {  /* 下降沿 */
-                    /* 记录脉冲时间 */
-                    d->pulse_times[d->pulse_idx] = now;
-                    d->pulse_idx = (d->pulse_idx + 1) % WINDOW_SIZE;
-                    if (d->pulse_count < WINDOW_SIZE) d->pulse_count++;
+                    d->last_pulse_time = now;
 
-                    /* 计算步数并加入pending */
-                    int steps = calc_speed_steps(d, now);
-                    d->pending_steps += steps;
+                    switch (d->throttle) {
+                        case THROTTLE_IDLE:
+                            /* 首次脉冲：输出1格，进入FIRST_OUTPUT状态 */
+                            d->pending_steps = 1;
+                            d->accumulated_steps = 0;
+                            d->throttle = THROTTLE_FIRST_OUTPUT;
+                            LOG_INF("Dir %d: IDLE -> FIRST_OUTPUT", i);
+                            break;
 
-                    LOG_DBG("Dir %d: pulse detected, steps=%d", i, steps);
+                        case THROTTLE_FIRST_OUTPUT:
+                            /* 首次输出后立即进入冷却期，此状态不应再收到脉冲 */
+                            d->accumulated_steps++;
+                            LOG_DBG("Dir %d: FIRST_OUTPUT pulse accumulated", i);
+                            break;
+
+                        case THROTTLE_COOLDOWN:
+                            /* 冷却期内：累计步数，不输出 */
+                            d->accumulated_steps++;
+                            LOG_DBG("Dir %d: COOLDOWN pulse accumulated, total=%d", i, d->accumulated_steps);
+                            break;
+
+                        case THROTTLE_UNIFORM:
+                            /* 匀速期：累计步数 */
+                            d->accumulated_steps++;
+                            LOG_DBG("Dir %d: UNIFORM pulse accumulated, total=%d", i, d->accumulated_steps);
+                            break;
+                    }
                 }
             }
             break;
@@ -211,73 +194,124 @@ static void dir_edge_cb(const struct device *dev, struct gpio_callback *cb, uint
     }
 }
 
+/* ==== 处理单个方向的节流状态机 ==== */
+static void process_dir_throttle(DirState *d, int dir_id, uint32_t now) {
+    switch (d->throttle) {
+        case THROTTLE_IDLE:
+            /* 空闲状态，等待脉冲 */
+            break;
+
+        case THROTTLE_FIRST_OUTPUT:
+            /* 输出首次按键，记录时间，进入冷却期 */
+            if (d->pending_steps > 0) {
+                trigger_key_press(dir_id);
+                d->pending_steps = 0;
+                d->last_output_time = now;
+                d->throttle = THROTTLE_COOLDOWN;
+                LOG_INF("Dir %d: FIRST_OUTPUT -> COOLDOWN", dir_id);
+            }
+            break;
+
+        case THROTTLE_COOLDOWN:
+            /* 检查冷却期是否结束 */
+            if (now - d->last_output_time >= COOLDOWN_MS) {
+                /* 冷却结束，将累计的步数移到pending */
+                d->pending_steps = d->accumulated_steps;
+                d->accumulated_steps = 0;
+                d->throttle = THROTTLE_UNIFORM;
+                d->last_output_time = now;
+                LOG_INF("Dir %d: COOLDOWN -> UNIFORM (pending=%d)", dir_id, d->pending_steps);
+
+                /* 如果有步数，立即输出一个 */
+                if (d->pending_steps > 0) {
+                    trigger_key_press(dir_id);
+                    d->pending_steps--;
+                    d->last_output_time = now;
+                }
+            }
+            break;
+
+        case THROTTLE_UNIFORM:
+            /* 匀速输出：每60ms输出一个 */
+            if (now - d->last_output_time >= UNIFORM_INTERVAL_MS) {
+                if (d->pending_steps > 0) {
+                    trigger_key_press(dir_id);
+                    d->pending_steps--;
+                    d->last_output_time = now;
+                    LOG_DBG("Dir %d: UNIFORM output, remaining=%d", dir_id, d->pending_steps);
+                } else if (d->accumulated_steps > 0) {
+                    /* pending空了，从accumulated补充 */
+                    d->pending_steps = d->accumulated_steps;
+                    d->accumulated_steps = 0;
+                    trigger_key_press(dir_id);
+                    d->pending_steps--;
+                    d->last_output_time = now;
+                    LOG_DBG("Dir %d: UNIFORM output from accumulated, remaining=%d", dir_id, d->pending_steps);
+                }
+            }
+            break;
+    }
+
+    /* 检查是否需要重置：100ms无脉冲 */
+    if (d->throttle != THROTTLE_IDLE && (now - d->last_pulse_time > RESET_IDLE_MS)) {
+        LOG_INF("Dir %d: timeout reset to IDLE", dir_id);
+        d->throttle = THROTTLE_IDLE;
+        d->pending_steps = 0;
+        d->accumulated_steps = 0;
+    }
+}
+
 /* ==== 处理步进 ==== */
 static void process_handler(struct k_work *work) {
-    /* X轴 (左右) */
+    uint32_t now = k_uptime_get_32();
+
+    /* 处理X轴（左右）- 互斥 */
     DirState *d_left = &dir_states[DIR_LEFT];
     DirState *d_right = &dir_states[DIR_RIGHT];
 
-    if (d_left->pending_steps > 0 && d_right->pending_steps > 0) {
-        /* 两个方向都有，抵消 */
-        int diff = d_left->pending_steps - d_right->pending_steps;
-        if (diff > 0) {
-            trigger_key_press(DIR_LEFT);
-        } else if (diff < 0) {
-            trigger_key_press(DIR_RIGHT);
+    /* 如果两个方向都有输入，优先处理pending_steps多的方向 */
+    if ((d_left->pending_steps > 0 || d_left->accumulated_steps > 0) &&
+        (d_right->pending_steps > 0 || d_right->accumulated_steps > 0)) {
+        int left_total = d_left->pending_steps + d_left->accumulated_steps;
+        int right_total = d_right->pending_steps + d_right->accumulated_steps;
+        if (left_total > right_total) {
+            process_dir_throttle(d_left, DIR_LEFT, now);
+        } else {
+            process_dir_throttle(d_right, DIR_RIGHT, now);
         }
-        d_left->pending_steps = 0;
-        d_right->pending_steps = 0;
-    } else if (d_left->pending_steps > 0) {
-        trigger_key_press(DIR_LEFT);
-        d_left->pending_steps--;
-    } else if (d_right->pending_steps > 0) {
-        trigger_key_press(DIR_RIGHT);
-        d_right->pending_steps--;
+    } else {
+        process_dir_throttle(d_left, DIR_LEFT, now);
+        process_dir_throttle(d_right, DIR_RIGHT, now);
     }
 
-    /* Y轴 (上下) */
+    /* 处理Y轴（上下）- 互斥 */
     DirState *d_up = &dir_states[DIR_UP];
     DirState *d_down = &dir_states[DIR_DOWN];
 
-    if (d_up->pending_steps > 0 && d_down->pending_steps > 0) {
-        int diff = d_up->pending_steps - d_down->pending_steps;
-        if (diff > 0) {
-            trigger_key_press(DIR_UP);
-        } else if (diff < 0) {
-            trigger_key_press(DIR_DOWN);
+    if ((d_up->pending_steps > 0 || d_up->accumulated_steps > 0) &&
+        (d_down->pending_steps > 0 || d_down->accumulated_steps > 0)) {
+        int up_total = d_up->pending_steps + d_up->accumulated_steps;
+        int down_total = d_down->pending_steps + d_down->accumulated_steps;
+        if (up_total > down_total) {
+            process_dir_throttle(d_up, DIR_UP, now);
+        } else {
+            process_dir_throttle(d_down, DIR_DOWN, now);
         }
-        d_up->pending_steps = 0;
-        d_down->pending_steps = 0;
-    } else if (d_up->pending_steps > 0) {
-        trigger_key_press(DIR_UP);
-        d_up->pending_steps--;
-    } else if (d_down->pending_steps > 0) {
-        trigger_key_press(DIR_DOWN);
-        d_down->pending_steps--;
+    } else {
+        process_dir_throttle(d_up, DIR_UP, now);
+        process_dir_throttle(d_down, DIR_DOWN, now);
     }
 
-    /* 清理旧脉冲 (超过300ms的视为无效) */
-    uint32_t now = k_uptime_get_32();
-    for (int i = 0; i < DIR_COUNT; i++) {
-        DirState *d = &dir_states[i];
-        if (d->pulse_count > 0) {
-            int newest_idx = (d->pulse_idx - 1 + WINDOW_SIZE) % WINDOW_SIZE;
-            if (now - d->pulse_times[newest_idx] > 300) {
-                d->pulse_count = 0;  /* 清空窗口 */
-            }
-        }
-    }
-
-    k_work_schedule(&process_work, K_MSEC(BASE_INTERVAL_MS));
+    k_work_schedule(&process_work, K_MSEC(10));  /* 10ms轮询间隔 */
 }
 
 /* ==== 初始化 ==== */
 static int bbtrackball_init(const struct device *dev) {
     struct bbtrackball_data *data = dev->data;
 
-    LOG_INF("Initializing BBtrackball (dynamic window acceleration)...");
-    LOG_INF("  Window size: %d, Speed tiers: >%dms(1), >%dms(2), >%dms(3), >%dms(5), fast(8)",
-            WINDOW_SIZE, SPEED_SLOW_MS, SPEED_MED_MS, SPEED_FAST_MS, SPEED_VFAST_MS);
+    LOG_INF("Initializing BBtrackball (throttle state machine)...");
+    LOG_INF("  COOLDOWN: %dms, UNIFORM: %dms, RESET: %dms",
+            COOLDOWN_MS, UNIFORM_INTERVAL_MS, RESET_IDLE_MS);
 
     for (int i = 0; i < DIR_COUNT; i++) {
         DirState *d = &dir_states[i];
@@ -294,7 +328,7 @@ static int bbtrackball_init(const struct device *dev) {
     trackball_dev_ref = dev;
 
     k_work_init_delayable(&process_work, process_handler);
-    k_work_schedule(&process_work, K_MSEC(BASE_INTERVAL_MS));
+    k_work_schedule(&process_work, K_MSEC(10));
 
     return 0;
 }
