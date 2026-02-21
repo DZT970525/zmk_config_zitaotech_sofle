@@ -38,7 +38,8 @@ static const struct device *motion_gpio_dev;
 
 /* ========= 全局状态 ========= */
 static const struct device *trackpoint_dev_ref = NULL;
-static bool h_key_pressed = false;  // H键被按住时，小红点变为滚动模式
+static bool j_key_pressed = false;  // J键被按住时，小红点变为滚动模式
+static bool j_key_moved = false;    // 标记J键期间是否移动过小红点
 uint32_t last_packet_time = 0;
 
 /* ========= 滚动模式状态 ========= */
@@ -46,25 +47,41 @@ static int16_t scroll_accumulator_x = 0;  // 水平滚动累计
 static int16_t scroll_accumulator_y = 0;  // 垂直滚动累计
 #define SCROLL_THRESHOLD 8               // 滚动阈值，累计超过此值才发送滚动事件
 
-/* ========= H 键监听 =========
- * 检测 H 键(position 34)状态切换小红点模式：
- * - H 未按：鼠标移动模式
- * - H 按住：滚动模式（在鼠标层）
+/* ========= J 键监听 =========
+ * 检测 J 键(position 35)状态切换小红点模式：
+ * - J 未按：鼠标移动模式
+ * - J 按住：滚动模式（在鼠标层）
+ * - J 弹起时如果未移动过小红点，发送右键
  */
-static int h_key_listener_cb(const zmk_event_t *eh) {
+static int j_key_listener_cb(const zmk_event_t *eh) {
     const struct zmk_position_state_changed *ev = as_zmk_position_state_changed(eh);
     if (!ev) {
         return 0;
     }
 
-    if (ev->position == 34) { // H key position
-        h_key_pressed = ev->state;
-        LOG_INF("H key position=34 %s", h_key_pressed ? "PRESSED" : "RELEASED");
+    if (ev->position == 35) { // J key position
+        bool new_state = ev->state;
+        // J键弹起时，检查是否需要发送右键
+        if (j_key_pressed && !new_state && !j_key_moved) {
+            // J键弹起且期间未移动过小红点，发送右键
+            if (trackpoint_dev_ref && device_is_ready(trackpoint_dev_ref)) {
+                input_report_key(trackpoint_dev_ref, INPUT_BTN_1, 1, true, K_MSEC(100));
+                k_sleep(K_MSEC(100));
+                input_report_key(trackpoint_dev_ref, INPUT_BTN_1, 0, true, K_MSEC(100));
+                LOG_INF("J key released without movement, sending right click");
+            }
+        }
+        j_key_pressed = new_state;
+        // J键按下时重置移动标记
+        if (j_key_pressed) {
+            j_key_moved = false;
+        }
+        LOG_INF("J key position=35 %s", j_key_pressed ? "PRESSED" : "RELEASED");
     }
     return 0;
 }
-ZMK_LISTENER(trackpoint_h_key_listener, h_key_listener_cb);
-ZMK_SUBSCRIPTION(trackpoint_h_key_listener, zmk_position_state_changed);
+ZMK_LISTENER(trackpoint_j_key_listener, j_key_listener_cb);
+ZMK_SUBSCRIPTION(trackpoint_j_key_listener, zmk_position_state_changed);
 
 
 /* ========= TrackPoint 配置结构 ========= */
@@ -116,8 +133,12 @@ static void trackpoint_poll_work(struct k_work *work) {
             uint8_t tp_led_brt = custom_led_get_last_valid_brightness();
             float tp_factor = 0.4f + 0.01f * tp_led_brt;
 
-            if (h_key_pressed) {
-                /* H键按住（在鼠标层）：转换为滚轮事件 */
+            if (j_key_pressed) {
+                /* J键按住（在鼠标层）：转换为滚轮事件 */
+                // 标记J键期间移动过小红点
+                if (dx != 0 || dy != 0) {
+                    j_key_moved = true;
+                }
                 int16_t scaled_dx = -(int16_t)dx * 3 / 2 * tp_factor;
                 int16_t scaled_dy = -(int16_t)dy * 3 / 2 * tp_factor;
 
@@ -146,7 +167,7 @@ static void trackpoint_poll_work(struct k_work *work) {
                     input_report_rel(dev, INPUT_REL_WHEEL, scroll_y, true, K_FOREVER);
                 }
             } else {
-                /* H键未按（默认层）：移动鼠标 */
+                /* J键未按（默认层）：移动鼠标 */
                 dx = dx * 3 / 2 * tp_factor;
                 dy = dy * 3 / 2 * tp_factor;
                 input_report_rel(dev, INPUT_REL_X, -dx, false, K_FOREVER);

@@ -128,7 +128,7 @@
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans    &trans     &trans     &trans    &trans    &trans   &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans    &kp ENTER  &kp LG(W)  &trans    &trans    &trans   &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &mkp LCLK  &mkp LCLK  &mkp MB1  &mkp MB2  &trans   &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &mkp LCLK  &mkp LCLK  &mkp MB1  &kp LG(R)  &trans   &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans    &mkp MCLK  &none      &trans    &trans    &kp F13  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &mkp MB1  &mkp MB2   &trans     &trans    &trans
             >;
