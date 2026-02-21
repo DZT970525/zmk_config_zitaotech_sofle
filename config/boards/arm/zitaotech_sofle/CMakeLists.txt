@@ -18,4 +18,3 @@ if(CONFIG_BOARD_ZITAOTECH_SOFLE_RIGHT)
   zephyr_library_include_directories(../../../include)
   zephyr_library_include_directories(${CMAKE_SOURCE_DIR}/include)
 endif()
-
