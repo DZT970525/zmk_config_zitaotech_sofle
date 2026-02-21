@@ -43,7 +43,7 @@ static bool j_key_moved = false;    // 标记J键期间是否移动过小红点
 static bool j_should_rclk = false;  // 标记J键弹起时是否应该发送右键
 uint32_t last_packet_time = 0;
 uint32_t trackpoint_last_move_time = 0;  // 小红点最后移动时间
-#define RCLK_TIME_WINDOW_MS 800     // 右键时间窗口，与自动切换鼠标层一致
+#define RCLK_TIME_WINDOW_MS 1000     // 右键时间窗口，与自动切换鼠标层一致
 
 /* ========= 滚动模式状态 ========= */
 static int16_t scroll_accumulator_x = 0;  // 水平滚动累计
@@ -80,16 +80,19 @@ static int j_key_listener_cb(const zmk_event_t *eh) {
             j_key_moved = false;
         } else {
             // J键弹起时
-            if (j_should_rclk) {
-                // 在时间窗口内按下，发送右键
+            // 条件：在时间窗口内按下 且 滚动期间未移动过小红点
+            if (j_should_rclk && !j_key_moved) {
+                // 发送右键
                 if (trackpoint_dev_ref && device_is_ready(trackpoint_dev_ref)) {
                     input_report_key(trackpoint_dev_ref, INPUT_BTN_1, 1, true, K_MSEC(50));
                     k_sleep(K_MSEC(50));
                     input_report_key(trackpoint_dev_ref, INPUT_BTN_1, 0, true, K_MSEC(50));
                     LOG_INF("J键弹起：发送右键");
                 }
-                j_should_rclk = false;
+            } else if (j_should_rclk && j_key_moved) {
+                LOG_INF("J键弹起：滚动期间移动过，不发送右键");
             }
+            j_should_rclk = false;
         }
 
         j_key_pressed = new_state;
