@@ -43,7 +43,7 @@ static bool j_key_moved = false;    // 标记J键期间是否移动过小红点
 static bool j_should_rclk = false;  // 标记J键弹起时是否应该发送右键
 uint32_t last_packet_time = 0;
 uint32_t trackpoint_last_move_time = 0;  // 小红点最后移动时间
-#define RCLK_TIME_WINDOW_MS 1000     // 右键时间窗口，与自动切换鼠标层一致
+#define RCLK_TIME_WINDOW_MS 400     // 右键时间窗口，与自动切换鼠标层一致
 
 /* ========= 滚动模式状态 ========= */
 static int16_t scroll_accumulator_x = 0;  // 水平滚动累计
