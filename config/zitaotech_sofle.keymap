@@ -439,7 +439,7 @@
 &kp TAB       &kp LA(F4)    &kp LC(W)  &trans    &kp LC(R)   &kp LC(T)                                                                       &trans    &trans       &trans     &trans    &trans      &kp MINUS
 &trans        &kp LC(A)     &trans     &trans    &trans      &trans           &mkp LCLK                      &mkp LCLK                       &trans    &trans       &trans     &trans    &trans      &kp UNDER
 &kp LSHFT     &kp LC(Z)     &kp LC(X)  &kp LC(C) &kp LC(V)   &trans           &to MOBILE     &to DEFAULT     &kp C_VOL_UP    &kp C_VOL_DN    &trans    &kp LC(M)    &trans     &trans    &trans      &kp DEL
-                                       &kp LCTRL &kp LALT    &kp LGUI         &kp K_BACK     &mo 1           &mo 1           &kp K_BACK      &kp LGUI  &kp LALT     &kp LCTRL 
+                                       &kp LCTRL &kp LALT    &kp LGUI         &kp K_BACK     &mkp LCLK       &mkp LCLK       &kp K_BACK      &kp LGUI  &kp LALT     &kp LCTRL 
             >;
             sensor-bindings = <&inc_dec_kp UP DOWN &inc_dec_kp LEFT RIGHT>;
         };
