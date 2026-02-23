@@ -182,8 +182,8 @@ static void trackpoint_poll_work(struct k_work *work) {
 
                 /* 垂直滚动 */
                 if (abs(scroll_accumulator_y) >= SCROLL_THRESHOLD) {
-                    scroll_y = scroll_accumulator_y / SCROLL_THRESHOLD * 2;
-                    scroll_accumulator_y = scroll_accumulator_y % SCROLL_THRESHOLD * 2;
+                    scroll_y = scroll_accumulator_y / SCROLL_THRESHOLD / 2;
+                    scroll_accumulator_y = scroll_accumulator_y % SCROLL_THRESHOLD / 2;
                 }
 
                 /* 发送滚动事件 */
