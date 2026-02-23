@@ -168,8 +168,8 @@ static void trackpoint_poll_work(struct k_work *work) {
                 int16_t scaled_dy = -(int16_t)dy * 3 / 2 * tp_factor;
 
                 /* 累计滚动值 */
-                //scroll_accumulator_x += scaled_dx;
-                //scroll_accumulator_y += scaled_dy;
+                scroll_accumulator_x += scaled_dx;
+                scroll_accumulator_y += scaled_dy;
 
                 int8_t scroll_x = 0;
                 int8_t scroll_y = 0;
