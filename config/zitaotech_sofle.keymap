@@ -99,6 +99,20 @@
         };
     };
 
+    /* 自定义滚轮匀速输出 - 首次单次响应，持续匀速输出 */
+
+    behaviors {
+        scroll_accel: scroll_accelerator {
+            compatible = "zitao,behavior-scroll-accelerator";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+
+            tap-ms = <30>;           /* 点击持续时间 */
+            idle-reset-ms = <100>;   /* 空闲100ms后重置 */
+            max-interval-ms = <60>;  /* 匀速输出间隔60ms（无加速度） */
+        };
+    };
+
     behaviors {
         rotate_updown: rotate_updown {
             compatible = "zmk,behavior-sensor-rotate";
@@ -453,6 +467,7 @@
 &trans            &kp LC(Z)       &kp LC(X)         &kp LC(C)      &kp LC(V)        &trans         &trans      &trans      &trans         &trans             &toreadwxmsg       &toreadmorewxmsg    &trans            &trans         &trans          &trans
                                                     &trans         &toscrollup      &toscrolldown  &kp K_BACK  &mkp LCLK   &mkp LCLK      &kp K_BACK         &toscrolldown      &toscrollup         &toopenappM
             >;
+            sensor-bindings = <&scroll_accel &scroll_accel>;
         };  
 
         MOBILE_layer {
