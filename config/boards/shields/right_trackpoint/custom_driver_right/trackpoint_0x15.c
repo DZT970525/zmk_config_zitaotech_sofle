@@ -48,7 +48,7 @@ uint32_t trackpoint_last_move_time = 0;  // 小红点最后移动时间
 /* ========= 滚动模式状态 ========= */
 static int16_t scroll_accumulator_x = 0;  // 水平滚动累计
 static int16_t scroll_accumulator_y = 0;  // 垂直滚动累计
-#define SCROLL_THRESHOLD 8               // 滚动阈值，累计超过此值才发送滚动事件
+#define SCROLL_THRESHOLD 16               // 滚动阈值，累计超过此值才发送滚动事件
 
 /* ========= J 键监听 =========
  * 检测 J 键(position 35)状态：
@@ -168,8 +168,8 @@ static void trackpoint_poll_work(struct k_work *work) {
                 int16_t scaled_dy = -(int16_t)dy * 3 / 2 * tp_factor;
 
                 /* 累计滚动值 */
-                scroll_accumulator_x += scaled_dx;
-                scroll_accumulator_y += scaled_dy;
+                //scroll_accumulator_x += scaled_dx;
+                //scroll_accumulator_y += scaled_dy;
 
                 int8_t scroll_x = 0;
                 int8_t scroll_y = 0;
