@@ -35,7 +35,8 @@ LOG_MODULE_REGISTER(bbtrackball_input_handler, LOG_LEVEL_INF);
 /* ==== 滚轮节流控制参数 ==== */
 #define COOLDOWN_MS 200            /* 首次触发后的冷却期 */
 #define UNIFORM_INTERVAL_MS 60     /* 匀速输出间隔 */
-#define RESET_IDLE_MS 100          /* 停止移动后重置状态的时间 */
+#define RESET_IDLE_MS 300          /* 停止移动后重置状态的时间（从100增加到300ms以过滤干扰）*/
+#define DEBOUNCE_MS 5              /* 防抖时间：5ms内的重复脉冲忽略 */
 
 /* 节流状态机 */
 enum throttle_state {
@@ -158,6 +159,11 @@ static void dir_edge_cb(const struct device *dev, struct gpio_callback *cb, uint
             if (val != d->last_state) {
                 d->last_state = val;
                 if (val == 0) {  /* 下降沿 */
+                    /* 防抖：5ms内的重复脉冲忽略（过滤电磁干扰）*/
+                    if (now - d->last_pulse_time < DEBOUNCE_MS) {
+                        LOG_DBG("Dir %d: debounced pulse (interval=%dms)", i, (int)(now - d->last_pulse_time));
+                        break;
+                    }
                     d->last_pulse_time = now;
 
                     switch (d->throttle) {
