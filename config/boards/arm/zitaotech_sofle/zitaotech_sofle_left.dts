@@ -139,7 +139,7 @@
 /* 启用 trackpoint_listener，并绑定临时层切换处理器 */
 &trackpoint_listener {
     status = "okay";
-    input-processors = <&zip_temp_layer MOUSE_LAYER_ID 400>;
+    input-processors = <&zip_temp_layer MOUSE_LAYER_ID 850>;
 };
 lpm_view_spi: &spi2 {
     compatible = "nordic,nrf-spim";
