@@ -194,8 +194,8 @@ static void trackpoint_poll_work(struct k_work *work) {
                 }
             } else {
                 /* J键未按（默认层）：移动鼠标 */
-                dx = dx * 3 / 2 * tp_factor;
-                dy = dy * 3 / 2 * tp_factor;
+                dx = dx * 1 / 3 * tp_factor;
+                dy = dy * 1 / 3 * tp_factor;
                 input_report_rel(dev, INPUT_REL_X, -dx, false, K_FOREVER);
                 input_report_rel(dev, INPUT_REL_Y, -dy, true, K_FOREVER);
             }
