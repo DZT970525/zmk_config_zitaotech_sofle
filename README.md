@@ -1,5 +1,14 @@
 # 个人keymap布局说明
 
+![alt text](readme_img/image.png)
+
+![alt text](readme_img/image-1.png)
+
+![alt text](readme_img/image-2.png)
+
+![alt text](readme_img/image-3.png)
+
+![alt text](readme_img/image-4.png)
 ## 数字符号层设计思路
 
 - 左手拇指键最容易按到的键为空格键。
