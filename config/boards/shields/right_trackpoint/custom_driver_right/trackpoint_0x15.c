@@ -165,8 +165,8 @@ static void trackpoint_poll_work(struct k_work *work) {
                 if (dx != 0 || dy != 0) {
                     j_key_moved = true;
                 }
-                int16_t scaled_dx = -(int16_t)dx * 3 / 2 / SCROLL_SPEED_DIVISOR * tp_factor;
-                int16_t scaled_dy = -(int16_t)dy * 3 / 2 / SCROLL_SPEED_DIVISOR * tp_factor;
+                int16_t scaled_dx = -(int16_t)dx * 1 / 3 / SCROLL_SPEED_DIVISOR * tp_factor;
+                int16_t scaled_dy = -(int16_t)dy * 1 / 3 / SCROLL_SPEED_DIVISOR * tp_factor;
 
                 /* 累计滚动值 */
                 scroll_accumulator_x += scaled_dx;
