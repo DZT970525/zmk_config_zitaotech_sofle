@@ -129,8 +129,8 @@ static void trackpoint_poll_work(struct k_work *work) {
                     scroll_y = 0;
                 }
                 */
-                int16_t scroll_x = -dx / 60;
-                int16_t scroll_y = -dy / 60;
+                int16_t scroll_x = -dx / 300;
+                int16_t scroll_y = -dy / 300;
 
                 // 保留一个最小出发死区，防止手抖
                 if (abs(dx) < 2 && abs(dy) < 2) {
