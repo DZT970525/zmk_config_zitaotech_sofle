@@ -213,6 +213,10 @@
 &kp LGUI      &hml LEFT_GUI Z  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &hmr RIGHT_GUI FSLH  &trans
                 &trans               &trans  &trans  &kp LCTRL  &trans  &trans  &kp RCTRL  &trans  &trans  &trans
             >;
+
+            sensor-bindings =
+                <&inc_dec_kp C_VOL_UP C_VOL_DN>,
+                <&inc_dec_kp PAGE_UP PAGE_DOWN>;
         };
     };
 };
