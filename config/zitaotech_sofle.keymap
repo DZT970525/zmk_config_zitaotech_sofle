@@ -226,7 +226,7 @@
 
             sensor-bindings =
                 <&inc_dec_kp C_VOL_UP C_VOL_DN>,
-                <&inc_dec_kp MS_WH_UP MS_WH_DN>;
+                <&inc_dec_kp 0x47 0x48>;
                 // <&inc_dec_kp PAGE_UP PAGE_DOWN>;
         };
 
@@ -257,7 +257,7 @@
 
             sensor-bindings =
                 <&inc_dec_kp C_VOL_UP C_VOL_DN>,
-                <&inc_dec_kp MS_WH_UP MS_WH_DN>;
+                <&inc_dec_kp 0x47 0x48>;
                 // <&inc_dec_kp PAGE_UP PAGE_DOWN>;
         };
 
