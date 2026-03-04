@@ -88,16 +88,17 @@
         };
     };
 
-/*
     behaviors {
-        scroll_up_down: behavior_sensor_rotate_mouse_wheel_up_down {
+        // 旧版本 ZMK 定义鼠标滚轮的方法
+        hw_scroll: hw_scroll {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
-            bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
-
+            // 旧版本通常使用 &kp 后接鼠标滚轮的宏
+            // 如果 MS_WH_UP 不识别，请确保顶部的 #include <dt-bindings/zmk/mouse.h> 存在
+            bindings = <&kp MS_WH_UP>, <&kp MS_WH_DN>;
             tap-ms = <20>;
+        };
     };
-*/
 
     combos {
         compatible = "zmk,combos";
@@ -230,7 +231,7 @@
 
             sensor-bindings =
                 <&inc_dec_kp C_VOL_UP C_VOL_DN>,
-                <&msc MOVE_Y(-20) MOVE_Y(20)>;
+                <&hw_scroll>;
                 // <&inc_dec_kp PAGE_UP PAGE_DOWN>;
         };
 
