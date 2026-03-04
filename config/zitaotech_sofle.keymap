@@ -92,12 +92,11 @@
         inc_dec_mw: inc_dec_mw {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
-            // SCRL_UP 通常对应负值，SCRL_DN 对应正值
-            // 这里的数字 20 代表滚动速度，可以根据需要调整
-            bindings = <&msc SCRL_UP 20>, <&msc SCRL_DN 20>;
+            bindings = <&msc 0 (-1)>, <&msc 0 1>; 
             tap-ms = <20>;
         };
     };
+
 
     combos {
         compatible = "zmk,combos";
