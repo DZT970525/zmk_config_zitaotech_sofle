@@ -218,8 +218,8 @@
 
             sensor-bindings =
                 <&inc_dec_kp C_VOL_UP C_VOL_DN>,
-                // <&inc_dec_kp PAGE_UP PAGE_DOWN>;
                 <&inc_dec_mw MS_WH_UP MS_WH_DN>;
+                // <&inc_dec_kp PAGE_UP PAGE_DOWN>;
         };
 
         func_layer {
@@ -249,8 +249,8 @@
 
             sensor-bindings =
                 <&inc_dec_kp C_VOL_UP C_VOL_DN>,
-                // <&inc_dec_kp PAGE_UP PAGE_DOWN>;
                 <&inc_dec_mw MS_WH_UP MS_WH_DN>;
+                // <&inc_dec_kp PAGE_UP PAGE_DOWN>;
         };
 
         funcw_layer {
