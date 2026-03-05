@@ -426,7 +426,7 @@
 &kp ESC     &kp Q    &kp W      &kp E      &kp R      &kp T                                                                                 &kp Y              &kp U       &kp I      &kp O     &kp P      &kp ENTER
 &kp TAB     &kp A    &kp S      &kp D      &kp F      &kp G           &mkp LCLK                             &mkp LCLK                       &kp H              &kp J       &kp K      &kp L     &kp SEMI   &kp SQT
 &kp CAPS    &kp Z    &kp X      &kp C      &kp V      &kp B           &to MOBILE   &to FUNC                 &wxorqqtext     &wxorqqsentmsg  &kp N              &kp M       &kp COMMA  &kp DOT   &kp FSLH   &kp DEL
-                                &kp LCTRL  &kp LALT   &kp LSHFT       &kp SPACE    &moback 1 LCLK           &moback 1 LCLK  &kp SPACE       &kp RSHFT          &kp RALT    &kp RCTRL
+                                &kp LCTRL  &kp LALT   &kp LSHFT       &kp SPACE    &moback 1 LCLK           &moback 1 LCLK  &kp SPACE       &kp RSHFT          &kp LGUI    &kp RCTRL
            >; 
            sensor-bindings = <&bl_encoder &rotate_updown>;
         };
@@ -438,7 +438,7 @@
 &kp GRAVE     &kp F1        &kp F2     &kp F3    &kp F4      &kp F5           &BOT                           &BOT                            &kp F6     &kp F7       &kp F8     &kp LBKT  &kp RBKT    &kp MINUS            
 &kp ESC       &kp LA(F4)    &kp LC(W)  &trans    &kp LC(R)   &kp LC(T)                                                                       &trans     &trans       &trans     &trans    &trans      &kp EQUAL
 &kp TAB       &kp LC(A)     &trans     &trans    &trans      &trans           &mkp LCLK                      &mkp LCLK                       &trans     &trans       &trans     &trans    &trans      &kp BACKSLASH
-&kp CAPS      &kp LC(Z)     &kp LC(X)  &kp LC(C) &kp LC(V)   &trans           &to MOBILE     &to DEFAULT     &kp C_VOL_UP    &kp C_VOL_DN    &trans     &kp LC(M)    &trans     &trans    &trans      &kp RGUI
+&kp CAPS      &kp LC(Z)     &kp LC(X)  &kp LC(C) &kp LC(V)   &trans           &to MOBILE     &to DEFAULT     &kp C_VOL_UP    &kp C_VOL_DN    &trans     &kp LC(M)    &trans     &trans    &trans      &trans
                                        &kp LCTRL &kp LALT    &kp LSHFT        &kp K_BACK     &mkp LCLK       &mkp LCLK       &kp K_BACK      &kp RSHFT  &kp LALT     &kp LCTRL 
             >;
             sensor-bindings = <&inc_dec_kp UP DOWN &inc_dec_kp LEFT RIGHT>;
