@@ -17,11 +17,11 @@
 #define LV_ATTRIBUTE_MEM_ALIGN
 #endif
 
-#ifndef LV_ATTRIBUTE_IMG_RESIZED_FIGURE0
-#define LV_ATTRIBUTE_IMG_RESIZED_FIGURE0
+#ifndef LV_ATTRIBUTE_IMG_figure1
+#define LV_ATTRIBUTE_IMG_figure1
 #endif
 
-const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_RESIZED_FIGURE0 uint8_t resized_figure0_map[] = {
+const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_figure1 uint8_t figure1_map[] = {
   0xed, 0xed, 0xed, 0xff, 	/*Color of index 0*/
   0x0f, 0x0f, 0x0f, 0xff, 	/*Color of index 1*/
 
@@ -171,12 +171,12 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_RESIZED_F
   0x00, 0x00, 0x00, 0x00, 0x00, 0x07, 0xff, 0x50, 0x00, 
 };
 
-const lv_img_dsc_t resized_figure0 = {
+const lv_img_dsc_t figure1 = {
   .header.cf = LV_IMG_CF_INDEXED_1BIT,
   .header.always_zero = 0,
   .header.reserved = 0,
   .header.w = 72,
   .header.h = 144,
   .data_size = 1304,
-  .data = resized_figure0_map,
+  .data = figure1_map,
 };
