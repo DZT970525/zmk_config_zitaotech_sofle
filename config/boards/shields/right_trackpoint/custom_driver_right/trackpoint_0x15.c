@@ -167,8 +167,8 @@ static void trackpoint_poll_work(struct k_work *work) {
                 /* 正常鼠标移动 */
                 uint8_t tp_led_brt = custom_led_get_last_valid_brightness();
                 float tp_factor = 0.4f + 0.01f * tp_led_brt;
-                dx = dx * 3 / 2 * tp_factor;
-                dy = dy * 3 / 2 * tp_factor;
+                dx = dx * 4 / 2 * tp_factor;
+                dy = dy * 4 / 2 * tp_factor;
                 input_report_rel(dev, INPUT_REL_X, -dx, false, K_FOREVER);
                 input_report_rel(dev, INPUT_REL_Y, -dy, true, K_FOREVER);
             }
