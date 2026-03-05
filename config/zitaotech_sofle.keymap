@@ -87,18 +87,6 @@
         };
     };
 
-    /* 长按切换到鼠标层，短按发送按键 */
-    behaviors {
-        lt: layer_tap {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "balanced";           /* 平衡模式 */
-            tapping-term-ms = <200>;        /* 200ms阈值 */
-            quick-tap-ms = <100>;           /* 快速双击保护 */
-            bindings = <&mo &kp>;           /* hold=切换层, tap=按键 */
-        };
-    };
-
     behaviors {
         rotate_updown: rotate_updown {
             compatible = "zmk,behavior-sensor-rotate";
