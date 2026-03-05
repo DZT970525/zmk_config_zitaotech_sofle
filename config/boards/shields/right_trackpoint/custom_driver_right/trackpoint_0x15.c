@@ -38,23 +38,18 @@ static const struct device *motion_gpio_dev;
 
 /* ========= 全局状态 ========= */
 static const struct device *trackpoint_dev_ref = NULL;
-static bool j_key_pressed = false;  // J键被按住时，小红点变为滚动模式
-static bool j_key_moved = false;    // 标记J键期间是否移动过小红点
-static bool j_should_rclk = false;  // 标记J键弹起时是否应该发送右键
+static bool j_key_pressed = false;  // H键被按住时，小红点变为滚动模式
 uint32_t last_packet_time = 0;
-uint32_t trackpoint_last_move_time = 0;  // 小红点最后移动时间
-#define RCLK_TIME_WINDOW_MS 400     // 右键时间窗口，与自动切换鼠标层一致
 
 /* ========= 滚动模式状态 ========= */
 static int16_t scroll_accumulator_x = 0;  // 水平滚动累计
 static int16_t scroll_accumulator_y = 0;  // 垂直滚动累计
 #define SCROLL_THRESHOLD 8               // 滚动阈值，累计超过此值才发送滚动事件
-#define SCROLL_SPEED_DIVISOR 3           // 滚动速度除数：降低滚动敏感度（2=50%，3=33%，4=25%）
 
 /* ========= J 键监听 =========
- * 检测 J 键(position 35)状态：
- * - 在鼠标层时：J按住进入滚动模式
- * - 在默认层时：移动小红点后400ms内按J触发右键
+ * 检测 J 键(position 35)状态切换小红点模式：
+ * - J 未按：鼠标移动模式
+ * - J 按住：滚动模式（在鼠标层）
  */
 static int j_key_listener_cb(const zmk_event_t *eh) {
     const struct zmk_position_state_changed *ev = as_zmk_position_state_changed(eh);
@@ -62,42 +57,9 @@ static int j_key_listener_cb(const zmk_event_t *eh) {
         return 0;
     }
 
-    if (ev->position == 35) { // J key position
-        bool new_state = ev->state;
-        uint32_t now = k_uptime_get_32();
-
-        if (new_state) {
-            // J键按下时检查是否在右键时间窗口内
-            // 条件：移动过小红点 且 在400ms时间窗口内
-            if (trackpoint_last_move_time > 0 &&
-                (now - trackpoint_last_move_time) < RCLK_TIME_WINDOW_MS) {
-                j_should_rclk = true;
-                LOG_INF("J键按下：在右键时间窗口内，准备发送右键");
-            } else {
-                j_should_rclk = false;
-                LOG_INF("J键按下：不在时间窗口内，正常J键");
-            }
-            // 重置滚动模式标记
-            j_key_moved = false;
-        } else {
-            // J键弹起时
-            // 条件：在时间窗口内按下 且 滚动期间未移动过小红点
-            if (j_should_rclk && !j_key_moved) {
-                // 发送右键
-                if (trackpoint_dev_ref && device_is_ready(trackpoint_dev_ref)) {
-                    input_report_key(trackpoint_dev_ref, INPUT_BTN_1, 1, true, K_MSEC(50));
-                    k_sleep(K_MSEC(50));
-                    input_report_key(trackpoint_dev_ref, INPUT_BTN_1, 0, true, K_MSEC(50));
-                    LOG_INF("J键弹起：发送右键");
-                }
-            } else if (j_should_rclk && j_key_moved) {
-                LOG_INF("J键弹起：滚动期间移动过，不发送右键");
-            }
-            j_should_rclk = false;
-        }
-
-        j_key_pressed = new_state;
-        LOG_INF("J键状态: %s", j_key_pressed ? "按下" : "弹起");
+    if (ev->position == 35) { // H key position
+        j_key_pressed = ev->state;
+        LOG_INF("J key position=35 %s", j_key_pressed ? "PRESSED" : "RELEASED");
     }
     return 0;
 }
@@ -154,19 +116,10 @@ static void trackpoint_poll_work(struct k_work *work) {
             uint8_t tp_led_brt = custom_led_get_last_valid_brightness();
             float tp_factor = 0.4f + 0.01f * tp_led_brt;
 
-            // 记录小红点移动时间（用于J键右键时间窗口判断）
-            if (dx != 0 || dy != 0) {
-                trackpoint_last_move_time = now;
-            }
-
             if (j_key_pressed) {
-                /* J键按住（在鼠标层）：转换为滚轮事件 */
-                // 标记J键期间移动过小红点
-                if (dx != 0 || dy != 0) {
-                    j_key_moved = true;
-                }
-                int16_t scaled_dx = -(int16_t)dx * 1 / 3 / SCROLL_SPEED_DIVISOR * tp_factor;
-                int16_t scaled_dy = -(int16_t)dy * 1 / 3 / SCROLL_SPEED_DIVISOR * tp_factor;
+                /* H键按住（在鼠标层）：转换为滚轮事件 */
+                int16_t scaled_dx = -(int16_t)dx * 1 / 3 * tp_factor;
+                int16_t scaled_dy = -(int16_t)dy * 1 / 3 * tp_factor;
 
                 /* 累计滚动值 */
                 scroll_accumulator_x += scaled_dx;
@@ -193,7 +146,7 @@ static void trackpoint_poll_work(struct k_work *work) {
                     input_report_rel(dev, INPUT_REL_WHEEL, scroll_y, true, K_FOREVER);
                 }
             } else {
-                /* J键未按（默认层）：移动鼠标 */
+                /* H键未按（默认层）：移动鼠标 */
                 dx = dx * 1 / 3 * tp_factor;
                 dy = dy * 1 / 3 * tp_factor;
                 input_report_rel(dev, INPUT_REL_X, -dx, false, K_FOREVER);
