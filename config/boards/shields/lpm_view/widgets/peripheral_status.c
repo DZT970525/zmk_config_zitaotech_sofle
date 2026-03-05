@@ -61,8 +61,8 @@ struct art_state {
 // 我添加的
 // ==================== 动画数组 ====================
 static const lv_img_dsc_t *bunny_frames[] = {
-    &bongo_1,
-    &bongo_2,
+    &figure0,
+    &figure1,
 };
 
 // 我注释的
