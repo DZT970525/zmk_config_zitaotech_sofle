@@ -422,11 +422,11 @@
          default_layer {
          display-name = "QWERTY";
            bindings = <     
-&kp ESC   &kp N1   &kp N2     &kp N3     &kp N4     &kp N5          &rgb_ug RGB_TOG                       &clickctrl ROT2 LCLK            &kp N6             &kp N7      &kp N8     &kp N9    &kp N0     &kp BSPC               
-&kp TAB   &kp Q    &kp W      &kp E      &kp R      &kp T                                                                                 &kp Y              &kp U       &kp I      &kp O     &kp P      &kp ENTER
-&kp CAPS  &kp A    &kp S      &kp D      &kp F      &kp G           &mkp LCLK                             &mkp LCLK                       &lt 2 H            &lt 2 J     &kp K      &kp L     &kp SEMI   &kp SQT
-&kp LSHFT &kp Z    &kp X      &kp C      &kp V      &kp B           &to MOBILE   &to FUNC                 &wxorqqtext     &wxorqqsentmsg  &kp N              &kp M       &kp COMMA  &kp DOT   &kp FSLH   &kp RSHFT
-                              &kp LCTRL  &kp LALT   &kp LGUI        &kp SPACE    &moback 1 LCLK           &moback 1 LCLK  &kp SPACE       &kp LGUI           &kp RALT    &kp RCTRL
+&kp GRAVE   &kp N1   &kp N2     &kp N3     &kp N4     &kp N5          &rgb_ug RGB_TOG                       &clickctrl ROT2 LCLK            &kp N6             &kp N7      &kp N8     &kp N9    &kp N0     &kp BSPC               
+&kp ESC     &kp Q    &kp W      &kp E      &kp R      &kp T                                                                                 &kp Y              &kp U       &kp I      &kp O     &kp P      &kp ENTER
+&kp TAB     &kp A    &kp S      &kp D      &kp F      &kp G           &mkp LCLK                             &mkp LCLK                       &kp H              &kp J       &kp K      &kp L     &kp SEMI   &kp SQT
+&kp CAPS    &kp Z    &kp X      &kp C      &kp V      &kp B           &to MOBILE   &to FUNC                 &wxorqqtext     &wxorqqsentmsg  &kp N              &kp M       &kp COMMA  &kp DOT   &kp FSLH   &kp DEL
+                                &kp LCTRL  &kp LALT   &kp LSHFT       &kp SPACE    &moback 1 LCLK           &moback 1 LCLK  &kp SPACE       &kp RSHFT          &kp RALT    &kp RCTRL
            >; 
            sensor-bindings = <&bl_encoder &rotate_updown>;
         };
@@ -435,11 +435,11 @@
         func_layer {
             display-name = "FUNC";
             bindings = <
-&kp GRAVE     &kp F1        &kp F2     &kp F3    &kp F4      &kp F5           &BOT                           &BOT                            &kp F6    &kp F7       &kp F8     &kp LBKT  &kp RBKT    &kp DEL            
-&kp TAB       &kp LA(F4)    &kp LC(W)  &trans    &kp LC(R)   &kp LC(T)                                                                       &trans    &trans       &trans     &trans    &trans      &kp MINUS
-&trans        &kp LC(A)     &trans     &trans    &trans      &trans           &mkp LCLK                      &mkp LCLK                       &trans    &trans       &trans     &trans    &trans      &kp EQUAL
-&kp LSHFT     &kp LC(Z)     &kp LC(X)  &kp LC(C) &kp LC(V)   &trans           &to MOBILE     &to DEFAULT     &kp C_VOL_UP    &kp C_VOL_DN    &trans    &kp LC(M)    &trans     &trans    &trans      &kp BACKSLASH
-                                       &kp LCTRL &kp LALT    &kp LGUI         &kp K_BACK     &mkp LCLK       &mkp LCLK       &kp K_BACK      &kp LGUI  &kp LALT     &kp LCTRL 
+&kp GRAVE     &kp F1        &kp F2     &kp F3    &kp F4      &kp F5           &BOT                           &BOT                            &kp F6     &kp F7       &kp F8     &kp LBKT  &kp RBKT    &kp MINUS            
+&kp ESC       &kp LA(F4)    &kp LC(W)  &trans    &kp LC(R)   &kp LC(T)                                                                       &trans     &trans       &trans     &trans    &trans      &kp EQUAL
+&kp TAB       &kp LC(A)     &trans     &trans    &trans      &trans           &mkp LCLK                      &mkp LCLK                       &trans     &trans       &trans     &trans    &trans      &kp BACKSLASH
+&kp CAPS      &kp LC(Z)     &kp LC(X)  &kp LC(C) &kp LC(V)   &trans           &to MOBILE     &to DEFAULT     &kp C_VOL_UP    &kp C_VOL_DN    &trans     &kp LC(M)    &trans     &trans    &trans      &kp RGUI
+                                       &kp LCTRL &kp LALT    &kp LSHFT        &kp K_BACK     &mkp LCLK       &mkp LCLK       &kp K_BACK      &kp RSHFT  &kp LALT     &kp LCTRL 
             >;
             sensor-bindings = <&inc_dec_kp UP DOWN &inc_dec_kp LEFT RIGHT>;
         };
@@ -447,10 +447,10 @@
         mouse_layer {
             display-name = "MOUSE";
             bindings = <  
-&kp ESC           &totapfirst     &totapsecond      &totapmiddle   &totapthird      &totapforth    &tobt0                  &bt BT_SEL 1                      &tocloseapp5       &tocloseapp1        &tocloseapp2      &tocloseapp6     &tocloseapp3    &tocloseapp4
-&torolltoolpanel  &kp LA(F4)      &kp LC(W)         &trans         &kp LC(R)        &kp LC(T)                                                                &kp K_BACK         &kp ESC             &toscrolldown     &toscrollleft    &trans          &trans
-&torollmsgpanel   &kp LC(A)       &trans            &trans         &trans           &trans         &mkp LCLK               &mkp LCLK                         &mkp LCLK          &none               &toscrollup       &toscrollright   &trans          &trans
-&trans            &kp LC(Z)       &kp LC(X)         &kp LC(C)      &kp LC(V)        &trans         &trans      &trans      &trans         &trans             &toreadwxmsg       &toreadmorewxmsg    &trans            &trans           &trans          &trans
+&trans            &totapfirst     &totapsecond      &totapmiddle   &totapthird      &totapforth    &tobt0                  &bt BT_SEL 1                      &tocloseapp5       &tocloseapp1        &tocloseapp2      &tocloseapp6     &tocloseapp3    &tocloseapp4
+&torolltoolpanel  &kp LA(F4)      &kp LC(W)         &trans         &kp LC(R)        &kp LC(T)                                                                &toscrolldown      &kp ESC             &toscrollleft     &trans           &trans          &trans
+&torollmsgpanel   &kp LC(A)       &trans            &trans         &trans           &trans         &mkp LCLK               &mkp LCLK                         &toscrollup        &none               &toscrollright    &trans           &trans          &trans
+&trans            &kp LC(Z)       &kp LC(X)         &kp LC(C)      &kp LC(V)        &trans         &trans      &trans      &mkp LCLK      &mkp RCLK          &toreadwxmsg       &toreadmorewxmsg    &trans            &trans           &trans          &trans
                                                     &trans         &toscrollup      &toscrolldown  &kp K_BACK  &mkp LCLK   &mkp LCLK      &kp K_BACK         &trans             &trans              &toopenappM
             >;
         };  
@@ -458,7 +458,7 @@
         MOBILE_layer {
             display-name = "MOBILE";
             bindings = <
-&kp ESC               &totapfirst     &totapsecond      &totapmiddle   &totapthird      &totapforth        &clickctrl ROT1 LCLK                  &clickctrl ROT1 LCLK                     &tocloseapp5       &tocloseapp1        &tocloseapp2      &tocloseapp6   &tocloseapp3    &tocloseapp4              
+&none                 &totapfirst     &totapsecond      &totapmiddle   &totapthird      &totapforth        &clickctrl ROT1 LCLK                  &clickctrl ROT1 LCLK                     &tocloseapp5       &tocloseapp1        &tocloseapp2      &tocloseapp6   &tocloseapp3    &tocloseapp4              
 &torolltoolpanel      &none           &none             &toopenappE    &toopenappR      &toopenappT                                                                                       &toopenappY        &none               &toopenappI       &none          &none           &none
 &torollmsgpanel       &none           &none             &none          &none            &none              &mkp LCLK                             &mkp LCLK                                &none              &toopenappJ         &none             &none          &none           &none
 &none                 &toopenappZ     &toopenappX       &none          &toreadmorewxmsg &toreadwxmsg       &to DEFAULT   &to FUNC                &wxorqqtext          &wxorqqsentmsg      &toreadwxmsg       &toreadmorewxmsg    &none             &none          &none           &none
