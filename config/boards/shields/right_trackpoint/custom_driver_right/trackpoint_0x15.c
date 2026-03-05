@@ -136,14 +136,14 @@ static void trackpoint_poll_work(struct k_work *work) {
                 // 1. 先处理 X 轴 (水平滚动)
                 if (abs(dx) >= 1) {
                     // 如果位移除以 12 后还是 0，就强制给 1 或 -1，保证灵敏度
-                    scroll_x = -dx / 216; 
+                    scroll_x = -dx / 1024; 
                     if (scroll_x == 0) scroll_x = (dx > 0) ? -1 : 1;
                 }
 
                 // 2. 再处理 Y 轴 (垂直滚动)
                 if (abs(dy) >= 1) {
                     // 如果觉得滚太快，把 12 改大（如 24）；觉得慢，改小（如 8）
-                    scroll_y = -dy / 144; 
+                    scroll_y = -dy / 512; 
                     if (scroll_y == 0) scroll_y = (dy > 0) ? -1 : 1;
                 }
                 /*
