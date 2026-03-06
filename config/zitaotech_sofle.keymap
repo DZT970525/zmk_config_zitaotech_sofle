@@ -373,7 +373,7 @@
         func_layer {
             display-name = "FUNC";
             bindings = <
-&kp GRAVE     &kp F1        &kp F2     &kp F3    &kp F4      &kp F5           &BOT                           &BOT                            &kp F6     &kp F7       &kp F8     &kp LBKT  &kp RBKT    &kp MINUS            
+&trans        &kp F1        &kp F2     &kp F3    &kp F4      &kp F5           &BOT                           &BOT                            &kp F6     &kp F7       &kp F8     &kp LBKT  &kp RBKT    &kp MINUS            
 &kp ESC       &kp LA(F4)    &kp LC(W)  &trans    &kp LC(R)   &kp LC(T)                                                                       &trans     &trans       &trans     &trans    &trans      &kp EQUAL
 &kp TAB       &kp LC(A)     &trans     &trans    &trans      &trans           &mkp LCLK                      &mkp LCLK                       &trans     &trans       &trans     &trans    &trans      &kp BACKSLASH
 &kp CAPS      &kp LC(Z)     &kp LC(X)  &kp LC(C) &kp LC(V)   &trans           &to MOBILE     &to DEFAULT     &mkp LCLK      &mkp RCLK        &trans     &kp LC(M)    &trans     &trans    &trans      &trans
@@ -385,10 +385,10 @@
         mouse_layer {
             display-name = "MOUSE";
             bindings = <  
-&trans            &totapfirst     &totapsecond      &totapmiddle   &totapthird      &totapforth    &bt BT_SEL 1            &tobt0                            &tocloseapp5       &tocloseapp1        &tocloseapp2      &tocloseapp6     &tocloseapp3    &tocloseapp4
+&kp LA(LEFT)      &totapfirst     &totapsecond      &totapmiddle   &totapthird      &totapforth    &bt BT_SEL 1            &tobt0                            &tocloseapp5       &tocloseapp1        &tocloseapp2      &tocloseapp6     &tocloseapp3    &tocloseapp4
 &torolltoolpanel  &kp LA(F4)      &kp LC(W)         &trans         &kp LC(R)        &kp LC(T)                                                                &toscrolldown      &kp ESC             &toscrollleft     &trans           &trans          &trans
 &torollmsgpanel   &kp LC(A)       &trans            &trans         &trans           &trans         &mkp LCLK               &mkp LCLK                         &toscrollup        &none               &toscrollright    &trans           &trans          &trans
-&trans            &kp LC(Z)       &kp LC(X)         &kp LC(C)      &kp LC(V)        &trans         &trans      &trans      &mkp LCLK      &mkp RCLK          &toreadwxmsg       &toreadmorewxmsg    &trans            &trans           &trans          &trans
+&kp LA(RIGHT)     &kp LC(Z)       &kp LC(X)         &kp LC(C)      &kp LC(V)        &trans         &trans      &trans      &mkp LCLK      &mkp RCLK          &toreadwxmsg       &toreadmorewxmsg    &trans            &trans           &trans          &trans
                                                     &trans         &toscrollup      &toscrolldown  &kp K_BACK  &mkp LCLK   &mkp LCLK      &kp K_BACK         &trans             &trans              &toopenappM
             >;
         };  
