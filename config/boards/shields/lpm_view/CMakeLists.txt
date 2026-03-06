@@ -16,6 +16,7 @@ if(CONFIG_ZMK_DISPLAY AND CONFIG_NICE_VIEW_WIDGET_STATUS)
     zephyr_library_sources(widgets/sword/figure2.c)
     zephyr_library_sources(widgets/sword/jianlai.c)
     zephyr_library_sources(widgets/sword/yushi.c)
+    zephyr_library_sources(widgets/sword/skeleton.c)
     
 
     # 暂时注释掉
