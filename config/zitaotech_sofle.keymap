@@ -18,20 +18,9 @@
 #define FUNC 1
 #define MOUSE 2
 #define MOBILE 3
-#define ROT1 4
-#define ROT2 5
 #define BOT bootloader
 
 /{
-    behaviors {
-        clickctrl: clickctrl_mods {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <250>;
-            bindings = <&to &mkp>;
-        };
-    };
-
     behaviors {
         wxorqqtext: tap_dance_wxorqqtext {
             compatible = "zmk,behavior-tap-dance";
@@ -47,15 +36,6 @@
             #binding-cells = <0>;
             tapping-term-ms = <400>;
             bindings = <&totapwxinsentmsg>, <&totapqqsentmsg>;
-        };
-    };
-
-    behaviors {
-        btmobileornot: tap_dance_btmobileornot {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <300>;
-            bindings = <&backtomobile>, <&kp K_BACK>;
         };
     };
 
@@ -84,22 +64,6 @@
             #sensor-binding-cells = <0>;
             bindings = <&bl BL_DEC>, <&bl BL_INC>;
             tap-ms = <30>;
-        };
-    };
-
-    behaviors {
-        rotate_updown: rotate_updown {
-            compatible = "zmk,behavior-sensor-rotate";
-            #sensor-binding-cells = <0>;
-            bindings = <&toscrolldown>, <&toscrollup>;
-        };
-    };
-
-    behaviors {
-        rotate_leftright: rotate_leftright {
-            compatible = "zmk,behavior-sensor-rotate";
-            #sensor-binding-cells = <0>;
-            bindings = <&toscrollright>,<&toscrollleft>;
         };
     };
 
@@ -388,20 +352,6 @@
             tap-ms = <80>;
             bindings = <&macro_tap &bt BT_SEL 0>,<&macro_tap &kp SPACE &kp SPACE &kp N0 &kp N9 &kp N1 &kp N1 &kp ENTER>;
         };
-
-        //返回mobile层
-        backtomobile: zed_em_backtomobile {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap &kp K_BACK>,<&macro_tap &to MOBILE>;
-        }; 
-
-        //返回qwerty层
-        backtodefault: zed_em_backtodefault {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap &kp K_BACK>,<&macro_tap &to DEFAULT>;
-        }; 
     };
 
     keymap {
@@ -410,13 +360,13 @@
          default_layer {
          display-name = "QWERTY";
            bindings = <     
-&kp GRAVE   &kp N1   &kp N2     &kp N3     &kp N4     &kp N5          &rgb_ug RGB_TOG                       &clickctrl ROT2 LCLK            &kp N6             &kp N7      &kp N8     &kp N9    &kp N0     &kp BSPC               
+&kp GRAVE   &kp N1   &kp N2     &kp N3     &kp N4     &kp N5          &rgb_ug RGB_TOG                       &kp C_MUTE                      &kp N6             &kp N7      &kp N8     &kp N9    &kp N0     &kp BSPC               
 &kp ESC     &kp Q    &kp W      &kp E      &kp R      &kp T                                                                                 &kp Y              &kp U       &kp I      &kp O     &kp P      &kp ENTER
 &kp TAB     &kp A    &kp S      &kp D      &kp F      &kp G           &mkp LCLK                             &mkp LCLK                       &kp H              &kp J       &kp K      &kp L     &kp SEMI   &kp SQT
 &kp CAPS    &kp Z    &kp X      &kp C      &kp V      &kp B           &to MOBILE   &to FUNC                 &wxorqqtext     &wxorqqsentmsg  &kp N              &kp M       &kp COMMA  &kp DOT   &kp FSLH   &kp DEL
                                 &kp LCTRL  &kp LALT   &kp LSHFT       &kp SPACE    &moback 1 LCLK           &moback 1 LCLK  &kp SPACE       &kp RSHFT          &kp LGUI    &kp RCTRL
            >; 
-           sensor-bindings = <&bl_encoder &rotate_updown>;
+           sensor-bindings = <&bl_encoder &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
 
@@ -426,7 +376,7 @@
 &kp GRAVE     &kp F1        &kp F2     &kp F3    &kp F4      &kp F5           &BOT                           &BOT                            &kp F6     &kp F7       &kp F8     &kp LBKT  &kp RBKT    &kp MINUS            
 &kp ESC       &kp LA(F4)    &kp LC(W)  &trans    &kp LC(R)   &kp LC(T)                                                                       &trans     &trans       &trans     &trans    &trans      &kp EQUAL
 &kp TAB       &kp LC(A)     &trans     &trans    &trans      &trans           &mkp LCLK                      &mkp LCLK                       &trans     &trans       &trans     &trans    &trans      &kp BACKSLASH
-&kp CAPS      &kp LC(Z)     &kp LC(X)  &kp LC(C) &kp LC(V)   &trans           &to MOBILE     &to DEFAULT     &kp C_VOL_UP    &kp C_VOL_DN    &trans     &kp LC(M)    &trans     &trans    &trans      &trans
+&kp CAPS      &kp LC(Z)     &kp LC(X)  &kp LC(C) &kp LC(V)   &trans           &to MOBILE     &to DEFAULT     &mkp LCLK      &mkp RCLK        &trans     &kp LC(M)    &trans     &trans    &trans      &trans
                                        &kp LCTRL &kp LALT    &kp LSHFT        &kp K_BACK     &mkp LCLK       &mkp LCLK       &kp K_BACK      &kp RSHFT  &kp LALT     &kp LCTRL 
             >;
             sensor-bindings = <&inc_dec_kp UP DOWN &inc_dec_kp LEFT RIGHT>;
@@ -435,7 +385,7 @@
         mouse_layer {
             display-name = "MOUSE";
             bindings = <  
-&trans            &totapfirst     &totapsecond      &totapmiddle   &totapthird      &totapforth    &tobt0                  &bt BT_SEL 1                      &tocloseapp5       &tocloseapp1        &tocloseapp2      &tocloseapp6     &tocloseapp3    &tocloseapp4
+&trans            &totapfirst     &totapsecond      &totapmiddle   &totapthird      &totapforth    &bt BT_SEL 1            &tobt0                            &tocloseapp5       &tocloseapp1        &tocloseapp2      &tocloseapp6     &tocloseapp3    &tocloseapp4
 &torolltoolpanel  &kp LA(F4)      &kp LC(W)         &trans         &kp LC(R)        &kp LC(T)                                                                &toscrolldown      &kp ESC             &toscrollleft     &trans           &trans          &trans
 &torollmsgpanel   &kp LC(A)       &trans            &trans         &trans           &trans         &mkp LCLK               &mkp LCLK                         &toscrollup        &none               &toscrollright    &trans           &trans          &trans
 &trans            &kp LC(Z)       &kp LC(X)         &kp LC(C)      &kp LC(V)        &trans         &trans      &trans      &mkp LCLK      &mkp RCLK          &toreadwxmsg       &toreadmorewxmsg    &trans            &trans           &trans          &trans
@@ -446,7 +396,7 @@
         MOBILE_layer {
             display-name = "MOBILE";
             bindings = <
-&none                 &totapfirst     &totapsecond      &totapmiddle   &totapthird      &totapforth        &clickctrl ROT1 LCLK                  &clickctrl ROT1 LCLK                     &tocloseapp5       &tocloseapp1        &tocloseapp2      &tocloseapp6   &tocloseapp3    &tocloseapp4              
+&trans                &totapfirst     &totapsecond      &totapmiddle   &totapthird      &totapforth        &bt BT_SEL 1                          &tobt0                                   &tocloseapp5       &tocloseapp1        &tocloseapp2      &tocloseapp6   &tocloseapp3    &tocloseapp4              
 &torolltoolpanel      &none           &none             &toopenappE    &toopenappR      &toopenappT                                                                                       &toopenappY        &none               &toopenappI       &none          &none           &none
 &torollmsgpanel       &none           &none             &none          &none            &none              &mkp LCLK                             &mkp LCLK                                &none              &toopenappJ         &none             &none          &none           &none
 &none                 &toopenappZ     &toopenappX       &none          &toreadmorewxmsg &toreadwxmsg       &to DEFAULT   &to FUNC                &wxorqqtext          &wxorqqsentmsg      &toreadwxmsg       &toreadmorewxmsg    &none             &none          &none           &none
@@ -454,28 +404,5 @@
             >;
         };
 
-        ROT1_layer {
-            display-name = "VERTICAL";
-            bindings = <
-&none     &none     &none      &none    &none    &none   &clickctrl MOBILE LCLK       &clickctrl MOBILE LCLK          &none   &none  &none   &none  &none  &none            
-&none     &none     &none      &none    &none    &none                                                                &none   &none  &none   &none  &none  &none
-&none     &none     &none      &none    &none    &none   &mkp LCLK                    &mkp LCLK                       &none   &none  &none   &none  &none  &none
-&none     &none     &none      &none    &none    &none   &to MOBILE     &to DEFAULT   &none  &none                    &none   &none  &none   &none  &none  &none
-                               &none    &none    &none   &backtomobile  &none         &none  &backtomobile            &none   &none  &none
-            >;
-            sensor-bindings = <&inc_dec_kp UP DOWN &rotate_leftright>;
-        };
-
-        ROT2_layer {
-            display-name = "VERTICAL";
-            bindings = <
-&none     &none     &none      &none    &none    &none   &clickctrl DEFAULT LCLK      &clickctrl DEFAULT LCLK         &none   &none  &none   &none  &none  &none            
-&none     &none     &none      &none    &none    &none                                                                &none   &none  &none   &none  &none  &none
-&none     &none     &none      &none    &none    &none   &mkp LCLK                    &mkp LCLK                       &none   &none  &none   &none  &none  &none
-&none     &none     &none      &none    &none    &none   &to MOBILE      &to DEFAULT  &none   &none                   &none   &none  &none   &none  &none  &none
-                             &none      &none    &none   &backtodefault  &none        &none   &backtodefault          &none   &none  &none
-            >;
-            sensor-bindings = <&inc_dec_kp UP DOWN &rotate_leftright>;
-        };
     };
 };
