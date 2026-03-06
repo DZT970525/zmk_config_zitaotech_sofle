@@ -72,7 +72,7 @@ static const lv_img_dsc_t *bunny_frames[] = {
     &figure2,
     &jianlai,
     &yushi,
-    &skeleton，
+    &skeleton,
 };
 
 // 我注释的
