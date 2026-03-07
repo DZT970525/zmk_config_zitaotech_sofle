@@ -39,8 +39,8 @@ static const struct device *motion_gpio_dev;
 /* ========= 指数加速参数 ========= */
 #ifdef CONFIG_TRACKPOINT_EXPONENTIAL
 #define TP_EXP_BASE 1.04f
-#define TP_SPEED_SCALE 0.03f
-#define TP_MAX_MULT 2.0f
+#define TP_SPEED_SCALE 0.06f
+#define TP_MAX_MULT 2.5f
 #endif
 
 /* ========= 全局状态 ========= */
