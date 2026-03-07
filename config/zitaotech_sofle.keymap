@@ -360,11 +360,11 @@
          default_layer {
          display-name = "QWERTY";
            bindings = <     
-&kp GRAVE   &kp N1   &kp N2     &kp N3     &kp N4     &kp N5          &rgb_ug RGB_TOG                       &kp C_MUTE                      &kp N6             &kp N7      &kp N8     &kp N9    &kp N0     &kp BSPC               
+&kp GRAVE   &kp N1   &kp N2     &kp N3     &kp N4     &kp N5          &rgb_ug RGB_TOG                       &kp C_MUTE                      &kp N6             &kp N7      &kp N8     &kp N9    &kp N0     &kp LGUI               
 &kp ESC     &kp Q    &kp W      &kp E      &kp R      &kp T                                                                                 &kp Y              &kp U       &kp I      &kp O     &kp P      &kp ENTER
 &kp TAB     &kp A    &kp S      &kp D      &kp F      &kp G           &mkp LCLK                             &mkp LCLK                       &kp H              &kp J       &kp K      &kp L     &kp SEMI   &kp SQT
 &kp CAPS    &kp Z    &kp X      &kp C      &kp V      &kp B           &to MOBILE   &to FUNC                 &wxorqqtext     &wxorqqsentmsg  &kp N              &kp M       &kp COMMA  &kp DOT   &kp FSLH   &kp DEL
-                                &kp LCTRL  &kp LALT   &kp LSHFT       &kp SPACE    &moback 1 LCLK           &moback 1 LCLK  &kp SPACE       &kp RSHFT          &kp LGUI    &kp RCTRL
+                                &kp LCTRL  &kp LSHFT  &kp LALT        &kp SPACE    &moback 1 LCLK           &moback 1 LCLK  &kp SPACE       &kp BSPC           &kp RSHFT   &kp RCTRL
            >; 
            sensor-bindings = <&bl_encoder &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
@@ -377,7 +377,7 @@
 &kp ESC       &kp LA(F4)    &kp LC(W)  &trans    &kp LC(R)   &kp LC(T)                                                                       &trans     &trans       &trans     &trans    &trans      &kp EQUAL
 &kp TAB       &kp LC(A)     &trans     &trans    &trans      &trans           &mkp LCLK                      &mkp LCLK                       &trans     &trans       &trans     &trans    &trans      &kp BACKSLASH
 &kp CAPS      &kp LC(Z)     &kp LC(X)  &kp LC(C) &kp LC(V)   &trans           &to MOBILE     &to DEFAULT     &mkp LCLK       &mkp RCLK       &trans     &kp LC(M)    &trans     &trans    &trans      &trans
-                                       &kp LCTRL &kp LALT    &kp LSHFT        &kp K_BACK     &mkp LCLK       &mkp LCLK       &kp K_BACK      &kp RSHFT  &kp LALT     &kp LCTRL 
+                                       &kp LCTRL &kp LSHFT   &kp LALT         &kp K_BACK     &mkp LCLK       &mkp LCLK       &kp K_BACK      &kp BSPC   &kp RSHFT    &kp RCTRL 
             >;
             sensor-bindings = <&inc_dec_kp UP DOWN &inc_dec_kp LEFT RIGHT>;
         };
@@ -388,7 +388,7 @@
 &kp LA(LEFT)      &totapfirst     &totapsecond      &totapmiddle   &totapthird      &totapforth    &bt BT_SEL 1            &tobt0                            &tocloseapp5       &tocloseapp1        &tocloseapp2      &tocloseapp6     &tocloseapp3    &tocloseapp4
 &torolltoolpanel  &kp LA(F4)      &kp LC(W)         &trans         &kp LC(R)        &kp LC(T)                                                                &toscrolldown      &kp ESC             &toscrollleft     &trans           &trans          &trans
 &torollmsgpanel   &kp LC(A)       &trans            &trans         &trans           &trans         &mkp LCLK               &mkp LCLK                         &toscrollup        &none               &toscrollright    &trans           &trans          &trans
-&kp LA(RIGHT)     &kp LC(Z)       &kp LC(X)         &kp LC(C)      &kp LC(V)        &trans         &trans      &trans      &wxorqqtext    &mkp RCLK          &toreadwxmsg       &toreadmorewxmsg    &trans            &trans           &trans          &trans
+&kp LA(RIGHT)     &kp LC(Z)       &kp LC(X)         &kp LC(C)      &kp LC(V)        &trans         &trans      &trans      &wxorqqtext    &wxorqqsentmsg     &toreadwxmsg       &toreadmorewxmsg    &trans            &trans           &trans          &trans
                                                     &trans         &toscrollup      &toscrolldown  &kp K_BACK  &mkp LCLK   &mkp LCLK      &kp K_BACK         &trans             &trans              &toopenappM
             >;
         };  
