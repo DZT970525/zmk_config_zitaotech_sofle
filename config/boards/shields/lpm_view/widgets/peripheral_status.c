@@ -3,14 +3,14 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include <zephyr/kernel.h>
+#include <zephyr/kernel.h>    // 补充备注，用于获取系统运行时间
 #include <zephyr/random/random.h>
 #include <zephyr/logging/log.h>
 
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
 #include <zmk/battery.h>
-#include <zmk/display.h>
+#include <zmk/display.h>    // 补充备注：用于获取最后活动时间
 #include <zmk/events/usb_conn_state_changed.h>
 #include <zmk/event_manager.h>
 #include <zmk/events/battery_state_changed.h>
@@ -20,8 +20,6 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 #include <zmk/ble.h>
 
 #include "peripheral_status.h"
-
-bool animation_enabled = true; // 放全局位置，定义一个变量，来指定动画会不会继续动。
 
 
 // ==================== 动画帧声明 ====================
@@ -200,8 +198,15 @@ ZMK_SUBSCRIPTION(widget_peripheral_status, zmk_split_peripheral_status_changed);
 
 // ================= 22帧动画回调 =================
 static void art_anim_timer_cb(lv_timer_t *timer) {
-    if (!animation_enabled) { return; } // 开关关了就不动
-    // 添加这个，如果 animation 这个变量关闭了的话，动画就不再继续动了。
+    // 【核心逻辑】：
+    // k_uptime_get() 获取系统当前运行了多少毫秒
+    // zmk_display_get_last_activity() 获取上一次按键操作的时间戳
+    // 30000 毫秒 = 30 秒 (你可以根据需求改为 10000 即 10 秒)
+    if (k_uptime_get() - zmk_display_get_last_activity() > 3000) {
+        // 如果超过 30 秒没动键盘，直接返回，不执行后面的切图和刷新逻辑
+        // 这就是“动画自动睡眠”，此时屏幕保持静止，Flash 停止读取，CPU 降频
+        return; 
+    }
     
     struct art_state *state = timer->user_data;
     state->frame_index = (state->frame_index + 1) % BUNNY_FRAME_COUNT;
@@ -238,31 +243,3 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
 
 lv_obj_t *zmk_widget_status_obj(struct zmk_widget_status *widget) { return widget->obj; }
 
-// 需要用到zmk的事件监听，这里想省去复杂的behavior注册，直接使用一个现成的自定义事件处理：使用F24进行对开关变量进行调节。
-// 一直到最后都是新加的。
-// 由于是分体，使用按键触发，其实信号传不到副手的内部，不会生效；曲线救国的方式只有：背光，层之类的，选择层吧，背光平时不开的。
-// 专门设置一个闲置层给他用吧。
-#include <zmk/events/layer_state_changed.h>
-
-ZMK_EVENT_IMPL(zmk_layer_state_changed);
-
-int anim_layer_listener(const zmk_event_t *eh) {
-    struct zmk_layer_state_changed *ev = as_zmk_layer_state_changed(eh);
-    if (ev != NULL) {
-        // 假设你的 Mac 层索引是 1 (也就是 keymap 里的第二个层)
-        // ev->layer 就是改变的那个层的编号
-        // ev->state 为 true 表示该层被开启了
-        if (ev->layer == 1) { 
-            if (ev->state) {
-                animation_enabled = true;  // 进入 Mac 层，开太极
-            } else {
-                animation_enabled = false; // 退出 Mac 层，停太极
-            }
-        }
-    }
-    return 0;
-}
-
-ZMK_LISTENER(anim_layer_listener, anim_layer_listener);
-ZMK_SUBSCRIPTION(anim_layer_listener, zmk_layer_state_changed);
-// 到这里都是新加的。
