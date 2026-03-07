@@ -36,6 +36,13 @@ static const struct device *motion_gpio_dev;
 #define TRACKPOINT_PACKET_LEN 7
 #define TRACKPOINT_MAGIC_BYTE0 0x50
 
+/* ========= 指数加速参数 ========= */
+#ifdef CONFIG_TRACKPOINT_EXPONENTIAL
+#define TP_EXP_BASE 1.04f
+#define TP_SPEED_SCALE 0.03f
+#define TP_MAX_MULT 2.0f
+#endif
+
 /* ========= 全局状态 ========= */
 static const struct device *trackpoint_dev_ref = NULL;
 static bool space_pressed = false;
@@ -69,6 +76,31 @@ struct trackpoint_data {
     const struct device *dev;
     struct k_work_delayable poll_work;
 };
+
+/* ========= 指数加速计算 ========= */
+#ifdef CONFIG_TRACKPOINT_EXPONENTIAL
+static inline float trackpoint_exponential_factor(int8_t dx, int8_t dy, uint32_t delta_ms) {
+
+    if (delta_ms == 0) {
+        delta_ms = 1;
+    }
+
+    float dist = fabsf(dx) + fabsf(dy);
+    if (dist < 1.0f) {
+        return 1.0f;
+    }
+
+    float speed = dist / (float)delta_ms;
+    float mult = powf(TP_EXP_BASE, speed / TP_SPEED_SCALE);
+
+    if (mult > TP_MAX_MULT) {
+        mult = TP_MAX_MULT;
+    }
+
+    return mult;
+}
+#endif
+
 
 /* ========= 读取数据包 ========= */
 static int trackpoint_read_packet(const struct device *dev, int8_t *dx, int8_t *dy) {
@@ -165,12 +197,30 @@ static void trackpoint_poll_work(struct k_work *work) {
                     // 这一行又修改了一下，因为，说是变小会改善滚动时，突然反向时的死区问题。改成30
             } else {
                 /* 正常鼠标移动 */
+                /*
                 uint8_t tp_led_brt = custom_led_get_last_valid_brightness();
                 float tp_factor = 0.4f + 0.01f * tp_led_brt;
                 dx = dx * 5 / 2 * tp_factor;    // 原来是 3/2
                 dy = dy * 5 / 2 * tp_factor;    // 原来是 3/2
                 input_report_rel(dev, INPUT_REL_X, -dx, false, K_FOREVER);
                 input_report_rel(dev, INPUT_REL_Y, -dy, true, K_FOREVER);
+                */
+                //想使用另外一种
+                uint8_t tp_led_brt = custom_led_get_last_valid_brightness();
+                float tp_factor = 0.45f + 0.01f * tp_led_brt;
+
+#ifdef CONFIG_TRACKPOINT_EXPONENTIAL
+                uint32_t delta = now - last_packet_time;
+                float exp_mult = trackpoint_exponential_factor(dx, dy, delta);
+#else
+                float exp_mult = 1.0f;
+#endif
+
+                float fx = dx * 0.5f * tp_factor * exp_mult;
+                float fy = dy * 0.5f * tp_factor * exp_mult;
+
+                input_report_rel(dev, INPUT_REL_X, -(int)fx, false, K_FOREVER);
+                input_report_rel(dev, INPUT_REL_Y, -(int)fy, true, K_FOREVER);
             }
         }
         last_packet_time = now;
