@@ -211,8 +211,14 @@ static void art_anim_timer_cb(lv_timer_t *timer) {
         return; 
     }
     */
+    // 上面这个有问题，使用自己定义的额时间变量
     uint32_t now = k_uptime_get();
-    // 上面这个有问题，使用自己定义的额时间变量。
+    // 如果刚开机（last_anim_activity 为 0），先给它赋个值防止卡死
+    if (last_anim_activity == 0) {
+        last_anim_activity = now;
+    }
+    
+    // 太久不操作就静止
     if (now - last_anim_activity > 3000) {
         return; 
     }
