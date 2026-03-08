@@ -367,7 +367,7 @@
 &kp ESC     &kp Q    &kp W      &kp E      &kp R      &kp T                                                                                 &kp Y              &kp U       &kp I      &kp O     &kp P      &kp ENTER
 &kp TAB     &kp A    &kp S      &kp D      &kp F      &kp G           &mkp LCLK                             &mkp LCLK                       &kp H              &kp J       &kp K      &kp L     &kp SEMI   &kp SQT
 &sk LSHFT   &kp Z    &kp X      &kp C      &kp V      &kp B           &to MOBILE   &to FUNC                 &wxorqqtext     &wxorqqsentmsg  &kp N              &kp M       &kp COMMA  &kp DOT   &kp FSLH   &sk RSHFT
-                                &sk LCTRL  &kp CAPS   &sk LALT        &kp SPACE    &moback 1 LCLK           &moback 1 LCLK  &kp SPACE       &kp BSPC           &kp DEL     &sk RCTRL
+                                &sk LCTRL  &kp CAPS   &sk LALT        &kp SPACE    &moback 1 LCLK           &moback 1 LCLK  &kp SPACE       &kp DEL            &kp BSPC    &sk RCTRL
            >; 
            sensor-bindings = <&bl_encoder &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
@@ -380,7 +380,7 @@
 &kp ESC       &kp LA(F4)    &kp LC(W)  &trans    &kp LC(R)   &kp LC(T)                                                                       &trans     &trans       &trans     &trans    &trans      &kp EQUAL
 &kp TAB       &kp LC(A)     &trans     &trans    &trans      &trans           &mkp LCLK                      &mkp LCLK                       &trans     &trans       &trans     &trans    &trans      &kp BACKSLASH
 &sk LSHFT     &kp LC(Z)     &kp LC(X)  &kp LC(C) &kp LC(V)   &trans           &to MOBILE     &to DEFAULT     &mkp LCLK       &mkp RCLK       &trans     &kp LC(M)    &trans     &trans    &trans      &sk RSHFT
-                                       &sk LCTRL &kp CAPS    &sk LALT         &kp K_BACK     &mkp LCLK       &mkp LCLK       &kp K_BACK      &kp BSPC   &kp DEL      &sk RCTRL 
+                                       &sk LCTRL &kp CAPS    &sk LALT         &kp K_BACK     &mkp LCLK       &mkp LCLK       &kp K_BACK      &kp DEL    &kp BSPC     &sk RCTRL 
             >;
             sensor-bindings = <&inc_dec_kp UP DOWN &inc_dec_kp LEFT RIGHT>;
         };
