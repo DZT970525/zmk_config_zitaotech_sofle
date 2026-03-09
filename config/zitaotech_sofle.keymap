@@ -389,8 +389,8 @@
             display-name = "MOUSE";
             bindings = <  
 &kp LA(LEFT)      &trans          &trans            &trans         &trans           &trans         &bt BT_SEL 1            &tobt0                            &totapfirst        &totapsecond        &totapmiddle      &totapthird      &totapforth     &tocloseapp2
-&torolltoolpanel  &kp LA(F4)      &kp LC(W)         &trans         &kp LC(R)        &kp LC(T)                                                                &toscrolldown      &none               &toscrollleft     &trans           &trans          &trans
-&torollmsgpanel   &kp LC(A)       &trans            &trans         &trans           &trans         &mkp LCLK               &mkp LCLK                         &toscrollup        &kp ESC             &toscrollright    &trans           &trans          &trans
+&torolltoolpanel  &kp LA(F4)      &kp LC(W)         &trans         &kp LC(R)        &kp LC(T)                                                                &none              &toscrolldown       &toscrollleft     &trans           &trans          &trans
+&torollmsgpanel   &kp LC(A)       &trans            &trans         &trans           &trans         &mkp LCLK               &mkp LCLK                         &kp ESC            &toscrollup         &toscrollright    &trans           &trans          &trans
 &kp LA(RIGHT)     &kp LC(Z)       &kp LC(X)         &kp LC(C)      &kp LC(V)        &trans         &trans      &trans      &wxorqqtext    &wxorqqsentmsg     &toreadwxmsg       &toreadmorewxmsg    &trans            &trans           &trans          &trans
                                                     &trans         &toscrollup      &toscrolldown  &kp K_BACK  &mkp LCLK   &mkp LCLK      &kp K_BACK         &trans             &trans              &toopenappM
             >;
