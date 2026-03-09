@@ -47,7 +47,7 @@ static int16_t scroll_accumulator_y = 0;  // 垂直滚动累计
 #define SCROLL_THRESHOLD 8               // 滚动阈值，累计超过此值才发送滚动事件
 
 /* ========= J 键监听 =========
- * 检测 J 键(position 35)状态切换小红点模式：
+ * 检测 Y 键(position 20)状态切换小红点模式：
  * - J 未按：鼠标移动模式
  * - J 按住：滚动模式（在鼠标层）
  */
@@ -57,9 +57,9 @@ static int j_key_listener_cb(const zmk_event_t *eh) {
         return 0;
     }
 
-    if (ev->position == 35) { // H key position
+    if (ev->position == 20) { // H key position
         j_key_pressed = ev->state;
-        LOG_INF("J key position=35 %s", j_key_pressed ? "PRESSED" : "RELEASED");
+        LOG_INF("J key position=20 %s", j_key_pressed ? "PRESSED" : "RELEASED");
     }
     return 0;
 }
