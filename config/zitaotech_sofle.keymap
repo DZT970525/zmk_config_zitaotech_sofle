@@ -98,6 +98,17 @@
         };
     };
 
+    behaviors {
+        // 定义一个新的行为，专门用于横向滚动
+        scroll_left_right: behavior_sensor_rotate_mouse_wheel_left_right {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            // 修改这里：UP/DOWN 改为 LEFT/RIGHT
+            bindings = <&msc SCRL_LEFT>, <&msc SCRL_RIGHT>;
+
+            tap-ms = <20>;
+        };
+    };
     combos {
         compatible = "zmk,combos";
 
@@ -276,7 +287,10 @@
 &BOT       &none   &none           &none           &kp LEFT_SHIFT   &kp RIGHT_SHIFT  &none       &none       &none         &BOT
             >;
 
-            sensor-bindings = <&BLE_encoder>, <&inc_dec_kp LEFT RIGHT_ARROW>;
+            sensor-bindings = 
+                <&BLE_encoder>, 
+                <&scroll_left_right>;
+                // <&inc_dec_kp LEFT RIGHT_ARROW>;
         };
     };
 };
