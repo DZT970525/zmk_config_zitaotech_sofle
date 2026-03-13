@@ -52,8 +52,6 @@ LV_IMG_DECLARE(resized_frame_18);
 LV_IMG_DECLARE(resized_frame_19);
 LV_IMG_DECLARE(resized_frame_20);
 
-LV_IMG_DECLARE(wukong0120);
-
 
 // 我注释的
 /*
@@ -113,9 +111,12 @@ static const lv_img_dsc_t *bunny_frames[] = {
     &resized_frame_19,
     &resized_frame_20,
     */
-    &wukong0120,
     &jianlai,
     &yushi,
+    &figure0,
+    &figure1,
+    &figure2,
+    &skeleton,
 };
 
 // 我注释的
