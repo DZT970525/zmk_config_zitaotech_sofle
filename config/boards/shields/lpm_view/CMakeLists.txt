@@ -17,6 +17,7 @@ if(CONFIG_ZMK_DISPLAY AND CONFIG_NICE_VIEW_WIDGET_STATUS)
     zephyr_library_sources(widgets/sword/jianlai.c)
     zephyr_library_sources(widgets/sword/yushi.c)
     zephyr_library_sources(widgets/sword/skeleton.c)
+    zephyr_library_sources(widgets/sword/wukong0120.c)
 
     # 八卦图
     zephyr_library_sources(widgets/bagau1/resized_frame_1.c)
@@ -43,13 +44,14 @@ if(CONFIG_ZMK_DISPLAY AND CONFIG_NICE_VIEW_WIDGET_STATUS)
     
 
     # 暂时注释掉
-    # zephyr_library_sources(widgets/bunnygirl_anima/bunnygirl1.c)
-    # zephyr_library_sources(widgets/bunnygirl_anima/bunnygirl3.c)
-    # zephyr_library_sources(widgets/bunnygirl_anima/bunnygirl6.c)
-    # zephyr_library_sources(widgets/bunnygirl_anima/bunnygirl9.c)
-    # zephyr_library_sources(widgets/bunnygirl_anima/bunnygirl12.c)
-    # zephyr_library_sources(widgets/bunnygirl_anima/bunnygirl15.c)
-    # zephyr_library_sources(widgets/bunnygirl_anima/bunnygirl18.c)
-    # zephyr_library_sources(widgets/bunnygirl_anima/bunnygirl21.c)
+    zephyr_library_sources(widgets/bunnygirl_anima/bunnygirl1.c)
+    zephyr_library_sources(widgets/bunnygirl_anima/bunnygirl3.c)
+    zephyr_library_sources(widgets/bunnygirl_anima/bunnygirl6.c)
+    zephyr_library_sources(widgets/bunnygirl_anima/bunnygirl9.c)
+    zephyr_library_sources(widgets/bunnygirl_anima/bunnygirl12.c)
+    zephyr_library_sources(widgets/bunnygirl_anima/bunnygirl15.c)
+    zephyr_library_sources(widgets/bunnygirl_anima/bunnygirl18.c)
+    zephyr_library_sources(widgets/bunnygirl_anima/bunnygirl21.c)
+    
   endif()
 endif()
