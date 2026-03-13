@@ -53,6 +53,9 @@ LV_IMG_DECLARE(resized_frame_18);
 LV_IMG_DECLARE(resized_frame_19);
 LV_IMG_DECLARE(resized_frame_20);
 
+LV_IMG_DECLARE(wukong0120);
+
+
 // 我注释的
 /*
 LV_IMG_DECLARE(bunnygirl1);
@@ -89,6 +92,7 @@ struct art_state {
 // 我添加的
 // ==================== 动画数组 ====================
 static const lv_img_dsc_t *bunny_frames[] = {
+    /*
     &resized_frame_1,
     &resized_frame_2,
     &resized_frame_3,
@@ -109,6 +113,11 @@ static const lv_img_dsc_t *bunny_frames[] = {
     &resized_frame_18,
     &resized_frame_19,
     &resized_frame_20,
+    */
+    &wukong0120;
+    &jianlai;
+    &yushi;
+
 };
 
 // 我注释的
@@ -219,7 +228,7 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
     lv_obj_align(astate.art, LV_ALIGN_TOP_LEFT, 20, 0);
     
     // 每秒切换一帧
-    astate.timer = lv_timer_create(art_anim_timer_cb, 500, &astate); // 这个单位应该是ms
+    astate.timer = lv_timer_create(art_anim_timer_cb, 5000, &astate); // 这个单位应该是ms
 
     lv_obj_set_user_data(widget->obj, &astate);
 
