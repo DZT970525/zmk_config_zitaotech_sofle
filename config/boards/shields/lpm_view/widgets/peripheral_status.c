@@ -114,10 +114,9 @@ static const lv_img_dsc_t *bunny_frames[] = {
     &resized_frame_19,
     &resized_frame_20,
     */
-    &wukong0120;
-    &jianlai;
-    &yushi;
-
+    &wukong0120,
+    &jianlai,
+    &yushi,
 };
 
 // 我注释的
