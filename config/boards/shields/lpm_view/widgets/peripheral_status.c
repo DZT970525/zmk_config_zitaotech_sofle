@@ -23,14 +23,13 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
 // ==================== 动画帧声明 ====================
 // 新加的：
-/*
 LV_IMG_DECLARE(figure0);
 LV_IMG_DECLARE(figure1);
 LV_IMG_DECLARE(figure2);
 LV_IMG_DECLARE(jianlai);
 LV_IMG_DECLARE(yushi);
 LV_IMG_DECLARE(skeleton);
-*/
+
 // 太极图
 LV_IMG_DECLARE(resized_frame_1);
 LV_IMG_DECLARE(resized_frame_2);
