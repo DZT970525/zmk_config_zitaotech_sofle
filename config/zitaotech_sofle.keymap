@@ -394,7 +394,7 @@
 &kp LA(RIGHT)     &kp LC(Z)       &kp LC(X)         &kp LC(C)      &kp LC(V)        &trans         &trans      &trans      &wxorqqtext    &wxorqqsentmsg     &toreadwxmsg       &toreadmorewxmsg    &trans            &trans           &trans          &trans
                                                     &trans         &toscrollup      &toscrolldown  &kp K_BACK  &mkp LCLK   &mkp LCLK      &kp K_BACK         &trans             &trans              &toopenappM
             >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp C_VOL_UP C_VOL_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &kp C_MUTE C_MUTE>;
         };  
 
         MOBILE_layer {
