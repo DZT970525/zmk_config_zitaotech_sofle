@@ -17,7 +17,6 @@
 #define DEFAULT 0
 #define FUNC 1
 #define MOUSE 2
-#define MOBILE 3
 #define BOT bootloader
 
 &sk {
@@ -110,12 +109,6 @@
             #binding-cells = <0>;
             bindings = <&macro_press &kp F3>,<&macro_tap &kp Y>,<&macro_release &kp F3>;
         };
-        //打开appU
-        toopenappU: zed_em_toopenappU {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp U>,<&macro_release &kp F3>;
-        };
         //打开appX
         toopenappX: zed_em_toopenappX {
             compatible = "zmk,behavior-macro";
@@ -128,83 +121,17 @@
             #binding-cells = <0>;
             bindings = <&macro_press &kp F3>,<&macro_tap &kp Z>,<&macro_release &kp F3>;
         };
-        //打开appC
-        toopenappC: zed_em_toopenappC {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp C>,<&macro_release &kp F3>;
-        };
-        //打开appG
-        toopenappG: zed_em_toopenappG {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp G>,<&macro_release &kp F3>;
-        };
-        //打开appV
-        toopenappV: zed_em_toopenappV {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp V>,<&macro_release &kp F3>;
-        };
-        //打开appH
-        toopenappH: zed_em_toopenappH {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp H>,<&macro_release &kp F3>;
-        };
-        //打开appB
-        toopenappB: zed_em_toopenappB {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp B>,<&macro_release &kp F3>;
-        };
         //打开appJ
         toopenappJ: zed_em_toopenappJ {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_press &kp F3>,<&macro_tap &kp J>,<&macro_release &kp F3>;
         };
-        //打开appN
-        toopenappN: zed_em_toopenappN {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp N>,<&macro_release &kp F3>;
-        };
-        //打开appI
-        toopenappI: zed_em_toopenappI {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp I>,<&macro_release &kp F3>;
-        };
         //打开appM
         toopenappM: zed_em_toopenappM {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_press &kp F3>,<&macro_tap &kp M>,<&macro_release &kp F3>;
-        };
-        //打开appP
-        toopenappP: zed_em_toopenappP {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp P>,<&macro_release &kp F3>;
-        };
-        //打开appO
-        toopenappO: zed_em_toopenappO {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp O>,<&macro_release &kp F3>;
-        };
-        //打开appK
-        toopenappK: zed_em_toopenappK {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp K>,<&macro_release &kp F3>;
-        };
-        //打开appL
-        toopenappL: zed_em_toopenappL {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp L>,<&macro_release &kp F3>;
         };
         //打开appE
         toopenappE: zed_em_toopenappE {
@@ -217,18 +144,6 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_press &kp F3>,<&macro_tap &kp R>,<&macro_release &kp F3>;
-        };
-        //打开appD
-        toopenappD: zed_em_toopenappD {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp D>,<&macro_release &kp F3>;
-        };
-        //打开appF
-        toopenappF: zed_em_toopenappF {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp F>,<&macro_release &kp F3>;
         };
         //手机解锁
         loginpwd: macros_loginpwd {
@@ -357,7 +272,7 @@
 &kp GRAVE   &kp N1   &kp N2     &kp N3     &kp N4          &kp N5          &bt BT_SEL 1                          &tobt0                          &kp N6             &kp N7      &kp N8     &kp N9    &kp N0     &sk LGUI               
 &kp ESC     &kp Q    &kp W      &kp E      &kp R           &kp T                                                                                 &kp Y              &kp U       &kp I      &kp O     &kp P      &kp ENTER
 &kp TAB     &kp A    &kp S      &kp D      &kp F           &kp G           &mkp LCLK                             &mkp LCLK                       &kp H              &kp J       &kp K      &kp L     &kp SEMI   &kp SQT
-&sk LSHFT   &kp Z    &kp X      &kp C      &kp V           &kp B           &to MOBILE   &to FUNC                 &wxorqqtext     &wxorqqsentmsg  &kp N              &kp M       &kp COMMA  &kp DOT   &kp FSLH   &sk RSHFT
+&sk LSHFT   &kp Z    &kp X      &kp C      &kp V           &kp B           &mkp LCLK    &mkp RCLK                &wxorqqtext     &wxorqqsentmsg  &kp N              &kp M       &kp COMMA  &kp DOT   &kp FSLH   &sk RSHFT
                                 &sk LCTRL  &mt LALT CAPS   &kp SPACE       &kp SPACE    &moback 1 LCLK           &moback 1 LCLK  &kp SPACE       &kp SPACE          &kp BSPC    &kp DEL
            >; 
            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp K_VOL_UP K_VOL_DN>;
@@ -370,7 +285,7 @@
 &trans        &kp F1        &kp F2     &kp F3     &kp F4          &kp F5           &BOT                           &BOT                            &kp F6     &kp F7       &kp F8     &kp LBKT  &kp RBKT    &kp MINUS            
 &kp ESC       &kp LA(F4)    &kp LC(W)  &trans     &kp LC(R)       &kp LC(T)                                                                       &trans     &trans       &trans     &trans    &trans      &kp EQUAL
 &kp TAB       &kp LC(A)     &trans     &trans     &trans          &trans           &mkp LCLK                      &mkp LCLK                       &trans     &trans       &trans     &trans    &trans      &kp BACKSLASH
-&sk LSHFT     &kp LC(Z)     &kp LC(X)  &kp LC(C)  &kp LC(V)       &trans           &to MOBILE     &to DEFAULT     &mkp LCLK       &mkp RCLK       &trans     &kp LC(M)    &trans     &trans    &trans      &sk RSHFT
+&sk LSHFT     &kp LC(Z)     &kp LC(X)  &kp LC(C)  &kp LC(V)       &trans           &trans         &trans          &trans          &trans          &trans     &kp LC(M)    &trans     &trans    &trans      &sk RSHFT
                                        &sk LCTRL  &mt LALT CAPS   &kp SPACE        &kp K_BACK     &mkp LCLK       &mkp LCLK       &kp K_BACK      &kp SPACE  &kp BSPC     &kp DEL 
             >;
             sensor-bindings = <&inc_dec_kp UP DOWN &inc_dec_kp LEFT RIGHT>;
@@ -386,17 +301,6 @@
                                                     &trans         &trans           &trans         &kp K_BACK  &mkp LCLK   &mkp LCLK      &kp K_BACK         &trans             &trans              &trans
             >;
         };  
-
-        MOBILE_layer {
-            display-name = "MOBILE";
-            bindings = <
-&tocloseapp5          &tocloseapp1    &tocloseapp2      &tocloseapp6   &tocloseapp3     &tocloseapp4       &none                                 &none                                    &totapfirst        &totapsecond        &totapmiddle      &totapthird    &totapforth     &tocloseapp2              
-&torolltoolpanel      &none           &none             &toopenappE    &toopenappR      &toopenappT                                                                                       &toopenappY        &none               &toopenappI       &none          &none           &none
-&torollmsgpanel       &none           &none             &none          &none            &none              &mkp LCLK                             &mkp LCLK                                &none              &toopenappJ         &none             &none          &none           &none
-&none                 &toopenappZ     &toopenappX       &none          &toreadmorewxmsg &toreadwxmsg       &to DEFAULT   &to FUNC                &wxorqqtext          &wxorqqsentmsg      &toreadwxmsg       &toreadmorewxmsg    &none             &none          &none           &none
-                                                        &none          &toscrollup      &toscrolldown      &kp K_BACK    &moback 1 LCLK          &moback 1 LCLK       &kp K_BACK          &toscrolldown      &toscrollup         &toopenappM
-            >;
-        };
 
     };
 };
