@@ -61,41 +61,11 @@
     };
 
     macros {
-        //关闭app1
-        tocloseapp1: zed_em_closeapp1 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp F4>,<&macro_tap &kp E>,<&macro_release &kp F4>;
-        }; 
-        //关闭app2
+        //上滑关闭app
         tocloseapp2: zed_em_closeapp2 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_press &kp F4>,<&macro_tap &kp R>,<&macro_release &kp F4>;
-        }; 
-        //关闭app3
-        tocloseapp3: zed_em_closeapp3 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp F4>,<&macro_tap &kp D>,<&macro_release &kp F4>;
-        }; 
-        //关闭app4
-        tocloseapp4: zed_em_closeapp4 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp F4>,<&macro_tap &kp F>,<&macro_release &kp F4>;
-        }; 
-        //关闭app5
-        tocloseapp5: zed_em_closeapp5 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp F4>,<&macro_tap &kp W>,<&macro_release &kp F4>;
-        }; 
-        //关闭app6
-        tocloseapp6: zed_em_closeapp6 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp F4>,<&macro_tap &kp S>,<&macro_release &kp F4>;
         }; 
         //打开appT
         toopenappT: zed_em_toopenappT {
@@ -155,7 +125,7 @@
         toscrollup: zed_em_toscrollup {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F4>,<&macro_tap &kp E>,<&macro_release &kp F4>;
+            bindings = <&macro_press &kp F3>,<&macro_tap &kp SPACE>,<&macro_release &kp F3>;
         };
         //向下滑动
         toscrolldown: zed_em_toscrolldown {
