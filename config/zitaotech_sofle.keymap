@@ -51,6 +51,15 @@
     };
 
     behaviors {
+        escandclose: escandclose_mods {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <250>;
+            bindings = <&kp ESC &tocloseapp>;
+        };
+    };
+
+    behaviors {
          sp_sc: behavior_spacescroll {
            compatible = "zmk,behavior-hold-tap";
            #binding-cells = <2>;
@@ -62,7 +71,7 @@
 
     macros {
         //上滑关闭app
-        tocloseapp2: zed_em_closeapp2 {
+        tocloseapp: zed_em_closeapp {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_press &kp F4>,<&macro_tap &kp R>,<&macro_release &kp F4>;
@@ -264,9 +273,9 @@
         mouse_layer {
             display-name = "MOUSE";
             bindings = <  
-&kp LA(LEFT)      &trans          &trans            &trans         &trans           &trans         &kp C_MUTE              &kp K_MUTE                        &totapfirst        &totapsecond        &totapmiddle      &totapthird      &totapforth     &tocloseapp2
-&torolltoolpanel  &kp LA(F4)      &kp LC(W)         &trans         &kp LC(R)        &kp LC(T)                                                                &none              &toscrollup         &toscrolldown     &trans           &trans          &trans
-&torollmsgpanel   &kp LC(A)       &trans            &trans         &trans           &trans         &mkp LCLK               &mkp LCLK                         &kp ESC            &toscrollleft       &toscrollright    &trans           &trans          &trans
+&kp LA(LEFT)      &trans          &trans            &trans         &trans           &trans         &kp C_MUTE              &kp K_MUTE                        &totapfirst        &totapsecond        &totapmiddle      &totapthird      &totapforth     &trans
+&torolltoolpanel  &kp LA(F4)      &kp LC(W)         &trans         &kp LC(R)        &kp LC(T)                                                                &trans             &toscrollup         &toscrolldown     &trans           &trans          &trans
+&torollmsgpanel   &kp LC(A)       &trans            &trans         &trans           &trans         &mkp LCLK               &mkp LCLK                         &escandclose       &toscrollleft       &toscrollright    &trans           &trans          &trans
 &kp LA(RIGHT)     &kp LC(Z)       &kp LC(X)         &kp LC(C)      &kp LC(V)        &trans         &trans      &trans      &wxorqqtext    &wxorqqsentmsg     &toreadwxmsg       &toreadmorewxmsg    &trans            &trans           &trans          &toopenappM
                                                     &trans         &trans           &trans         &kp K_BACK  &mkp LCLK   &mkp LCLK      &kp K_BACK         &trans             &trans              &trans
             >;
