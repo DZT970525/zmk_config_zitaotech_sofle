@@ -228,16 +228,16 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <80>;
-            tap-ms = <80>;
-            bindings = <&macro_tap &bt BT_SEL 0>,<&macro_tap &kp SPACE &kp CAPS &kp SPACE &kp N0 &kp N9 &kp N1 &kp N1 &kp ENTER &kp CAPS>;
+            tap-ms = <160>;
+            bindings = <&macro_tap &bt BT_SEL 0>,<&macro_tap &kp SPACE &kp SPACE &kp N0 &kp N9 &kp N1 &kp N1 &kp ENTER &kp CAPS>,<&macro_tap &kp CAPS>;
         };
         //切换设备1
         tobt1: zed_em_tobt1 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <80>;
-            tap-ms = <80>;
-            bindings = <&macro_tap &bt BT_SEL 1>,<&macro_tap &kp CAPS &kp CAPS>;
+            tap-ms = <160>;
+            bindings = <&macro_tap &bt BT_SEL 1>,<&macro_tap &kp CAPS>,<&macro_tap &kp CAPS>;
         };
     };
 
