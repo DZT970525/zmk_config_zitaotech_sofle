@@ -21,6 +21,24 @@
 
 /{
     behaviors {
+        scrolluporleft: tap_dance_uporleft {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&toscrollup>, <&toscrollleft>;
+        };
+    };
+
+    behaviors {
+        scrolldownorright: tap_dance_downright {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&toscrolldown>, <&toscrollright>;
+        };
+    };
+
+    behaviors {
         wxmod: tap_dance_wxmod {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -269,9 +287,9 @@
         mouse_layer {
             display-name = "MOUSE";
             bindings = <  
-&kp LA(LEFT)      &trans          &trans            &trans         &trans           &trans         &tobt1                  &tobt0                            &tocloseapp        &totapfirst         &totapsecond      &totapmiddle     &totapthird     &totapforth
-&torolltoolpanel  &kp LA(F4)      &kp LC(W)         &trans         &kp LC(R)        &kp LC(T)                                                                &none              &kp ESC             &trans            &trans           &trans          &trans
-&torollmsgpanel   &kp LC(A)       &trans            &trans         &trans           &trans         &mkp LCLK               &mkp LCLK                         &toscrollup        &toscrolldown       &toscrollleft     &toscrollright   &trans          &trans 
+&kp LA(LEFT)      &trans          &trans            &trans         &trans           &trans         &tobt1                  &tobt0                            &totapfirst        &totapsecond        &totapmiddle      &totapthird     &totapforth      &trans
+&torolltoolpanel  &kp LA(F4)      &kp LC(W)         &trans         &kp LC(R)        &kp LC(T)                                                                &none              &kp ESC             &tocloseapp       &trans           &trans          &trans
+&torollmsgpanel   &kp LC(A)       &trans            &trans         &trans           &trans         &mkp LCLK               &mkp LCLK                         &scrolluporleft    &scrolldownorright  &trans            &trans           &trans          &trans 
 &kp LA(RIGHT)     &kp LC(Z)       &kp LC(X)         &kp LC(C)      &kp LC(V)        &trans         &trans      &trans      &wxmod         &qqmod             &toreadwxmsg       &toreadmorewxmsg    &trans            &trans           &trans          &toopenappM
                                                     &trans         &trans           &trans         &kp K_BACK  &mkp LCLK   &mkp LCLK      &kp K_BACK         &trans             &trans              &trans
             >;
