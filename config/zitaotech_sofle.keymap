@@ -229,7 +229,7 @@
             #binding-cells = <0>;
             wait-ms = <80>;
             tap-ms = <80>;
-            bindings = <&macro_tap &bt BT_SEL 0>,<&macro_tap &kp SPACE &kp SPACE &kp N0 &kp N9 &kp N1 &kp N1 &kp ENTER &ext_power EP_OFF &ext_power EP_ON>;
+            bindings = <&macro_tap &bt BT_SEL 0>,<&macro_tap &kp SPACE &kp SPACE &kp N0 &kp N9 &kp N1 &kp N1 &kp ENTER &soft_off>;
         };
         //切换设备1
         tobt1: zed_em_tobt1 {
@@ -237,7 +237,7 @@
             #binding-cells = <0>;
             wait-ms = <80>;
             tap-ms = <80>;
-            bindings = <&macro_tap &bt BT_SEL 1 &ext_power EP_OFF &ext_power EP_ON>;
+            bindings = <&macro_tap &bt BT_SEL 1 &soft_off>;
         };
     };
 
