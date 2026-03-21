@@ -231,12 +231,6 @@
             tap-ms = <80>;
             bindings = <&macro_tap &bt BT_SEL 0>,<&macro_tap &kp SPACE &kp SPACE &kp N0 &kp N9 &kp N1 &kp N1 &kp ENTER &sys_reset>;
         };
-        //切换设备1
-        tobt1: zed_em_tobt1 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap &bt BT_SEL 1 &sys_reset>;
-        };
     };
 
     keymap {
@@ -245,7 +239,7 @@
          default_layer {
          display-name = "QWERTY";
            bindings = <     
-&kp GRAVE   &kp N1   &kp N2     &kp N3     &kp N4          &kp N5          &tobt1                                &tobt0                          &kp N6             &kp N7      &kp N8     &kp N9    &kp N0     &kp LGUI               
+&kp GRAVE   &kp N1   &kp N2     &kp N3     &kp N4          &kp N5          &&bt BT_SEL 1                         &tobt0                          &kp N6             &kp N7      &kp N8     &kp N9    &kp N0     &kp LGUI               
 &kp ESC     &kp Q    &kp W      &kp E      &kp R           &kp T                                                                                 &kp Y              &kp U       &kp I      &kp O     &kp P      &kp ENTER
 &kp TAB     &kp A    &kp S      &kp D      &kp F           &kp G           &mkp LCLK                             &mkp LCLK                       &kp H              &kp J       &kp K      &kp L     &kp SEMI   &kp SQT
 &sk LSHFT   &kp Z    &kp X      &kp C      &kp V           &kp B           &mkp LCLK    &mkp RCLK                &wxmod          &qqmod          &kp N              &kp M       &kp COMMA  &kp DOT   &kp FSLH   &sk RSHFT
@@ -258,7 +252,7 @@
         func_layer {
             display-name = "FUNC";
             bindings = <
-&trans        &kp F1        &kp F2     &kp F3     &kp F4          &kp F5           &BOT                           &BOT                            &kp F6     &kp F7       &kp F8     &kp LBKT  &kp RBKT    &kp MINUS            
+&&sys_reset   &kp F1        &kp F2     &kp F3     &kp F4          &kp F5           &BOT                           &BOT                            &kp F6     &kp F7       &kp F8     &kp LBKT  &kp RBKT    &kp MINUS            
 &kp ESC       &kp LA(F4)    &kp LC(W)  &trans     &kp LC(R)       &kp LC(T)                                                                       &none      &trans       &trans     &trans    &trans      &kp EQUAL
 &kp TAB       &kp LC(A)     &trans     &trans     &trans          &trans           &mkp LCLK                      &mkp LCLK                       &trans     &trans       &trans     &trans    &trans      &kp BACKSLASH
 &sk LSHFT     &kp LC(Z)     &kp LC(X)  &kp LC(C)  &kp LC(V)       &trans           &trans         &trans          &trans          &trans          &trans     &kp LC(M)    &trans     &trans    &trans      &sk RSHFT
