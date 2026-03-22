@@ -24,7 +24,7 @@
         scrolluporleft: tap_dance_uporleft {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <150>;
             bindings = <&toscrollup>, <&toscrollleft>;
         };
     };
@@ -33,7 +33,7 @@
         scrolldownorright: tap_dance_downright {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <150>;
             bindings = <&toscrolldown>, <&toscrollright>;
         };
     };
@@ -262,11 +262,11 @@
          default_layer {
          display-name = "QWERTY";
            bindings = <     
-&kp GRAVE   &kp N1   &kp N2     &kp N3     &kp N4          &kp N5          &tobt1                                &tobt0                          &kp N6             &kp N7      &kp N8     &kp N9    &kp N0     &kp LGUI               
-&kp ESC     &kp Q    &kp W      &kp E      &kp R           &kp T                                                                                 &kp Y              &kp U       &kp I      &kp O     &kp P      &kp ENTER
+&kp GRAVE   &kp N1   &kp N2     &kp N3     &kp N4          &kp N5          &tobt1                                &tobt0                          &kp N6             &kp N7      &kp N8     &kp N9    &kp N0     &kp DEL               
+&kp ESC     &kp Q    &kp W      &kp E      &kp R           &kp T                                                                                 &kp Y              &kp U       &kp I      &kp O     &kp P      &kp CAPS
 &kp TAB     &kp A    &kp S      &kp D      &kp F           &kp G           &mkp LCLK                             &mkp LCLK                       &kp H              &kp J       &kp K      &kp L     &kp SEMI   &kp SQT
 &kp LSHFT   &kp Z    &kp X      &kp C      &kp V           &kp B           &mkp LCLK    &mkp RCLK                &wxmod          &qqmod          &kp N              &kp M       &kp COMMA  &kp DOT   &kp FSLH   &kp RSHFT
-                                &kp LCTRL  &mt LALT CAPS   &kp SPACE       &kp SPACE    &moback 1 LCLK           &moback 1 LCLK  &kp SPACE       &kp SPACE          &kp BSPC    &kp DEL
+                                &kp LCTRL  &kp LALT        &kp SPACE       &kp ENTER    &moback 1 LCLK           &moback 1 LCLK  &kp BSPC        &kp SPACE          &kp LGUI    &kp RCTRL
            >; 
            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp K_VOL_UP K_VOL_DN>;
         };
@@ -279,7 +279,7 @@
 &kp ESC       &kp LA(F4)    &kp LC(W)  &trans     &kp LC(R)       &kp LC(T)                                                                       &none      &trans       &trans     &trans    &trans      &kp EQUAL
 &kp TAB       &kp LC(A)     &trans     &trans     &trans          &trans           &mkp LCLK                      &mkp LCLK                       &trans     &trans       &trans     &trans    &trans      &kp BACKSLASH
 &kp LSHFT     &kp LC(Z)     &kp LC(X)  &kp LC(C)  &kp LC(V)       &trans           &trans         &trans          &trans          &trans          &trans     &kp LC(M)    &trans     &trans    &trans      &kp RSHFT
-                                       &kp LCTRL  &mt LALT CAPS   &kp SPACE        &kp K_BACK     &mkp LCLK       &mkp LCLK       &kp K_BACK      &kp SPACE  &kp BSPC     &kp DEL 
+                                       &trans     &trans          &trans           &kp K_BACK     &mkp LCLK       &mkp LCLK       &kp K_BACK      &trans     &trans       &trans
             >;
             sensor-bindings = <&inc_dec_kp UP DOWN &inc_dec_kp LEFT RIGHT>;
         };
