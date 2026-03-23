@@ -24,7 +24,7 @@
         scrolluporleft: tap_dance_uporleft {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <150>;
+            tapping-term-ms = <185>;
             bindings = <&toscrollup>, <&toscrollleft>;
         };
     };
@@ -33,7 +33,7 @@
         scrolldownorright: tap_dance_downright {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <150>;
+            tapping-term-ms = <185>;
             bindings = <&toscrolldown>, <&toscrollright>;
         };
     };
