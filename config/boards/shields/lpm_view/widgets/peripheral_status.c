@@ -227,7 +227,7 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
     lv_obj_align(astate.art, LV_ALIGN_TOP_LEFT, 20, 0);
     
     // 每秒切换一帧
-    astate.timer = lv_timer_create(art_anim_timer_cb, 10000, &astate); // 这个单位应该是ms
+    astate.timer = lv_timer_create(art_anim_timer_cb, 20000, &astate); // 这个单位应该是ms
 
     lv_obj_set_user_data(widget->obj, &astate);
 
