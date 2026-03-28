@@ -244,13 +244,13 @@
             #binding-cells = <0>;
             wait-ms = <80>;
             tap-ms = <200>;
-            bindings = <&macro_tap &bt BT_SEL 0>,<&macro_tap &kp CAPS>,<&macro_tap &kp SPACE &kp SPACE &kp N0 &kp N9 &kp N1 &kp N1 &kp ENTER>,<&macro_tap &kp CAPS>;
+            bindings = <&macro_tap &bt BT_SEL 0>,<&macro_tap &kp CAPS>,<&macro_tap &kp SPACE &kp SPACE &kp N0 &kp N9 &kp N1 &kp N1 &kp ENTER>;
         };
         //切换设备1
         tobt1: zed_em_tobt1 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap &bt BT_SEL 1>,<&macro_tap &kp CAPS>,<&macro_tap &kp CAPS>;
+            bindings = <&macro_tap &bt BT_SEL 1>,<&macro_tap &kp CAPS>;
         };
     };
 
@@ -266,14 +266,14 @@
 &kp LSHFT   &kp Z    &kp X      &kp C      &kp V           &kp B           &mkp LCLK    &mkp RCLK                &wxmod          &qqmod          &kp N              &kp M       &kp COMMA  &kp DOT   &kp FSLH   &kp RSHFT
                                 &kp LCTRL  &kp LALT        &kp ENTER       &kp SPACE    &moback 1 LCLK           &moback 1 LCLK  &kp SPACE       &kp BSPC           &kp LGUI    &kp RCTRL
            >; 
-           sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp K_VOL_UP K_VOL_DN>;
+           sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp K_VOL_DN K_VOL_UP>;
         };
 
 
         func_layer {
             display-name = "FUNC";
             bindings = <
-&sys_reset    &kp F1        &kp F2     &kp F3     &kp F4          &kp F5           &BOT                           &BOT                            &kp F6     &kp F7       &kp F8     &kp LBKT  &kp RBKT    &kp MINUS            
+&trans        &kp F1        &kp F2     &kp F3     &kp F4          &kp F5           &BOT                           &BOT                            &kp F6     &kp F7       &kp F8     &kp LBKT  &kp RBKT    &kp MINUS            
 &kp CAPS      &kp LA(F4)    &kp LC(W)  &trans     &kp LC(R)       &kp LC(T)                                                                       &none      &trans       &trans     &trans    &trans      &kp EQUAL
 &kp TAB       &kp LC(A)     &trans     &trans     &trans          &trans           &mkp LCLK                      &mkp LCLK                       &trans     &trans       &trans     &trans    &trans      &kp BACKSLASH
 &kp LSHFT     &kp LC(Z)     &kp LC(X)  &kp LC(C)  &kp LC(V)       &trans           &trans         &trans          &trans          &trans          &trans     &kp LC(M)    &trans     &trans    &trans      &kp RSHFT
@@ -285,9 +285,9 @@
         mouse_layer {
             display-name = "MOUSE";
             bindings = <  
-&kp LA(LEFT)      &trans          &trans            &trans         &trans           &trans         &tobt1                  &tobt0                            &totapfirst        &totapsecond        &totapmiddle      &totapthird     &totapforth      &trans
-&torolltoolpanel  &kp LA(F4)      &kp LC(W)         &trans         &kp LC(R)        &kp LC(T)                                                                &none              &kp ESC             &tocloseapp       &trans           &trans          &trans
-&torollmsgpanel   &kp LC(A)       &trans            &trans         &trans           &trans         &mkp LCLK               &mkp LCLK                         &scrolluporleft    &scrolldownorright  &trans            &trans           &trans          &trans 
+&kp LA(LEFT)      &trans          &trans            &trans         &trans           &trans         &tobt1                  &tobt0                            &totapfirst        &totapsecond        &totapmiddle      &totapthird     &totapforth      &torolltoolpanel
+&kp CAPS          &kp LA(F4)      &kp LC(W)         &trans         &kp LC(R)        &kp LC(T)                                                                &none              &kp ESC             &tocloseapp       &trans           &trans          &torollmsgpanel
+&kp TAB           &kp LC(A)       &trans            &trans         &trans           &trans         &mkp LCLK               &mkp LCLK                         &scrolluporleft    &scrolldownorright  &trans            &trans           &trans          &trans 
 &kp LA(RIGHT)     &kp LC(Z)       &kp LC(X)         &kp LC(C)      &kp LC(V)        &trans         &trans      &trans      &wxmod         &qqmod             &toreadwxmsg       &toreadmorewxmsg    &trans            &trans           &trans          &toopenappM
                                                     &trans         &trans           &trans         &kp K_BACK  &mkp LCLK   &mkp LCLK      &kp K_BACK         &trans             &trans              &trans
             >;
