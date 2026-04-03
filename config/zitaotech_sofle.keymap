@@ -65,16 +65,6 @@
         };
     };
 
-    behaviors {
-        sp_sc: behavior_spacescroll {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";     /* 单击优先 */
-            tapping-term-ms = <200>;       /* 长按阈值 */
-            bindings = <&none &kp>;        /* hold=none, tap=space */
-        };
-    };
-
     macros {
         //上滑关闭app
         tocloseapp: zed_em_closeapp {
@@ -261,13 +251,13 @@
 
          default_layer {
          display-name = "QWERTY";
-           bindings = <
-&kp GRAVE   &kp N1   &kp N2     &kp N3     &kp N4          &kp N5          &tobt0                                &tobt1                          &kp N6             &kp N7      &kp N8     &kp N9    &kp N0     &kp ESC
+           bindings = <     
+&kp GRAVE   &kp N1   &kp N2     &kp N3     &kp N4          &kp N5          &tobt0                                &tobt1                          &kp N6             &kp N7      &kp N8     &kp N9    &kp N0     &kp ESC               
 &kp CAPS    &kp Q    &kp W      &kp E      &kp R           &kp T                                                                                 &kp Y              &kp U       &kp I      &kp O     &kp P      &kp DEL
 &kp TAB     &kp A    &kp S      &kp D      &kp F           &kp G           &mkp LCLK                             &mkp LCLK                       &kp H              &kp J       &kp K      &kp L     &kp SEMI   &kp SQT
 &kp LSHFT   &kp Z    &kp X      &kp C      &kp V           &kp B           &mkp LCLK    &mkp RCLK                &wxmod          &qqmod          &kp N              &kp M       &kp COMMA  &kp DOT   &kp FSLH   &kp RSHFT
                                 &kp LCTRL  &kp LALT        &kp ENTER       &kp SPACE    &moback 1 LCLK           &moback 1 LCLK  &kp SPACE       &kp BSPC           &kp LGUI    &kp RCTRL
-           >;
+           >; 
            sensor-bindings = <&inc_dec_kp K_VOL_DN K_VOL_UP &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
@@ -275,7 +265,7 @@
         func_layer {
             display-name = "FUNC";
             bindings = <
-&trans        &kp F1        &kp F2     &kp F3     &kp F4          &kp F5           &BOT                           &BOT                            &kp F6     &kp F7       &kp F8     &kp LBKT  &kp RBKT    &kp MINUS
+&trans        &kp F1        &kp F2     &kp F3     &kp F4          &kp F5           &BOT                           &BOT                            &kp F6     &kp F7       &kp F8     &kp LBKT  &kp RBKT    &kp MINUS            
 &kp CAPS      &kp LA(F4)    &kp LC(W)  &trans     &kp LC(R)       &kp LC(T)                                                                       &none      &trans       &trans     &trans    &trans      &kp EQUAL
 &kp TAB       &kp LC(A)     &trans     &trans     &trans          &trans           &mkp LCLK                      &mkp LCLK                       &trans     &trans       &trans     &trans    &trans      &kp BACKSLASH
 &kp LSHFT     &kp LC(Z)     &kp LC(X)  &kp LC(C)  &kp LC(V)       &trans           &trans         &trans          &trans          &trans          &trans     &kp LC(M)    &trans     &trans    &trans      &kp RSHFT
@@ -286,14 +276,14 @@
 
         mouse_layer {
             display-name = "MOUSE";
-            bindings = <
-&kp LA(LEFT)      &trans          &trans            &trans         &trans           &trans         &tobt0                  &tobt1                            &totapfirst        &totapsecond        &totapmiddle       &totapthird      &totapforth     &torolltoolpanel
-&kp CAPS          &kp LA(F4)      &kp LC(W)         &trans         &kp LC(R)        &kp LC(T)                                                                &scrolluporleft    &scrolldownorright  &toreadwxmsg       &trans           &trans          &torollmsgpanel
-&kp TAB           &kp LC(A)       &trans            &trans         &trans           &trans         &mkp LCLK               &mkp LCLK                         &kp ESC            &tocloseapp         &toreadmorewxms    &trans           &trans          &trans
-&kp LA(RIGHT)     &kp LC(Z)       &kp LC(X)         &kp LC(C)      &kp LC(V)        &trans         &trans      &trans      &wxmod         &qqmod             &trans             &trans              &trans             &trans           &trans          &toopenappM
+            bindings = <  
+&kp LA(LEFT)      &trans          &trans            &trans         &trans           &trans         &tobt0                  &tobt1                            &totapfirst        &totapsecond        &totapmiddle      &totapthird      &totapforth     &torolltoolpanel
+&kp CAPS          &kp LA(F4)      &kp LC(W)         &trans         &kp LC(R)        &kp LC(T)                                                                &scrolluporleft    &scrolldownorright  &toreadwxmsg      &toopenappM      &trans          &torollmsgpanel
+&kp TAB           &kp LC(A)       &trans            &trans         &trans           &trans         &mkp LCLK               &mkp LCLK                         &kp ESC            &tocloseapp         &toreadmorewxmsg  &trans           &trans          &trans 
+&kp LA(RIGHT)     &kp LC(Z)       &kp LC(X)         &kp LC(C)      &kp LC(V)        &trans         &trans      &trans      &wxmod         &qqmod             &trans             &trans              &trans            &trans           &trans          &trans
                                                     &trans         &trans           &trans         &kp K_BACK  &mkp LCLK   &mkp LCLK      &kp K_BACK         &trans             &trans              &trans
             >;
-        };
+        };  
 
     };
 };
