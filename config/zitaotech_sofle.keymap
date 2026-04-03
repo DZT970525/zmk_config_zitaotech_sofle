@@ -65,6 +65,16 @@
         };
     };
 
+    behaviors {
+        sp_sc: behavior_spacescroll {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";     /* 单击优先 */
+            tapping-term-ms = <200>;       /* 长按阈值 */
+            bindings = <&none &kp>;        /* hold=none, tap=space */
+        };
+    };
+
     macros {
         //上滑关闭app
         tocloseapp: zed_em_closeapp {
