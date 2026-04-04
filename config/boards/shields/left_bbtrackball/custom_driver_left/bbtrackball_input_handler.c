@@ -133,7 +133,7 @@ static void arrow_repeat_work_handler(struct k_work *work) {
     int dy = -dy_acc;
 
     /* === Space held → Scroll mode === */
-    if (!space_pressed) { // 改一下，默认滚动，按住是指针？修改1，总2
+    if (space_pressed) { // 改一下，默认滚动，按住是指针？修改1，总2  改回去了
         int scroll_x = dx; // 不改滚动的快慢了，这个就是快滚，旋钮是细调吧。
         int scroll_y = dy;
 
@@ -164,7 +164,7 @@ static void report_work_handler(struct k_work *work) {
         moved = true;
 
         /* Space held → 禁止鼠标移动（只允许 scroll / arrow） */
-        if (space_pressed) { // 去掉!，按住为鼠标移动。修改处2，总2
+        if (!space_pressed) { // 去掉!，按住为鼠标移动。修改处2，总2
             int dx = -dx_acc;
             int dy = -dy_acc;
             input_report_rel(dev, INPUT_REL_X, dx, false, K_FOREVER);
