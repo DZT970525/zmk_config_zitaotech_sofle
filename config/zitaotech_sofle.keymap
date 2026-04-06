@@ -253,7 +253,7 @@
             display-name = "FUNC";
             bindings = <
 &kp GRAVE  &kp F1    &kp F2          &kp F3          &kp F4           &kp F5           &bt BT_CLR  &kp C_MUTE  &kp F6        &kp F7            &kp F8             &kp F9           &kp F10  &kp DEL
-&none      &kp HOME  &mkp RCLK       &kp UP_ARROW    &mkp LCLK        &out OUT_TOG     &kp F11     &kp F12     &kp UP_ARROW  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp BACKSLASH
+&none      &kp HOME  &mkp MB4        &kp UP_ARROW    &mkp MB5         &out OUT_TOG     &kp F11     &kp F12     &kp UP_ARROW  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp BACKSLASH
 &to 2      &kp END   &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &none            &mkp LCLK   &mkp RCLK   &kp TAB       &kp LEFT_ARROW    &kp DOWN_ARROW     &kp RIGHT_ARROW  &none    &kp SQT
 &none      &none     &none           &kp PAGE_DOWN   &kp PAGE_UP      &rgb_ug RGB_TOG  &kp END     &kp HOME    &bl BL_DEC    &bl BL_INC        &kp ESCAPE         &kp F24          &none    &kp MINUS  &kp EQUAL  &none
 &BOT       &none     &none           &none           &kp LEFT_SHIFT   &kp RIGHT_SHIFT  &none       &none       &none         &BOT
@@ -285,7 +285,7 @@
             display-name = "FUNCwin";
             bindings = <
 &kp GRAVE  &kp F1    &kp F2          &kp F3          &kp F4           &kp F5           &bt BT_CLR  &kp C_MUTE  &kp F6        &kp F7            &kp F8             &kp F9           &kp F10  &kp DEL
-&to 0      &kp HOME  &mkp RCLK       &kp UP_ARROW    &mkp LCLK        &out OUT_TOG     &kp F11     &kp F12     &kp UP_ARROW  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp BACKSLASH
+&to 0      &kp HOME  &mkp MB4        &kp UP_ARROW    &mkp MB5         &out OUT_TOG     &kp F11     &kp F12     &kp UP_ARROW  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp BACKSLASH
 &none      &kp END   &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &none            &mkp LCLK   &mkp RCLK   &kp TAB       &kp LEFT_ARROW    &kp DOWN_ARROW     &kp RIGHT_ARROW  &none    &kp SQT
 &none      &none     &none           &kp PAGE_DOWN   &kp PAGE_UP      &rgb_ug RGB_TOG  &kp END     &kp HOME    &bl BL_DEC    &bl BL_INC        &kp ESCAPE         &kp K_BACK       &none    &kp MINUS  &kp EQUAL  &none
 &BOT       &none     &none           &none           &kp LEFT_SHIFT   &kp RIGHT_SHIFT  &none       &none       &none         &BOT
