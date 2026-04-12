@@ -252,7 +252,7 @@
 &kp CAPS      &kp LA(F4)    &kp LC(W)  &trans     &kp LC(R)       &kp LC(T)                                                                       &none      &trans       &trans     &trans    &trans      &kp EQUAL
 &kp TAB       &kp LC(A)     &trans     &trans     &trans          &trans           &mkp LCLK                      &mkp LCLK                       &trans     &trans       &trans     &trans    &trans      &kp BACKSLASH
 &kp LSHFT     &kp LC(Z)     &kp LC(X)  &kp LC(C)  &kp LC(V)       &trans           &trans         &trans          &trans          &trans          &trans     &kp LC(M)    &trans     &trans    &trans      &kp RSHFT
-                                       &trans     &trans          &trans           &kp K_BACK     &mkp LCLK       &mkp LCLK       &kp K_BACK      &trans     &trans       &trans
+                                       &trans     &trans          &trans           &trans         &mkp LCLK       &mkp LCLK       &trans          &trans     &trans       &trans
             >;
             sensor-bindings = <&inc_dec_kp UP DOWN &inc_dec_kp LEFT RIGHT>;
         };
@@ -261,10 +261,10 @@
             display-name = "MOUSE";
             bindings = <  
 &kp LA(LEFT)      &trans          &trans            &trans         &trans           &trans         &tobt0                  &tobt1                            &totapfirst        &totapsecond        &totapmiddle      &totapthird        &totapforth     &torolltoolpanel
-&kp CAPS          &kp LA(F4)      &kp LC(W)         &trans         &kp LC(R)        &kp LC(T)                                                                &mkp LCLK          &toscrollleft       &tocloseapp       &toopenappM        &trans          &torollmsgpanel
-&kp TAB           &kp LC(A)       &trans            &trans         &trans           &trans         &mkp LCLK               &mkp LCLK                         &kp K_BACK         &toscrollright      &kp ESC           &trans             &trans          &trans
-&kp LA(RIGHT)     &kp LC(Z)       &kp LC(X)         &kp LC(C)      &kp LC(V)        &trans         &trans      &trans      &wxmod         &qqmod             &toreadwxmsg       &toreadmorewxmsg    &trans            &trans             &trans          &trans
-                                                    &trans         &trans           &trans         &kp K_BACK  &mkp LCLK   &toscrollup    &toscrolldown      &trans             &trans              &trans
+&kp CAPS          &kp LA(F4)      &kp LC(W)         &trans         &kp LC(R)        &kp LC(T)                                                                &mkp LCLK          &kp K_BACK          &tocloseapp       &toopenappM        &trans          &torollmsgpanel
+&kp TAB           &kp LC(A)       &trans            &trans         &trans           &trans         &mkp LCLK               &mkp LCLK                         &toreadwxmsg       &toreadmorewxmsg    &kp ESC           &trans             &trans          &trans
+&kp LA(RIGHT)     &kp LC(Z)       &kp LC(X)         &kp LC(C)      &kp LC(V)        &trans         &trans      &trans      &wxmod         &qqmod             &toscrollleft      &toscrollright      &trans            &trans             &trans          &trans
+                                                    &trans         &trans           &trans         &trans      &mkp LCLK   &toscrollup    &toscrolldown      &trans             &trans              &trans
             >;
         };
 
