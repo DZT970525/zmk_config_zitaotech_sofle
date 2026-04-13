@@ -14,6 +14,7 @@
 
 #include <zmk/event_manager.h>
 #include <zmk/events/position_state_changed.h>
+#include <zmk/keymap.h>
 
 #include <zephyr/input/input.h>
 #include <zephyr/logging/log.h>
@@ -37,24 +38,34 @@ static const struct device *motion_gpio_dev;
 
 /* ========= 全局状态 ========= */
 static const struct device *trackpoint_dev_ref = NULL;
-static bool space_pressed = false;
+static bool j_key_pressed = false;  // H键被按住时，小红点变为滚动模式
 uint32_t last_packet_time = 0;
 
-/* ========= Space 按键监听 ========= */
-static int space_listener_cb(const zmk_event_t *eh) {
+/* ========= 滚动模式状态 ========= */
+static int16_t scroll_accumulator_x = 0;  // 水平滚动累计
+static int16_t scroll_accumulator_y = 0;  // 垂直滚动累计
+#define SCROLL_THRESHOLD 8               // 滚动阈值，累计超过此值才发送滚动事件
+
+/* ========= 键监听 =========
+ * 检测 FN 键(position 61)状态切换小红点模式：
+ * - 未按：鼠标移动模式
+ * - 按住：滚动模式（在鼠标层）
+ */
+static int j_key_listener_cb(const zmk_event_t *eh) {
     const struct zmk_position_state_changed *ev = as_zmk_position_state_changed(eh);
     if (!ev) {
         return 0;
     }
 
-    if (ev->position == 61) { // Space position code
-        space_pressed = ev->state;
-        LOG_INF("space position=61 %s", space_pressed ? "PRESSED" : "RELEASED");
+    if (ev->position == 61) { // FN key position
+        j_key_pressed = ev->state;
+        LOG_INF("J key position=61 %s", j_key_pressed ? "PRESSED" : "RELEASED");
     }
     return 0;
 }
-ZMK_LISTENER(trackpoint_space_listener, space_listener_cb);
-ZMK_SUBSCRIPTION(trackpoint_space_listener, zmk_position_state_changed);
+ZMK_LISTENER(trackpoint_j_key_listener, j_key_listener_cb);
+ZMK_SUBSCRIPTION(trackpoint_j_key_listener, zmk_position_state_changed);
+
 
 /* ========= TrackPoint 配置结构 ========= */
 struct trackpoint_config {
@@ -87,6 +98,7 @@ static int trackpoint_read_packet(const struct device *dev, int8_t *dx, int8_t *
     return 0;
 }
 
+
 /* ========= Polling 任务 ========= */
 static void trackpoint_poll_work(struct k_work *work) {
     struct k_work_delayable *dwork = CONTAINER_OF(work, struct k_work_delayable, work);
@@ -100,37 +112,43 @@ static void trackpoint_poll_work(struct k_work *work) {
         /* INTPIN 拉低，读取数据包 */
         int8_t dx = 0, dy = 0;
         if (trackpoint_read_packet(dev, &dx, &dy) == 0) {
-            if (space_pressed) {
-                /* Space 按住时作为滚轮 */
-                int16_t scroll_x = 0, scroll_y = 0;
-                if (abs(dy) >= 128) {
-                    scroll_x = -dx / 24;
-                    scroll_y = -dy / 24;
-                } else if (abs(dy) >= 64) {
-                    scroll_x = -dx / 16;
-                    scroll_y = -dy / 16;
-                } else if (abs(dy) >= 32) {
-                    scroll_x = -dx / 12;
-                    scroll_y = -dy / 12;
-                } else if (abs(dy) >= 21) {
-                    scroll_x = -dx / 8;
-                    scroll_y = -dy / 8;
-                } else if (abs(dy) >= 3) {
-                    scroll_x = (dx > 0) ? -1 : (dx < 0) ? 1 : 0;
-                    scroll_y = (dy > 0) ? -1 : (dy < 0) ? 1 : 0;
-                } else {
-                    scroll_x = (dx > 0) ? -1 : (dx < 0) ? 1 : 0;
-                    scroll_y = 0;
+            /* 根据 H 键状态选择模式 */
+            uint8_t tp_led_brt = custom_led_get_last_valid_brightness();
+            float tp_factor = 0.4f + 0.01f * tp_led_brt;
+
+            if (j_key_pressed) {
+                /* H键按住（在鼠标层）：转换为滚轮事件 */
+                int16_t scaled_dx = -(int16_t)dx * 1 / 3 * tp_factor;
+                int16_t scaled_dy = -(int16_t)dy * 1 / 3 * tp_factor;
+
+                /* 累计滚动值 */
+                scroll_accumulator_x += scaled_dx;
+                scroll_accumulator_y += scaled_dy;
+
+                int8_t scroll_x = 0;
+                int8_t scroll_y = 0;
+
+                /* 水平滚动 */
+                if (abs(scroll_accumulator_x) >= SCROLL_THRESHOLD) {
+                    scroll_x = scroll_accumulator_x / SCROLL_THRESHOLD;
+                    scroll_accumulator_x = scroll_accumulator_x % SCROLL_THRESHOLD;
                 }
-                input_report_rel(dev, INPUT_REL_HWHEEL, scroll_x, false, K_FOREVER);
-                input_report_rel(dev, INPUT_REL_WHEEL, -scroll_y, true, K_FOREVER);
-                k_sleep(K_MSEC(40));
+
+                /* 垂直滚动 */
+                if (abs(scroll_accumulator_y) >= SCROLL_THRESHOLD) {
+                    scroll_y = scroll_accumulator_y / SCROLL_THRESHOLD;
+                    scroll_accumulator_y = scroll_accumulator_y % SCROLL_THRESHOLD;
+                }
+
+                /* 发送滚动事件 */
+                if (scroll_x != 0 || scroll_y != 0) {
+                    input_report_rel(dev, INPUT_REL_HWHEEL, -scroll_x, false, K_FOREVER);
+                    input_report_rel(dev, INPUT_REL_WHEEL, -scroll_y, true, K_FOREVER);
+                }
             } else {
-                /* 正常鼠标移动 */
-                uint8_t tp_led_brt = custom_led_get_last_valid_brightness();
-                float tp_factor = 0.4f + 0.01f * tp_led_brt;
-                dx = dx * 3 / 2 * tp_factor;
-                dy = dy * 3 / 2 * tp_factor;
+                /* H键未按（默认层）：移动鼠标 */
+                dx = dx * 1 / 3 * tp_factor;
+                dy = dy * 1 / 3 * tp_factor;
                 input_report_rel(dev, INPUT_REL_X, -dx, false, K_FOREVER);
                 input_report_rel(dev, INPUT_REL_Y, -dy, true, K_FOREVER);
             }

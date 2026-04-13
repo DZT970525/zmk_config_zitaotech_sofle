@@ -1,0 +1,47 @@
+# Copyright (c) 2025 ZitaoTech
+# SPDX-License-Identifier: MIT
+
+# ZMK Scroll Uniform Output Behavior
+# 自定义滚轮匀速输出 - 首次单次响应，持续匀速输出
+
+description: |
+  Scroll uniform output behavior for encoder sensors.
+
+  - First tick always triggers exactly one output (no acceleration)
+  - Continuous rotation outputs at fixed interval (uniform speed, no acceleration)
+  - Accumulated value resets after idle timeout
+  - No speed-based acceleration - uniform output rate regardless of rotation speed
+
+compatible: "zitao,behavior-scroll-accelerator"
+
+properties:
+  bindings:
+    type: phandle-array
+    required: true
+
+  tap-ms:
+    type: int
+    default: 30
+    description: |
+      Duration in milliseconds for the simulated tap event.
+
+  idle-reset-ms:
+    type: int
+    default: 100
+    description: |
+      Time in milliseconds after which the accumulated ticks are reset
+      when no new rotation events are received.
+
+  min-interval-ms:
+    type: int
+    default: 20
+    description: |
+      Minimum interval in milliseconds between scroll outputs.
+      Used when scrolling at high speed.
+
+  max-interval-ms:
+    type: int
+    default: 60
+    description: |
+      Fixed interval in milliseconds between scroll outputs during continuous rotation.
+      This is the uniform output rate - no acceleration based on speed.
