@@ -6,8 +6,21 @@
 */
 
 #include "zitaotech_sofle.dtsi"
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+
+#define MOUSE_LAYER_ID 2
 
 
+/* input-processor mouse layer */
+
+/*
+/ {
+    zip_temp_layer: zip_temp_layer {
+        compatible = "zmk,input-processor-temp-layer";
+        #input-processor-cells = <2>;
+    };
+};
+*/
 / {
     chosen {
         zmk,backlight = &backlight;
@@ -120,14 +133,99 @@
 };
 
 
-/*&bbtrackball_listener {
-    status = "okay";
-};*/
+/ {
+    split_inputs {
+        #address-cells = <1>;
+        #size-cells = <0>;
 
+        trackpoint_split: trackpoint_split@0 {
+            compatible = "zmk,input-split";
+            reg = <0>;
+        };
+    };
+
+};
+
+/ {
+    split_inputs {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        bbtrackpad3B_split: bbtrackpad3B_split@0 {
+            compatible = "zmk,input-split";
+            reg = <0>;
+        };
+    };
+
+};
+
+/ {
+    split_inputs {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        bbtrackpad37_split: bbtrackpad37_split@0 {
+            compatible = "zmk,input-split";
+            reg = <0>;
+        };
+    };
+
+};
+
+/ {
+    split_inputs {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        bbtrackball_split: bbtrackball_split@0 {
+            compatible = "zmk,input-split";
+            reg = <0>;
+        };
+    };
+
+};
+
+
+
+/ {
+    trackpoint_listener: trackpoint_listener {
+        compatible = "zmk,input-listener";
+        status = "disabled";
+        device = <&trackpoint_split>;
+    };
+    bbtrackpad3B_listener: bbtrackpad3B_listener {
+        compatible = "zmk,input-listener";
+        status = "disabled";
+        device = <&bbtrackpad3B_split>;
+    };
+    bbtrackpad37_listener: bbtrackpad37_listener {
+        compatible = "zmk,input-listener";
+        status = "disabled";
+        device = <&bbtrackpad37_split>;
+    };
+    bbtrackball_listener: bbtrackball_listener {
+        compatible = "zmk,input-listener";
+        status = "disabled";
+        device = <&bbtrackball_split>;
+    };
+};
 
 &trackpoint_listener {
     status = "okay";
+    //input-processors = <&zip_temp_layer MOUSE_LAYER_ID 600>;
 };
+
+&bbtrackpad3B_listener {
+    status = "okay";
+};
+
+&bbtrackpad37_listener {
+    status = "okay";
+};
+&bbtrackball_listener {
+    status = "okay";
+};
+
 lpm_view_spi: &spi2 {
     compatible = "nordic,nrf-spim";
     pinctrl-0 = <&spi2_default>;
