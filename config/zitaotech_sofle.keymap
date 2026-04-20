@@ -39,15 +39,6 @@
         };
     };
 
-    behaviors {
-        moback: moback_mods {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <250>;
-            bindings = <&mo &mkp>;
-        };
-    };
-
     macros {
         //上滑关闭app
         tocloseapp: zed_em_closeapp {
@@ -225,7 +216,7 @@
             #binding-cells = <0>;
             wait-ms = <80>;
             tap-ms = <200>;
-            bindings = <&macro_tap &bt BT_SEL 1>,<&macro_tap &kp CAPS>;
+            bindings = <&macro_tap &bt BT_SEL 1>,<&macro_tap &kp ENTER &kp CAPS>,<&macro_tap &kp CAPS>;
         };
     };
 
@@ -239,7 +230,7 @@
 &kp CAPS    &kp Q    &kp W      &kp E      &kp R           &kp T                                                                                 &kp Y              &kp U       &kp I      &kp O     &kp P      &kp DEL
 &kp TAB     &kp A    &kp S      &kp D      &kp F           &kp G           &mkp LCLK                             &mkp LCLK                       &kp H              &kp J       &kp K      &kp L     &kp SEMI   &kp SQT
 &kp LSHFT   &kp Z    &kp X      &kp C      &kp V           &kp B           &mkp LCLK    &mkp RCLK                &wxmod          &qqmod          &kp N              &kp M       &kp COMMA  &kp DOT   &kp FSLH   &kp RSHFT
-                                &kp LCTRL  &kp LALT        &kp ENTER       &kp SPACE    &moback 1 LCLK           &moback 1 LCLK  &kp SPACE       &kp BSPC           &kp LGUI    &kp RCTRL
+                                &kp LCTRL  &kp LALT        &kp ENTER       &kp SPACE    &mo 1                    &mo 1           &kp SPACE       &kp BSPC           &kp LGUI    &kp RCTRL
            >; 
            sensor-bindings = <&inc_dec_kp K_VOL_DN K_VOL_UP &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
