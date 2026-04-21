@@ -243,7 +243,7 @@
 &kp CAPS      &kp LA(F4)    &kp LC(W)  &trans     &kp LC(R)       &kp LC(T)                                                                       &none      &trans       &trans     &trans    &trans      &kp EQUAL
 &kp TAB       &kp LC(A)     &trans     &trans     &trans          &trans           &mkp LCLK                      &mkp LCLK                       &trans     &trans       &trans     &trans    &trans      &kp BACKSLASH
 &kp LSHFT     &kp LC(Z)     &kp LC(X)  &kp LC(C)  &kp LC(V)       &trans           &trans         &trans          &trans          &trans          &trans     &kp LC(M)    &trans     &trans    &trans      &kp RSHFT
-                                       &trans     &trans          &trans           &trans         &mkp LCLK       &mkp LCLK       &trans          &trans     &trans       &trans
+                                       &trans     &trans          &trans           &trans         &kp LGUI        &kp LGUI        &trans          &trans     &trans       &trans
             >;
             sensor-bindings = <&inc_dec_kp UP DOWN &inc_dec_kp LEFT RIGHT>;
         };
