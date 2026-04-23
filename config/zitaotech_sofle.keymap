@@ -134,7 +134,7 @@
         torollmsgpanel: zed_em_torollmsgpanel {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F12>,<&macro_tap &kp SPACE>,<&macro_release &kp F12>;
+            bindings = <&macro_press &kp LGUI>,<&macro_tap &kp N>,<&macro_release &kp LGUI>;
         };
         //点击微信文字输入框
         totapwxinputbar: zed_em_totapwxinputbar {
