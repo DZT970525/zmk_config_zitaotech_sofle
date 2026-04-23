@@ -46,53 +46,11 @@
             #binding-cells = <0>;
             bindings = <&macro_press &kp F4>,<&macro_tap &kp R>,<&macro_release &kp F4>;
         }; 
-        //打开appT
-        toopenappT: zed_em_toopenappT {
+        //返回桌面
+        gohome: zed_em_gohome {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp T>,<&macro_release &kp F3>;
-        }; 
-        //打开appY
-        toopenappY: zed_em_toopenappY {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp Y>,<&macro_release &kp F3>;
-        };
-        //打开appX
-        toopenappX: zed_em_toopenappX {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp X>,<&macro_release &kp F3>;
-        };
-        //打开appZ
-        toopenappZ: zed_em_toopenappZ {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp Z>,<&macro_release &kp F3>;
-        };
-        //打开appJ
-        toopenappJ: zed_em_toopenappJ {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp J>,<&macro_release &kp F3>;
-        };
-        //打开appM
-        toopenappM: zed_em_toopenappM {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp M>,<&macro_release &kp F3>;
-        };
-        //打开appE
-        toopenappE: zed_em_toopenappE {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp E>,<&macro_release &kp F3>;
-        };
-        //打开appR
-        toopenappR: zed_em_toopenappR {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp R>,<&macro_release &kp F3>;
+            bindings = <&macro_press &kp LGUI>,<&macro_tap &kp H>,<&macro_release &kp LGUI>;
         };
         //手机解锁
         loginpwd: macros_loginpwd {
@@ -104,7 +62,7 @@
         toscrollup: zed_em_toscrollup {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp LALT>,<&macro_release &kp F3>;
+            bindings = <&macro_press &kp F3>,<&macro_tap &kp LCTRL>,<&macro_release &kp F3>;
         };
         //向下滑动
         toscrolldown: zed_em_toscrolldown {
@@ -252,7 +210,7 @@
             display-name = "MOUSE";
             bindings = <  
 &kp LA(LEFT)      &trans          &trans            &trans         &trans           &trans         &tobt0                 &tobt1                             &totapfirst        &totapsecond        &totapmiddle      &totapthird        &totapforth     &torolltoolpanel
-&kp CAPS          &kp LA(F4)      &kp LC(W)         &trans         &kp LC(R)        &kp LC(T)                                                                &mkp LCLK          &toreadwxmsg        &tocloseapp       &toscrollleft      &toopenappM     &torollmsgpanel
+&kp CAPS          &kp LA(F4)      &kp LC(W)         &trans         &kp LC(R)        &kp LC(T)                                                                &mkp LCLK          &toreadwxmsg        &tocloseapp       &toscrollleft      &gohome         &torollmsgpanel
 &kp TAB           &kp LC(A)       &trans            &trans         &trans           &trans         &mkp LCLK               &mkp LCLK                         &kp K_BACK         &toreadmorewxmsg    &kp ESC           &toscrollright     &trans          &trans
 &kp LA(RIGHT)     &kp LC(Z)       &kp LC(X)         &kp LC(C)      &kp LC(V)        &trans         &trans      &trans      &wxmod         &qqmod             &trans             &trans              &trans            &trans             &trans          &trans
                                                     &trans         &trans           &trans         &trans      &mkp LCLK   &toscrollup    &toscrolldown      &trans             &trans              &trans
