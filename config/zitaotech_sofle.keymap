@@ -104,7 +104,7 @@
         toscrollup: zed_em_toscrollup {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp F3>,<&macro_tap &kp SPACE>,<&macro_release &kp F3>;
+            bindings = <&macro_press &kp F3>,<&macro_tap &kp LALT>,<&macro_release &kp F3>;
         };
         //向下滑动
         toscrolldown: zed_em_toscrolldown {
