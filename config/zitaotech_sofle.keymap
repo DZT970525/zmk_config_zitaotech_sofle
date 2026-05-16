@@ -209,9 +209,9 @@
         mouse_layer {
             display-name = "MOUSE";
             bindings = <  
-&kp LA(LEFT)      &trans          &trans            &trans         &trans           &trans         &tobt0                 &tobt1                             &totapfirst        &totapsecond        &totapmiddle      &totapthird        &totapforth     &trans
-&kp CAPS          &kp LA(F4)      &kp LC(W)         &trans         &kp LC(R)        &kp LC(T)                                                                &mkp LCLK          &toreadwxmsg        &toscrollleft     &torolltoolpanel   &trans          &trans
-&kp TAB           &kp LC(A)       &trans            &trans         &trans           &trans         &mkp LCLK               &mkp LCLK                         &kp K_BACK         &toreadmorewxmsg    &toscrollright    &torollmsgpanel    &trans          &trans
+&kp LG(X)         &kp LG(S)       &kp LG(T)         &kp LG(R)      &kp LG(Z)        &kp LG(A)      &tobt0                 &tobt1                             &totapfirst        &totapsecond        &totapmiddle      &totapthird        &totapforth     &trans
+&kp CAPS          &kp LA(F4)      &kp LC(W)         &kp LG(E)      &kp LC(R)        &kp LC(T)                                                                &mkp LCLK          &toreadwxmsg        &toscrollleft     &torolltoolpanel   &trans          &trans
+&kp LA(LEFT)      &kp LC(A)       &trans            &trans         &trans           &trans         &mkp LCLK               &mkp LCLK                         &kp K_BACK         &toreadmorewxmsg    &toscrollright    &torollmsgpanel    &trans          &trans
 &kp LA(RIGHT)     &kp LC(Z)       &kp LC(X)         &kp LC(C)      &kp LC(V)        &trans         &trans      &trans      &wxmod         &qqmod             &kp ESC            &tocloseapp         &gohome           &trans             &trans          &trans
                                                     &trans         &trans           &trans         &trans      &mkp LCLK   &toscrollup    &toscrolldown      &trans             &trans              &trans
             >;
