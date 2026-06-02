@@ -1,74 +1,10 @@
 layout: {zmk_keyboard: zitaotech_sofle}
 layers:
-  QWERTY:
-  - ESC
-  - '1'
-  - '2'
-  - '3'
-  - '4'
-  - '5'
-  - MUTE
-  - MUTE
-  - '6'
-  - '7'
-  - '8'
-  - '9'
-  - '0'
-  - BSPC
-  - TAB
-  - Q
-  - W
-  - E
-  - R
-  - T
-  - Y
-  - U
-  - I
-  - O
-  - P
-  - ENTER
-  - CAPS
-  - A
-  - S
-  - D
-  - F
-  - G
-  - '&mkp LCLK'
-  - '&mkp LCLK'
-  - H
-  - J
-  - K
-  - L
-  - ;
-  - \
-  - LSHFT
-  - Z
-  - X
-  - C
-  - V
-  - B
-  - PG DN
-  - PG UP
-  - {t: '[', h: '{'}
-  - {t: ']', h: '}'}
-  - N
-  - M
-  - ','
-  - .
-  - /
-  - '='
-  - LCTRL
-  - LGUI
-  - LALT
-  - SPACE
-  - LOWER
-  - LOWER
-  - SPACE
-  - RAISE
-  - '`'
-  - '-'
+  QWERTY: [ESC, '1', '2', '3', '4', '5', MUTE, MUTE, '6', '7', '8', '9', '0', BSPC, TAB, Q, W, E, R, T, Y, U, I, O, P, \, CAPS, A, S, D, F, G, '&mkp LCLK', '&mkp
+      LCLK', H, J, K, L, ;, ENTER, LSHFT, Z, X, C, V, B, PG DN, PG UP, '&msc SCRL_DOWN', '&msc SCRL_UP', N, M, ',', ., /, RSHIFT, LCTRL, LGUI, LALT, SPACE, LOWER,
+    LOWER, SPACE, '-', '=', '`']
   LOWER:
-  - '`'
+  - ESC
   - F1
   - F2
   - F3
@@ -89,11 +25,11 @@ layers:
   - {t: ▽, type: trans}
   - OUT TOG
   - F11
-  - '7'
-  - '8'
-  - '9'
+  - F12
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   - HOME
-  - ENTER
+  - \
   - CAPS
   - LEFT
   - DOWN
@@ -102,12 +38,12 @@ layers:
   - {t: ▽, type: trans}
   - '&mkp RCLK'
   - '&mkp RCLK'
-  - F12
-  - '4'
-  - '5'
-  - '6'
-  - '?'
-  - '|'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - ''''
+  - ENTER
   - LSHFT
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -119,8 +55,8 @@ layers:
   - '&bl BL_DEC'
   - '&bl BL_INC'
   - {t: ▽, type: trans}
-  - '1'
-  - '2'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   - '3'
   - _
   - +
@@ -130,12 +66,12 @@ layers:
   - SPACE
   - {t: LOWER, type: held}
   - LOWER
-  - '0'
-  - {t: MOUSE, h: toggle}
+  - SPACE
+  - {t: ▽, type: trans}
   - .
   - '&bootloader'
   RAISE:
-  - '`'
+  - ESC
   - F1
   - F2
   - F3
@@ -143,11 +79,11 @@ layers:
   - F5
   - BT CLR
   - MUTE
-  - ''
-  - ''
-  - ''
-  - UP
-  - ''
+  - F6
+  - F7
+  - F8
+  - F9
+  - F10
   - BSPC
   - TAB
   - {t: ▽, type: trans}
@@ -155,12 +91,12 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - OUT TOG
-  - ''
-  - ''
-  - LEFT
-  - DOWN
-  - RIGHT
-  - ''
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   - CAPS
   - LEFT
   - DOWN
@@ -197,8 +133,8 @@ layers:
   - SPACE
   - LOWER
   - LOWER
-  - '&mkp MB2'
-  - {type: held}
+  - {t: ▽, type: trans}
+  - ''
   - ''
   - ''
   MOUSE:
