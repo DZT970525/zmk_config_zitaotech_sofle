@@ -134,7 +134,7 @@
                 <&macro_tap>,
                 <&kp RIGHT_ARROW>,
                 <&macro_release>,
-                <&kp LWIN &kp RCTRL>;
+                <&kp RCTRL &kp LWIN>;
 
             label = "NEXT_DESKTOP";
         };
