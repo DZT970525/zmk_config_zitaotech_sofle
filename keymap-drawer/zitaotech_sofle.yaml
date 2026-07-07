@@ -34,7 +34,7 @@ layers:
   - LEFT
   - DOWN
   - RIGHT
-  - {t: ▽, type: trans}
+  - '&Next_desktop'
   - {t: ▽, type: trans}
   - '&mkp RCLK'
   - '&mkp RCLK'
