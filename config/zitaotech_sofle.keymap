@@ -128,7 +128,14 @@
         Next_desktop: Next_desktop {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_GUI &kp LCTRL &kp LEFT_ARROW>;
+            bindings =
+                <&macro_press>,
+                <&kp LCMD &kp LCTRL>,
+                <&macro_tap>,
+                <&kp RIGHT_ARROW>,
+                <&macro_release>,
+                <&kp LWIN &kp RCTRL>;
+
             label = "NEXT_DESKTOP";
         };
     };
