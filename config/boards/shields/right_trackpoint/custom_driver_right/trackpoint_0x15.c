@@ -360,8 +360,8 @@ static void trackpoint_work_cb(struct k_work *work) {
 
         scroll_residual_x -= out_x;
         scroll_residual_y -= out_y;
-        input_report_rel(dev, INPUT_REL_HWHEEL, -out_x, false, K_FOREVER);
-        input_report_rel(dev, INPUT_REL_WHEEL, out_y, true, K_FOREVER);
+        input_report_rel(dev, INPUT_REL_HWHEEL, -out_x*3, false, K_FOREVER);
+        input_report_rel(dev, INPUT_REL_WHEEL, out_y*3, true, K_FOREVER);
         k_msleep(25);
 
     } else {
@@ -378,8 +378,8 @@ static void trackpoint_work_cb(struct k_work *work) {
 
         float slow_mult = slow_key_pressed ? SLOW_KEY_MULTIPLIER : 1.0f;
 
-        float fx = dx * MOUSE_BASE_SPEED * tp_factor * exp_mult * slow_mult;
-        float fy = dy * MOUSE_BASE_SPEED * tp_factor * exp_mult * slow_mult;
+        float fx = dx * MOUSE_BASE_SPEED * tp_factor * exp_mult * slow_mult*3;
+        float fy = dy * MOUSE_BASE_SPEED * tp_factor * exp_mult * slow_mult*3;
 
         input_report_rel(dev, INPUT_REL_X, -(int)fx, false, K_NO_WAIT);
         input_report_rel(dev, INPUT_REL_Y, -(int)fy, true, K_NO_WAIT);
