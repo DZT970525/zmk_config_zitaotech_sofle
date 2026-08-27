@@ -17,7 +17,7 @@
             pwms = <&pwm1 0 PWM_USEC(20) PWM_POLARITY_NORMAL>;
         };
     };
-
+};
 
 &pwm1 {
     status = "okay";
